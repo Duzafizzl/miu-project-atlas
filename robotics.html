@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!--
+  File: robotics.html
+  Description: Miu Robotics Atlas — Rasp-Bear deep dive (GitHub Pages companion to index.html).
+  Created: 2026-06-26
+  Last updated: 2026-08-28
+-->
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f2025">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Miu Robotics Atlas — Rasp-Bear SoftLoc, cruise, LiDAR, Animatrix. Public-safe companion · Aug 2026.">
+  <title>Miu Robotics · Rasp-Bear Atlas</title>
+  <style>
+    :root {
+      --bg-deep: #18191e;
+      --bg-base: #1f2025;
+      --bg-elevated: #26272d;
+      --bg-surface: #2e2f36;
+      --bg-surface-high: #36373f;
+      --text-primary: #f7f8ff;
+      --text-secondary: #ececef;
+      --text-muted: #9093a0;
+      --text-disabled: #5c5e6a;
+      --accent: #60a5fa;
+      --accent-soft: #93c5fd;
+      --accent-dim: rgba(96, 165, 250, 0.12);
+      --accent-glow: rgba(96, 165, 250, 0.45);
+      --warm: #f59e0b;
+      --green: #34d399;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-strong: rgba(96, 165, 250, 0.28);
+      --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      --radius-notch: 18px;
+      --radius-chip: 14px;
+      --rail-w: 7.5rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --motion-fast: 220ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; overflow-x: clip; }
+    body {
+      background: var(--bg-deep); color: var(--text-secondary);
+      font-family: var(--font-ui); font-size: 1rem; line-height: 1.65;
+      overflow-x: clip; -webkit-font-smoothing: antialiased;
+    }
+
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      z-index: 300; box-shadow: 0 0 12px var(--accent-glow);
+      transition: width 0.08s linear;
+    }
+    .canvas {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(52, 211, 153, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 35% at 4% 88%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-base) 45%, var(--bg-deep) 100%);
+    }
+    .grid-noise {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.35;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
+    }
+
+    .frame {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: var(--rail-w) 1fr;
+      min-height: 100vh; max-width: 100%;
+    }
+
+    .rail {
+      position: sticky; top: 0; height: 100vh;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; padding: 1.75rem 0;
+      background: rgba(31, 32, 37, 0.72);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .rail-brand {
+      font-family: var(--font-display); font-size: 0.625rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted);
+      padding: 0 1rem 1.25rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .rail a {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.85rem; margin: 0 0.35rem;
+      text-decoration: none; border-radius: 10px;
+      transition: background var(--motion-fast) var(--ease), color var(--motion-fast);
+    }
+    .rail-num { font-size: 0.625rem; font-weight: 700; color: var(--text-disabled); min-width: 1.25rem; }
+    .rail-label {
+      font-size: 0.6875rem; font-weight: 500; color: var(--text-muted);
+      letter-spacing: 0.02em; opacity: 0; transform: translateX(-4px);
+      transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+    }
+    @media (min-width: 1100px) { .rail-label { opacity: 1; transform: none; } }
+    .rail a:hover, .rail a.is-active { background: var(--accent-dim); }
+    .rail a:hover .rail-num, .rail a.is-active .rail-num { color: var(--accent-soft); }
+    .rail a:hover .rail-label, .rail a.is-active .rail-label { color: var(--text-primary); }
+    .rail a.is-active::before {
+      content: ""; width: 3px; height: 1.1rem; border-radius: 2px;
+      background: var(--green); box-shadow: 0 0 10px rgba(52,211,153,0.45);
+      margin-right: -0.15rem;
+    }
+
+    .main {
+      max-width: 46rem; width: 100%; justify-self: center;
+      padding: 0 clamp(1.25rem, 4vw, 2.75rem) 5rem; min-width: 0;
+    }
+
+    .mobile-jump {
+      display: none; position: sticky; top: 0; z-index: 200;
+      padding: 0.6rem 1rem; background: rgba(31, 32, 37, 0.92);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+    }
+    .mobile-jump label { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.35rem; }
+    .section-jump {
+      width: 100%; padding: 0.55rem 0.75rem; border-radius: var(--radius-chip);
+      background: var(--bg-surface); border: 1px solid var(--border);
+      color: var(--text-primary); font-family: var(--font-ui); font-size: 0.875rem;
+    }
+
+    .hero { position: relative; padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--green); }
+
+    h1 {
+      font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700; letter-spacing: -0.045em; line-height: 1.05;
+      color: var(--text-primary); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;
+    }
+    .atlas-robot-icon {
+      width: 52px; height: 52px; max-height: 52px; object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(52, 211, 153, 0.35));
+    }
+    h1 .accent { color: var(--green); }
+    .hero-lede { font-size: 1.0625rem; color: var(--text-muted); max-width: 36rem; margin-bottom: 1rem; }
+    .hero-lede strong { color: var(--text-secondary); font-weight: 500; }
+
+    .hero-chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem;
+    }
+    .chip {
+      padding: 0.4rem 0.85rem; border-radius: var(--radius-chip);
+      background: var(--bg-surface); border: 1px solid var(--border);
+      font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+    }
+    .chip strong { color: var(--text-primary); font-weight: 600; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      margin-bottom: 1.5rem; padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-chip); background: var(--bg-surface);
+      border: 1px solid var(--border); color: var(--accent-soft);
+      font-size: 0.8125rem; text-decoration: none;
+    }
+    .back-link:hover { background: var(--accent-dim); }
+
+    section {
+      padding: 3.25rem 0; border-bottom: 1px solid var(--border);
+    }
+
+    .sec-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .sec-index {
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+      line-height: 1; color: var(--bg-surface-high);
+      -webkit-text-stroke: 1px rgba(52, 211, 153, 0.2);
+    }
+    h2 {
+      font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 1.5rem);
+      font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary);
+    }
+    h3.sec-subhead {
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted); margin: 1.75rem 0 0.75rem;
+    }
+    p { margin-bottom: 1rem; color: var(--text-muted); max-width: 40rem; }
+    ul { margin: 0 0 1rem 1rem; color: var(--text-muted); }
+    li { margin-bottom: 0.35rem; }
+    li::marker { color: var(--green); }
+    strong { color: var(--text-secondary); font-weight: 500; }
+    .section-desc { font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+    .panel {
+      background: rgba(46, 47, 54, 0.55); border: 1px solid var(--border);
+      border-radius: var(--radius-notch); backdrop-filter: blur(12px);
+      overflow: hidden; margin: 1.25rem 0;
+    }
+    .panel table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .panel th {
+      text-align: left; padding: 0.7rem 1rem; font-size: 0.625rem;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-disabled); background: rgba(0,0,0,0.2);
+      border-bottom: 1px solid var(--border);
+    }
+    .panel td {
+      padding: 0.65rem 1rem; border-bottom: 1px solid var(--border);
+      color: var(--text-muted); vertical-align: top;
+    }
+    .panel tr:last-child td { border-bottom: none; }
+    .panel td:first-child { color: var(--text-secondary); font-weight: 500; }
+    .panel-scroll { overflow-x: auto; }
+
+    .compare-grid {
+      display: grid; gap: 0.75rem; margin: 1rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+      align-items: stretch;
+    }
+    .compare-card {
+      padding: 1.25rem; border-radius: var(--radius-notch);
+      background: linear-gradient(145deg, var(--bg-elevated), var(--bg-base));
+      border: 1px solid var(--border); height: 100%;
+    }
+    .compare-tag {
+      font-size: 0.625rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem;
+    }
+    .compare-card h3 {
+      font-size: 1rem; font-weight: 600; color: var(--text-primary);
+      margin: 0 0 0.75rem; text-transform: none; letter-spacing: -0.01em;
+    }
+    .compare-card p, .compare-card ul { font-size: 0.875rem; margin-bottom: 0; }
+    .compare-card ul { margin-left: 0; padding-left: 1.1rem; }
+
+    .pipeline {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;
+    }
+    .pipe-step {
+      flex: 1 1 7.5rem; padding: 0.85rem; text-align: center;
+      border-radius: var(--radius-chip); background: var(--bg-surface);
+      border: 1px solid var(--border); min-width: 0;
+    }
+    .pipe-step strong {
+      display: block; font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 0.25rem;
+    }
+    .pipe-step span { font-size: 0.8125rem; color: var(--text-muted); }
+
+    .callout {
+      border-left: 2px solid var(--green); padding: 0.65rem 0 0.65rem 1rem;
+      margin: 1rem 0; font-size: 0.9375rem; color: var(--text-muted);
+      background: rgba(52, 211, 153, 0.06); border-radius: 0 var(--radius-chip) var(--radius-chip) 0;
+    }
+
+    .flow-board {
+      margin: 1.5rem 0; padding: 1.25rem;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-notch);
+    }
+    .flow-board figcaption {
+      font-size: 0.625rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1rem;
+    }
+    .flow-note {
+      margin: 0.85rem 0 0; font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;
+    }
+    .flow-row {
+      display: flex; align-items: center; gap: 0;
+      width: 100%; min-width: 0;
+      overflow-x: auto; padding-bottom: 0.15rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .flow-row--path {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr);
+      align-items: center; gap: 0;
+      overflow-x: visible; padding-bottom: 0;
+    }
+    .flow-row--path.flow-row--steps-5 {
+      grid-template-columns: minmax(0, 1fr) 1.25rem minmax(0, 1fr) 1.25rem minmax(0, 1fr) 1.25rem minmax(0, 1fr) 1.25rem minmax(0, 1fr);
+    }
+    .flow-row--path .flow-node {
+      max-width: none; width: 100%; min-width: 0; flex: unset;
+      padding: 0.75rem 0.65rem;
+    }
+    .flow-row--path .flow-wire {
+      flex: unset; width: 100%; min-width: 0; height: 2px; align-self: center;
+    }
+    .flow-row + .flow-row { margin-top: 1rem; }
+    .flow-row--stack {
+      flex-direction: column; align-items: stretch; overflow-x: visible;
+    }
+    .flow-row--stack .flow-wire {
+      flex: none; width: 2px; height: 1.25rem; align-self: center;
+      background: repeating-linear-gradient(180deg, var(--green) 0, var(--green) 6px, transparent 6px, transparent 12px);
+      animation: flowDashV 1.2s linear infinite;
+    }
+    .flow-row--stack .flow-node { max-width: none; width: 100%; }
+    @media (min-width: 769px) {
+      .flow-row--stack.flow-row--wide {
+        flex-direction: row; align-items: center; overflow-x: auto;
+      }
+      .flow-row--stack.flow-row--wide .flow-wire {
+        flex: 0 0 1.25rem; width: auto; height: 2px; align-self: center;
+        background: repeating-linear-gradient(90deg, var(--green) 0, var(--green) 6px, transparent 6px, transparent 12px);
+        animation: flowDash 1.2s linear infinite;
+      }
+      .flow-row--stack.flow-row--wide .flow-node {
+        max-width: 10.5rem; width: auto; flex: 0 0 auto;
+      }
+    }
+    .flow-node {
+      padding: 0.65rem 0.85rem; min-width: 6.25rem; max-width: 10.5rem; flex: 0 0 auto;
+      text-align: center; font-size: 0.75rem; font-weight: 500;
+      color: var(--text-secondary); line-height: 1.35;
+      background: var(--bg-surface); border: 1px solid var(--border-strong);
+      border-radius: var(--radius-chip);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .flow-node small { display: block; font-size: 0.625rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .flow-node.accent { border-color: var(--green); background: rgba(52,211,153,0.08); color: var(--text-primary); }
+    .flow-node.warm { border-color: var(--warm); background: rgba(245,158,11,0.08); }
+    .flow-wire {
+      flex: 0 0 1.25rem; height: 2px;
+      background: repeating-linear-gradient(90deg, var(--green) 0, var(--green) 6px, transparent 6px, transparent 12px);
+      animation: flowDash 1.2s linear infinite;
+    }
+    @keyframes flowDash { from { background-position: 0 0; } to { background-position: 24px 0; } }
+    @keyframes flowDashV { from { background-position: 0 0; } to { background-position: 0 24px; } }
+
+    .pill {
+      display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px;
+      font-size: 0.625rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .pill-done { background: rgba(107, 207, 138, 0.12); color: #6bcf8a; }
+    .pill-wip { background: var(--accent-dim); color: var(--accent-soft); }
+    .pill-plan { background: rgba(255,255,255,0.05); color: var(--text-disabled); }
+
+    .atlas-link {
+      display: inline-flex; margin: 1rem 0 0; padding: 0.75rem 1.1rem;
+      border-radius: var(--radius-chip); border: 1px solid var(--border-strong);
+      background: rgba(52, 211, 153, 0.08); color: var(--green);
+      font-size: 0.875rem; font-weight: 500; text-decoration: none;
+    }
+    .atlas-link:hover { background: rgba(52, 211, 153, 0.14); }
+
+    footer {
+      padding: 2.5rem 0 0; font-size: 0.6875rem;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-disabled);
+    }
+    .footer-note { text-transform: none; letter-spacing: 0; line-height: 1.6; margin-top: 0.5rem; }
+
+    code {
+      font-size: 0.85em; padding: 0.1em 0.35em; border-radius: 6px;
+      background: rgba(0,0,0,0.25); color: var(--accent-soft);
+    }
+
+    .agent-led {
+      padding: 1.25rem 1.35rem; margin: 1.25rem 0;
+      border-radius: var(--radius-notch);
+      border: 2px solid var(--green);
+      background: linear-gradient(135deg, rgba(52,211,153,0.1), rgba(46,47,54,0.5));
+      font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;
+    }
+    .agent-led strong { color: var(--text-primary); }
+
+    .atlas-video-wrap {
+      margin: 1rem 0; border-radius: var(--radius-notch);
+      overflow: hidden; border: 1px solid var(--border);
+      background: #000; max-width: min(100%, 280px);
+    }
+    .atlas-video-wrap video { display: block; width: 100%; height: auto; }
+    .atlas-video-wrap figcaption {
+      padding: 0.5rem 0.65rem; font-size: 0.6875rem; line-height: 1.4;
+      color: var(--text-muted); background: rgba(46, 47, 54, 0.35);
+      border-top: 1px solid var(--border);
+    }
+    .atlas-video-wrap figcaption a { color: var(--accent-soft); }
+
+    @media (max-width: 768px) {
+      .rail { display: none; }
+      .mobile-jump { display: block; }
+      .frame { grid-template-columns: 1fr; }
+      .main { padding-bottom: 3rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .panel-scroll { overflow: visible; }
+      .panel table, .panel thead, .panel tbody, .panel tr, .panel th, .panel td { display: block; width: 100%; }
+      .panel thead { display: none; }
+      .panel tbody tr { margin-bottom: 0.75rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-chip); }
+      .panel td { border: none; padding: 0.15rem 0; }
+      .panel td:first-child { font-weight: 600; color: var(--text-primary); padding-bottom: 0.35rem; }
+      .flow-row:not(.flow-row--stack):not(.flow-row--path) {
+        flex-direction: column; align-items: stretch;
+      }
+      .flow-row:not(.flow-row--stack):not(.flow-row--path) .flow-node { max-width: none; width: 100%; }
+      .flow-row:not(.flow-row--stack):not(.flow-row--path) .flow-wire {
+        flex: none; width: 2px; height: 1.5rem; align-self: center;
+        background: repeating-linear-gradient(180deg, var(--green) 0, var(--green) 6px, transparent 6px, transparent 12px);
+        animation: flowDashV 1.2s linear infinite;
+      }
+      .flow-row--path {
+        display: flex; flex-direction: column; align-items: stretch;
+      }
+      .flow-row--path .flow-node { width: 100%; }
+      .flow-row--path .flow-wire {
+        flex: none; width: 2px; height: 1.25rem; align-self: center;
+        background: repeating-linear-gradient(180deg, var(--green) 0, var(--green) 6px, transparent 6px, transparent 12px);
+        animation: flowDashV 1.2s linear infinite;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flow-wire { animation: none; }
+      .rail-label { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <div class="canvas" aria-hidden="true"></div>
+  <div class="grid-noise" aria-hidden="true"></div>
+
+  <div class="mobile-jump">
+    <label for="section-jump">Jump to section</label>
+    <select id="section-jump" class="section-jump" aria-label="Jump to section">
+      <option value="">Choose…</option>
+      <option value="#overview">00 · Overview</option>
+      <option value="#body">01 · Body services</option>
+      <option value="#softloc">02 · SoftLoc &amp; nav</option>
+      <option value="#expressions">03 · Expressions</option>
+      <option value="#animatrix">04 · Animatrix</option>
+      <option value="#vision">05 · Vision</option>
+      <option value="#brain">06 · Brain</option>
+      <option value="#memory">07 · Deploy→Learn</option>
+      <option value="#hardware">08 · Hardware</option>
+    </select>
+  </div>
+
+  <div class="frame">
+    <nav class="rail" aria-label="Section navigation">
+      <div class="rail-brand">Robotics Atlas</div>
+      <a href="#overview"><span class="rail-num">00</span><span class="rail-label">Overview</span></a>
+      <a href="#body"><span class="rail-num">01</span><span class="rail-label">Body</span></a>
+      <a href="#softloc"><span class="rail-num">02</span><span class="rail-label">SoftLoc</span></a>
+      <a href="#expressions"><span class="rail-num">03</span><span class="rail-label">Expressions</span></a>
+      <a href="#animatrix"><span class="rail-num">04</span><span class="rail-label">Animatrix</span></a>
+      <a href="#vision"><span class="rail-num">05</span><span class="rail-label">Vision</span></a>
+      <a href="#brain"><span class="rail-num">06</span><span class="rail-label">Brain</span></a>
+      <a href="#memory"><span class="rail-num">07</span><span class="rail-label">Memory</span></a>
+      <a href="#hardware"><span class="rail-num">08</span><span class="rail-label">Hardware</span></a>
+    </nav>
+
+    <main class="main">
+      <header class="hero">
+        <a class="back-link" href="index.html">← Substrate Atlas</a>
+        <p class="hero-eyebrow">Companion · Robotics deep dive</p>
+        <h1><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Rasp-Bear <span class="accent">Atlas</span></h1>
+        <p class="hero-lede">
+          <strong>Rasp-Bear</strong> (codename) is Miu's second body — Yahboom Raspbot V2 on Pi 5 with Mecanum drive, PTZ, ultrasonic, LiDAR C1, and SoftLoc cruise. FastAPI is the production body stack.
+        </p>
+        <div class="hero-chips">
+          <span class="chip"><strong>Updated</strong> Aug 2026</span>
+          <span class="chip"><strong>LiDAR</strong> C1 live</span>
+          <span class="chip"><strong>SoftLoc</strong> W1–W4</span>
+          <span class="chip"><strong>Memory</strong> <a href="index.html#cascade">Substrate atlas §07</a></span>
+        </div>
+      </header>
+
+      <section id="overview">
+        <div class="sec-head"><span class="sec-index">00</span><h2>Overview</h2></div>
+        <p class="section-desc">Substrate on the Mac mini proxies every body call. The Pi runs FastAPI, T0 reflexes, SoftLoc arbitration, and background daemons.</p>
+        <div class="callout"><strong>Rider → Rasp-Bear:</strong> Rider (legged XGO, Nov 2025–early 2026) proved the brain/body split. Hardware is <strong>gone</strong> — leg servo failed after a tip; we moved mobility to Rasp-Bear (Mecanum, LiDAR, Pi 5). No SoftLoc on Rider.</div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <div class="compare-tag">Pi body</div>
+            <h3>What runs on the Pi</h3>
+            <ul>
+              <li>FastAPI — move, stop, PTZ, IMU rotate, telemetry</li>
+              <li>LiDAR C1 + <code>lidar_mode</code> exclusive ownership</li>
+              <li>SoftLoc soft-wait (PTZ ↔ chassis)</li>
+              <li>~15 declarative expression routines</li>
+              <li>Animatrix daemon + collision guard T0</li>
+              <li>Proximity voice + recovery hooks</li>
+              <li>Optional Nav2 Docker research lane</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <div class="compare-tag">Mac brain</div>
+            <h3>What Substrate adds</h3>
+            <ul>
+              <li>Raspbot proxy — all body endpoints bundled</li>
+              <li>Agent tools live: cruise, navigate_to, places, speak</li>
+              <li>NEURAL.FEED dashboard (Rasp-Bear tab)</li>
+              <li>Vision journal + caption routing</li>
+              <li>Person-search / approach bridges</li>
+              <li>Heartbeat inject: robot vision + soma context</li>
+            </ul>
+          </div>
+        </div>
+        <figure class="flow-board" aria-label="Brain body proxy">
+          <figcaption>Control path · always through Substrate</figcaption>
+          <div class="flow-row flow-row--path">
+            <div class="flow-node">Input<small>Agent · Discord · dashboard</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Substrate<small>proxy on Mini</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Pi body<small>FastAPI</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Actuators<small>Mecanum · PTZ · LiDAR</small></div>
+          </div>
+        </figure>
+        <figure class="atlas-video-wrap" aria-label="Rasp-Bear first ride">
+          <video src="assets/raspbear-first-ride.mp4" poster="assets/raspbear-first-ride-poster.jpg" controls muted playsinline preload="metadata" aria-label="First driven session on Rasp-Bear Mecanum body"></video>
+          <figcaption>Jul 2026 · first ride on Rasp-Bear — Yahboom Raspbot V2, Mecanum drive, early body integration.</figcaption>
+        </figure>
+      </section>
+
+      <section id="body">
+        <div class="sec-head"><span class="sec-index">01</span><h2>Body services</h2></div>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Service</th><th>Purpose</th><th>Tier</th></tr></thead>
+          <tbody>
+            <tr><td>Link LED</td><td>WS2812 green / red / yellow = brain connection state</td><td>T1 indicator</td></tr>
+            <tr><td>Collision guard</td><td>Ultrasonic abort — parallel to API, no round-trip</td><td><strong>T0 sacred</strong></td></tr>
+            <tr><td>IMU rotate</td><td>Closed-loop yaw servo — P-on-heading, soft-brake</td><td>T1–T2</td></tr>
+            <tr><td>lidar_mode</td><td>Exclusive LiDAR ownership mutex (FastAPI vs Nav2 lane)</td><td>T1</td></tr>
+            <tr><td>SoftLoc soft-wait</td><td>PTZ ↔ chassis arbitration — swim feel, not hard lock</td><td>T1</td></tr>
+            <tr><td>Proximity voice</td><td>Near-field cue + Qwen voice memos</td><td>T1–T2</td></tr>
+            <tr><td>Recovery / reverse-until-clear</td><td>Back out of pinch after guard latch</td><td><span class="pill pill-wip">deploy pending</span></td></tr>
+            <tr><td>Animatrix</td><td>Autonomous FSM, snapshots, power-save in slumber</td><td>T1–T3</td></tr>
+            <tr><td>IR remote</td><td>Mecanum, LED, PTZ mode, PTT toggle</td><td>T1</td></tr>
+            <tr><td>Battery monitor</td><td>Low-battery warning + memo sound</td><td>T1</td></tr>
+            <tr><td>LiveKit camera</td><td>WebRTC stream for NEURAL.FEED</td><td>T2</td></tr>
+            <tr><td>Expression runner</td><td>YAML routine executor with speed limits</td><td>T2</td></tr>
+          </tbody>
+        </table></div></div>
+        <div class="callout"><strong>Link LED semantics:</strong> Green = Substrate reachable; red = offline; yellow = connecting. Vision journal only writes when the link is up — no blind remembering.</div>
+      </section>
+
+      <section id="softloc">
+        <div class="sec-head"><span class="sec-index">02</span><h2>Soft locomotion &amp; navigation</h2></div>
+        <p class="section-desc">Variability-first apartment mobility — soft recovery instead of hard mode-locks. Scripted YAML routines remain bootstrap; continuous SoftLoc policies are the feel target.</p>
+        <div class="pipeline">
+          <div class="pipe-step"><strong>W1</strong><span>PTZ soft-wait / yield</span></div>
+          <div class="pipe-step"><strong>W2</strong><span>Chassis settle arbitration</span></div>
+          <div class="pipe-step"><strong>W3</strong><span>Stuck-help / session debrief</span></div>
+          <div class="pipe-step"><strong>W4</strong><span>Cruise + mapping hooks</span></div>
+        </div>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Capability</th><th>Status</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>SoftLoc W1–W4</td><td><span class="pill pill-done">shipped</span></td><td>T0 ultrasonic never weakened</td></tr>
+            <tr><td>Cruise / navigate_to / places</td><td><span class="pill pill-done">live tools</span></td><td>W5 places/anchors still partial</td></tr>
+            <tr><td>RPLidar C1</td><td><span class="pill pill-done">installed</span></td><td>Shopping list retired</td></tr>
+            <tr><td>Nav2 Docker lane</td><td><span class="pill pill-wip">research</span></td><td>Optional beside FastAPI</td></tr>
+            <tr><td>AMCL / reloc</td><td><span class="pill pill-wip">partial</span></td><td>Not fully productized</td></tr>
+            <tr><td>Near-miss logging</td><td><span class="pill pill-plan">WIP</span></td><td>Deploy→learn hooks — not daily UX yet</td></tr>
+            <tr><td>Reverse-until-clear</td><td><span class="pill pill-wip">deploy pending</span></td><td>Code ready; careful label</td></tr>
+          </tbody>
+        </table></div></div>
+        <figure class="atlas-video-wrap" aria-label="Nav2 exploration ride">
+          <video src="assets/raspbear-nav2-exploration.mp4" poster="assets/raspbear-nav2-exploration-poster.jpg" controls muted playsinline preload="metadata" aria-label="First Nav2 Docker exploration ride on Rasp-Bear"></video>
+          <figcaption>Jul 2026 · first Nav2 exploration ride — optional ROS2 Docker research lane beside the FastAPI production stack (<code>lidar_mode</code> mutex).</figcaption>
+        </figure>
+        <div class="callout"><strong>Invariant:</strong> Collision-guard thresholds and latch stay sacred. SoftLoc softens recovery feel — it does not force-bypass safety.</div>
+      </section>
+
+      <section id="expressions">
+        <div class="sec-head"><span class="sec-index">03</span><h2>Expressions</h2></div>
+        <p>Same pattern as Rider: YAML routines with steps for Mecanum, PTZ, LED, memo sounds, and pauses. Agent sessions proposed moods and sequences; human set timing, speed caps, and desk-safe limits. Fifteen routines in the catalog.</p>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Routine</th><th>Mood / purpose</th></tr></thead>
+          <tbody>
+            <tr><td>happ</td><td>Joy, wiggle</td></tr>
+            <tr><td>wiggle</td><td>Playful side-to-side</td></tr>
+            <tr><td>sleepy</td><td>Sleep pose — Animatrix entry state</td></tr>
+            <tr><td>greet</td><td>Welcome gesture</td></tr>
+            <tr><td>substrate_hi</td><td>Brain connection reaction</td></tr>
+            <tr><td>celebrate_spin</td><td>Celebration spin</td></tr>
+            <tr><td>+9 more</td><td>Full catalog — 15 total</td></tr>
+          </tbody>
+        </table></div></div>
+        <h3 class="sec-subhead">Execution safety</h3>
+        <ul>
+          <li>Table-safe mode limits lateral drift on desk surfaces</li>
+          <li>Collision-guard latch aborts motion if ultrasonic threshold breached</li>
+          <li>Teleop override cancels any running expression immediately</li>
+          <li>All calls route through body API — never direct GPIO from the brain</li>
+        </ul>
+      </section>
+
+      <section id="animatrix">
+        <div class="sec-head"><span class="sec-index">04</span><h2>Animatrix</h2></div>
+        <p><strong>Not</strong> Animus Robotics. Our own FSM on the Pi. No LLM call every tick.</p>
+
+        <div class="agent-led">
+          <strong>How it got built.</strong> Thresholds came from agent design sessions; collision guard, table-safe mode, and teleop override were added in hardening passes. The YAML and FSM code came out of that back-and-forth, not a single afternoon of hand-choreography.
+        </div>
+
+        <p>Animatrix runs those rules: slumber after idle timeout, observe on a timer, PTZ nudge toward motion. All local on the Pi.</p>
+        <div class="pipeline">
+          <div class="pipe-step"><strong>idle</strong><span>Waiting for input</span></div>
+          <div class="pipe-step"><strong>slumber</strong><span>5 min idle → sleepy, lower FPS</span></div>
+          <div class="pipe-step"><strong>observe</strong><span>~45 s snapshot + caption</span></div>
+          <div class="pipe-step"><strong>focus</strong><span>PTZ nudge toward detection</span></div>
+        </div>
+        <div class="callout"><strong>Teleop override:</strong> Human control pauses all Animatrix cycles immediately. Expression YAML and thresholds came from iterative design sessions; safety hardening came after.</div>
+      </section>
+
+      <section id="vision">
+        <div class="sec-head"><span class="sec-index">05</span><h2>Vision &amp; vision→action</h2></div>
+        <p>Passive vision journal remains: the robot observes, describes frames — but <strong>does not trigger an agent turn</strong> per snapshot. Beyond that, vision→action bridges are live: person-search, approach, and click-nav — not “no navigation.”</p>
+        <figure class="flow-board" aria-label="Vision journal pipeline">
+          <figcaption>Vision journal · end-to-end</figcaption>
+          <div class="flow-row flow-row--path flow-row--steps-5">
+            <div class="flow-node">Pi snapshot<small>JPEG</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Mac caption<small>vision model</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Link gate<small>green = write</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Buffer<small>flush queue</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Vision block<small>robot context</small></div>
+          </div>
+        </figure>
+        <h3 class="sec-subhead">Perception channels</h3>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Channel</th><th>Description</th><th>Limit</th></tr></thead>
+          <tbody>
+            <tr><td>LiveKit WebRTC</td><td>640×480 live video in NEURAL.FEED</td><td>Not SLAM-grade</td></tr>
+            <tr><td>JPEG snapshot</td><td>Shared frame from camera publisher</td><td>Single frame</td></tr>
+            <tr><td>Motion intents</td><td>Movement patterns prefixed to captions (passive)</td><td>Journal path only</td></tr>
+            <tr><td>Person-search / approach</td><td>Vision→action sweep + navigate toward detection</td><td><span class="pill pill-done">live</span></td></tr>
+            <tr><td>Click-nav</td><td>Point-on-image → chassis goal via tools</td><td><span class="pill pill-done">live</span></td></tr>
+            <tr><td>Visual tracking</td><td>Spotlight MVP (PTZ); follow / cinematic</td><td><span class="pill pill-plan">planned</span></td></tr>
+          </tbody>
+        </table></div></div>
+        <p>Local Pi-side vision log supplements the brain block when the connection gate is closed — captions queue until link returns.</p>
+      </section>
+
+      <section id="brain">
+        <div class="sec-head"><span class="sec-index">06</span><h2>Brain integration</h2></div>
+        <p class="section-desc">How Rasp-Bear connects to Miu’s metacognition loop, SoftLoc tools, and face embodiment.</p>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Integration</th><th>Behavior</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Agent tools</td><td>Cruise, navigate_to, places, speak, move, PTZ, expressions</td><td><span class="pill pill-done">live</span> <span class="pill pill-wip">polish WIP</span></td></tr>
+            <tr><td>Heartbeat inject</td><td>Robot status + vision summary in scheduled turns</td><td><span class="pill pill-done">live</span></td></tr>
+            <tr><td>Face embodiment</td><td>Robot events → mood bus / FaceArbiter → Tabby · Miu Face</td><td><span class="pill pill-wip">partial</span></td></tr>
+            <tr><td>Event bus</td><td>Mac-only perception fan-out (optional)</td><td><span class="pill pill-wip">optional</span></td></tr>
+            <tr><td>NEURAL.FEED tab</td><td>Teleop, stream, telemetry pane</td><td><span class="pill pill-done">live</span></td></tr>
+          </tbody>
+        </table></div></div>
+        <figure class="flow-board" aria-label="Tabby embodiment from robot">
+          <figcaption>Robot event → face (T2 only)</figcaption>
+          <div class="flow-row flow-row--path">
+            <div class="flow-node">Robot event<small>start · done · fail</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Embodiment<small>event map</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Mood bus<small>FaceArbiter</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Face output<small>Tabby · Miu · UI</small></div>
+          </div>
+        </figure>
+        <div class="callout"><strong>T0 exclusion:</strong> Collision avoid and E-stop never update faces — reflex stays on the Pi.</div>
+        <p>Conversation memory, MMA, cascade, grep: <a href="index.html#cascade">Project Atlas §07 Memory</a>. Below: what the <em>body</em> feeds into that stack.</p>
+      </section>
+
+      <section id="memory">
+        <div class="sec-head"><span class="sec-index">07</span><h2>Deploy → Learn · embodied memory</h2></div>
+        <p class="section-desc">Rasp-Bear does not have its own Postgres graph. It produces <strong>signals and episodes</strong> that land in Substrate memory — same cascade, same grep tools, same EOD tree as Discord chat.</p>
+        <figure class="flow-board" aria-label="Embodied memory path">
+          <figcaption>Body → brain memory · no parallel silo</figcaption>
+          <div class="flow-row flow-row--stack">
+            <div class="flow-node">Pi sense / act<small>LiDAR · US · PTZ · cruise</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Caption / event<small>vision journal · mission · near-miss</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Substrate stamp<small>archival · theme_id · L1</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Cascade EOD<small>23:30 · room · robot day</small></div>
+          </div>
+        </figure>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Body source</th><th>What gets remembered</th><th>Find it via</th></tr></thead>
+          <tbody>
+            <tr><td>Vision journal</td><td>Passive captions → robot vision core block when link green; buffered on Pi if offline</td><td>Core block + <code>cascade_circle_grep</code></td></tr>
+            <tr><td>Room presence</td><td>Mission episodes per room · <code>theme_id: room_presence_day</code></td><td><code>cascade_search</code> · day filter</td></tr>
+            <tr><td>Animatrix observe</td><td>~45 s snapshot cycle — <strong>no agent turn</strong> per frame; feeds journal only</td><td>Vision block · archival when linked</td></tr>
+            <tr><td>Cruise / SoftLoc</td><td>Session debrief, stuck-help, mapless path notes</td><td>Archival + near-miss hooks <span class="pill pill-wip">WIP</span></td></tr>
+            <tr><td>Story-grid + SAM</td><td>Look-drive episodes when Miu archives a run</td><td>Theme + grep on L1 line</td></tr>
+            <tr><td>Heartbeat inject</td><td>Live robot status in scheduled turns — not stored every tick</td><td>Hot path only</td></tr>
+          </tbody>
+        </table></div></div>
+        <div class="callout"><strong>Deploy→Learn loop:</strong> Drive on the floor → log what happened → EOD folds robot signal layers into the day graph → weekly core block. Policy and safety thresholds stay sacred; logs inform tuning, they do not auto-weaken T0.</div>
+        <a class="atlas-link" href="index.html#cascade">→ Full memory stack (core · MMA · cascade · Myzel)</a>
+      </section>
+
+      <section id="hardware">
+        <div class="sec-head"><span class="sec-index">08</span><h2>Hardware</h2></div>
+        <div class="panel"><div class="panel-scroll"><table>
+          <thead><tr><th>Item</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>RPLidar C1</td><td><span class="pill pill-done">installed</span> — shopping list retired</td></tr>
+            <tr><td>WitMotion USB IMU</td><td><span class="pill pill-done">rotate-servo live</span></td></tr>
+            <tr><td>Ultrasonic T0</td><td><span class="pill pill-done">sacred</span></td></tr>
+            <tr><td>PTZ camera</td><td><span class="pill pill-done">soft-wait with SoftLoc</span></td></tr>
+          </tbody>
+        </table></div></div>
+        <div class="callout"><strong>Rider (history):</strong> First body was XGO Rider Pi — no longer in the lab. Active hardware is Rasp-Bear only. Story: Project Atlas §06.</div>
+        <a class="atlas-link" href="index.html">→ Miu Project Atlas (system overview)</a>
+      </section>
+
+      <footer>
+        <!-- Zoo platform: public link not found in workspace — add open-platform community thanks URL when available -->
+        <p>robotics atlas · miu project · 2026-08-28</p>
+        <p class="footer-note">Companion to the Substrate Atlas.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const progress = document.getElementById("scroll-progress");
+    window.addEventListener("scroll", () => {
+      const h = document.documentElement;
+      progress.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + "%";
+    }, { passive: true });
+
+    const railLinks = document.querySelectorAll(".rail a");
+    const activeObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        railLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + e.target.id));
+      });
+    }, { threshold: 0.35, rootMargin: "-18% 0px -55% 0px" });
+    document.querySelectorAll("section").forEach((s) => activeObs.observe(s));
+
+    document.getElementById("section-jump")?.addEventListener("change", (e) => {
+      const v = e.target.value;
+      if (v) { document.querySelector(v)?.scrollIntoView({ behavior: "smooth" }); e.target.value = ""; }
+    });
+  </script>
+</body>
+</html>

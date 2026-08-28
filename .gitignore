@@ -1,0 +1,13 @@
+# File: .gitignore
+# Description: Ignore OS and editor noise for miu-project-atlas GitHub Pages repo.
+# Created: 2026-08-28
+# Last updated: 2026-08-28
+
+.DS_Store
+Thumbs.db
+*.mov
+*.MOV
+.cursor/
+.venv-whisper/
+__pycache__/
+*.pyc
