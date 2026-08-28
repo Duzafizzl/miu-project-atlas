@@ -2,19 +2,21 @@
 title: README.md
 description: GitHub Pages portfolio repo for the Miu Project architecture atlases.
 created: 2026-08-28
-updated: 2026-08-28
+updated: 2026-08-29
 ---
 
 # Miu Project · Substrate Atlas
 
-Interactive architecture portfolio — solo-built embodied AI stack: PostgreSQL memory, Raspberry Pi robots, LiveKit presence, fine-tuned Qwen TTS, computer vision navigation.
+Interactive architecture portfolio — solo-built embodied AI: PostgreSQL memory, Raspberry Pi robots, LiveKit presence, owned Qwen3-TTS voice, SoftLoc navigation, skills stack.
 
 **Live site:** https://duzafizzl.github.io/miu-project-atlas/
 
 | Page | File | Contents |
 |------|------|----------|
-| System map | [`index.html`](index.html) | Memory, voice, faces, journey, roadmap |
-| Robotics deep dive | [`robotics.html`](robotics.html) | Rasp-Bear SoftLoc, Animatrix, vision→action |
+| System map | [`index.html`](index.html) | Stack, tools, timeline, skills, memory, robotics overview |
+| Robotics deep dive | [`robotics.html`](robotics.html) | Rasp-Bear SoftLoc, vision→action, field notes |
+
+Shared styles: [`atlas-shared.css`](atlas-shared.css) · media under [`assets/`](assets/).
 
 ---
 
