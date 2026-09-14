@@ -4,7 +4,7 @@
   Description: Dunkles Knowledge/Conversational-Folio (A4-Slides) – Voice, Multi-Turn, Memory, Production.
   Created: 2026-09-14
   Last updated: 2026-09-14
-  Notes: Framing für Conversational AI / Voice Agents; dunkles Design; Print = A4-Slides.
+  Notes: HITL live; Nordstern Full-Duplex/low-latency + Thinking Machines Interaction Models Link.
 -->
 <html lang="de" translate="no">
 <head>
@@ -38,33 +38,36 @@
       <h1 class="folio-title">Miu · <span>Voice &amp; Dialogue</span></h1>
       <p class="folio-lede">
         Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Companion:
-        Multi-Turn-Dialoge mit lebendigem Kontext, Speech-Pfad (STT → Agent → TTS),
-        Backend-Integration über REST/SSE, und Qualität, die in Produktion messbar bleibt.
+        Multi-Turn mit großem Memory-Kontext, Speech-Pfad in Produktion, Backend über REST/SSE,
+        und <strong>HITL live</strong> (Myzel) für riskante Writes. Zielbild Voice:
+        <em>Full-Duplex bei niedriger Latenz</em> – Interaktion bleibt flüssig, während der große Kontext
+        im Hintergrund mitdenken darf
+        (<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models · Thinking Machines</a>).
       </p>
 
       <div class="why-box">
         <p class="why-kicker">Passung · Conversational AI Engineer · Allianz Partners (DA3)</p>
         <ul>
-          <li><strong>Agent building, nicht nur Config:</strong> Dialogue-Logik, Kontext/State über Turns und Tage, Fallback &amp; HITL-Escalation – Ende-zu-Ende gebaut und betrieben.</li>
-          <li><strong>Speech-Pfad in Produktion:</strong> Live-Voice-Sessions (WebRTC/LiveKit), STT → Reasoning → eigenes TTS; Latenz und Feel als Qualitätsziel, nicht als Afterthought.</li>
-          <li><strong>Observability &amp; Governance:</strong> Turn-Stempel (MMA/ERIP), strukturierte Logs, Containment-nahe Diagnose; riskante Writes nur mit Human-in-the-Loop – anschlussfähig an regulated Logging.</li>
+          <li><strong>HITL ist gebaut und live:</strong> Myzel-Gates für riskante Memory-/Harness-Writes, Verify vor Apply – Human bleibt im Loop, nicht nur als Policy-Folie.</li>
+          <li><strong>Speech heute · Full-Duplex als Ziel:</strong> LiveKit-Sessions, STT → Agent → eigenes TTS. Nächster Sprung: simultanes Hören/Sprechen bei niedriger Latenz – gerade weil der Memory-Kontext groß ist (Interaction-Model + Background-Reasoning, nicht alles in einem Turn blockieren).</li>
+          <li><strong>Observability &amp; Context Routing:</strong> MMA/ERIP-Stempel, Cascade-Fallgraph, strukturierte Logs – Quality/Regression und Escalation messbar.</li>
         </ul>
       </div>
 
       <div class="folio-meta">
-        <span><strong>Kern</strong> Voice · Multi-Turn · Memory-Index</span>
-        <span><strong>Stand</strong> September 2026</span>
-        <span><strong>Stack</strong> LiveKit · Qwen-TTS · Postgres · HITL</span>
+        <span><strong>Kern</strong> Voice · HITL · Memory-Index</span>
+        <span><strong>Ziel</strong> Full-Duplex · low latency</span>
+        <span><strong>Stack</strong> LiveKit · Qwen-TTS · Postgres · Myzel</span>
       </div>
 
       <div class="folio-cta-band">
         <div>
-          <p class="folio-cta-kicker">Live-Demo</p>
-          <p class="folio-cta-copy">Lived Turn, Cascade-Kontext und Voice-Path sind im Atlas nachvollziehbar. Dieses Folio ist die A4-Slide-Übersicht – Links öffnen die Live-Flächen.</p>
+          <p class="folio-cta-kicker">Live-Demo &amp; Research-Anker</p>
+          <p class="folio-cta-copy">Lived Turn + Cascade im Atlas. Architektur-Nordstern für interaktive Voice: Thinking Machines’ Interaction Models (micro-turns, contemporality, background intelligence).</p>
         </div>
         <div class="folio-cta-stack">
           <a class="folio-cta" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn" rel="noopener noreferrer" target="_blank">Lived Turn ↗</a>
-          <a class="folio-cta folio-cta--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#memory" rel="noopener noreferrer" target="_blank">Memory / Cascade</a>
+          <a class="folio-cta folio-cta--ghost" href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models ↗</a>
         </div>
       </div>
     </section>
@@ -149,7 +152,7 @@
             <li><strong>EOD</strong><small>Themengraph</small></li>
             <li><strong>Woche</strong><small>Rollup → Core</small></li>
           </ol>
-          <p class="duo-foot">Geschützte Regale gesperrt. Riskante Writes nur HITL – Fallback/Escalation als Design, nicht als Panik.</p>
+          <p class="duo-foot"><strong>HITL live:</strong> geschützte Regale gesperrt · riskante Writes nur über Myzel – Fallback/Escalation als Design.</p>
         </article>
       </div>
 
@@ -170,7 +173,7 @@
       <header class="folio-sec">
         <span class="folio-sec-num">Roadmap</span>
         <h2>Was für Voice / Dialogue als Nächstes zählt</h2>
-        <p>Tracks, die direkt an Agent-Qualität, Speech-Pfad und Observability hängen.</p>
+        <p>HITL läuft. Der Voice-Nordstern: Full-Duplex + niedrige Latenz trotz großem Memory-Kontext – siehe <a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Thinking Machines · Interaction Models</a>.</p>
       </header>
 
       <div class="board" role="table">
@@ -182,9 +185,14 @@
           <span>Multi-Turn + STT→Agent→TTS in laufenden Sessions</span>
           <span class="pill pill-done">live</span>
         </a>
+        <a class="board-row" href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">
+          <strong>Full-Duplex Voice</strong>
+          <span>Ziel: simultanes Hören/Sprechen · low latency · großer Kontext asynchron mitdenken</span>
+          <span class="pill pill-plan">Nordstern</span>
+        </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#memory">
           <strong>Cascade Context Index</strong>
-          <span>Dialogue-State über Episoden/Themen/Tage – nicht nur Cosine</span>
+          <span>Dialogue-State über Episoden/Themen/Tage – Memory-Scale für lange Sessions</span>
           <span class="pill pill-done">live</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">
@@ -197,14 +205,14 @@
           <span>Turn-Analytics, Topics, Qualitätsstempel</span>
           <span class="pill pill-done">live</span>
         </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#self-shape">
+          <strong>Myzel HITL Gates</strong>
+          <span>Human-in-the-Loop live · riskante Writes · Verify vor Apply</span>
+          <span class="pill pill-done">live</span>
+        </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#moment">
           <strong>Bridge Rise</strong>
           <span>Kontrollierte Kontext-Injekt · Amplify nur mit Quelle</span>
-          <span class="pill pill-wip">in Arbeit</span>
-        </a>
-        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#self-shape">
-          <strong>Harness / HITL Gates</strong>
-          <span>Verify vor Deploy · Escalation für riskante Writes</span>
           <span class="pill pill-wip">in Arbeit</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#capabilities">
@@ -274,12 +282,12 @@
       <footer class="folio-foot">
         <div>
           <p class="folio-foot-brand">Miu Project · Conversational AI Folio</p>
-          <p class="folio-foot-note">Leave-behind · Allianz Partners · Job 101077 · Sep 2026 · duzafizzl.github.io/miu-project-atlas</p>
+          <p class="folio-foot-note">Leave-behind · Job 101077 · Sep 2026 · HITL live · Ziel Full-Duplex · <a href="https://thinkingmachines.ai/blog/interaction-models/">thinkingmachines.ai/blog/interaction-models</a></p>
         </div>
         <div class="folio-foot-links">
           <a href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn">Lived Turn</a>
           <a href="https://duzafizzl.github.io/miu-project-atlas/#memory">Memory</a>
-          <a href="https://duzafizzl.github.io/statistics/">Statistics</a>
+          <a href="https://thinkingmachines.ai/blog/interaction-models/">Interaction Models</a>
           <a href="https://www.linkedin.com/in/clarissa-r%C3%B6thig">LinkedIn</a>
         </div>
       </footer>
