@@ -4,7 +4,7 @@
   Description: Dunkles Conversational-AI-Folio (A4-Slides) – Voice, Multi-Turn, Memory, Full-Duplex-Nordstern.
   Created: 2026-09-14
   Last updated: 2026-09-14
-  Notes: Kein Firmenname auf Cover; Rolle passt inhaltlich (Voice/Dialogue/Observability).
+  Notes: Cover-Punkte JD-scharf (ohne Firmenname); Bridge Rise live; Board/Field getrennt.
 -->
 <html lang="de" translate="no">
 <head>
@@ -37,27 +37,25 @@
       </p>
       <h1 class="folio-title">Miu · <span>Voice &amp; Dialogue</span></h1>
       <p class="folio-lede">
-        Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Companion:
-        Multi-Turn-Dialoge mit großem Memory-Kontext, Speech-Pfad in Produktion
-        (STT → Agent → eigenes TTS), Backend über REST/SSE.
-        Zielbild Voice: <em>Full-Duplex bei niedriger Latenz</em> – die Interaktion bleibt flüssig,
-        während der große Kontext im Hintergrund mitdenken darf
+        Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Voice- &amp; Dialogue-Stack:
+        Multi-Turn mit Context/State, Speech-Pipeline (ASR → Agent → TTS), REST/SSE an Live-Backends,
+        Observability auf Turn-Ebene. Zielbild: <em>Full-Duplex bei niedriger Latenz</em> trotz großem Memory-Kontext
         (<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models · Thinking Machines</a>).
       </p>
 
       <div class="why-box">
-        <p class="why-kicker">Was das für Conversational AI / Voice Agents zeigt</p>
+        <p class="why-kicker">Was der Stack konkret abdeckt</p>
         <ul>
-          <li><strong>Agent building, nicht nur Config:</strong> Dialogue-Logik, Context/State über Turns und Tage, Fallback &amp; Escalation – Ende-zu-Ende gebaut und betrieben.</li>
-          <li><strong>Speech heute · Full-Duplex als Nordstern:</strong> LiveKit-Sessions live. Nächster Sprung: simultanes Hören/Sprechen bei niedriger Latenz – gerade weil der Memory-Kontext groß ist (Interaction-Model + Background-Reasoning).</li>
-          <li><strong>Observability &amp; Context Routing:</strong> Turn-Stempel (MMA/ERIP), Cascade-Fallgraph, strukturierte Logs – Quality, Drop-offs und Regressionen nachvollziehbar.</li>
+          <li><strong>Agent building end-to-end:</strong> Multi-Turn-Flows, Intent-/Context-Routing (Cascade), Dialogue State über Sessions, Fallback &amp; Escalation – nicht nur UI-Konfig einer Voice-Plattform.</li>
+          <li><strong>Speech + Backend in Produktion:</strong> LiveKit-Sessions, STT/TTS (eigenes Voice), Latenz/Feel als Qualitätsziel; REST/SSE an Live-Services; async Responses &amp; Fehlerpfade.</li>
+          <li><strong>Observability &amp; Qualität:</strong> Turn-Analytics (MMA/ERIP), Topics, strukturierte Logs – Drop-offs und Regressionen nachvollziehbar; reusable Patterns (Skills/Templates) für schnellere Delivery.</li>
         </ul>
       </div>
 
       <div class="folio-meta">
-        <span><strong>Kern</strong> Voice · Multi-Turn · Memory-Index</span>
+        <span><strong>Kern</strong> Voice · Multi-Turn · Memory</span>
+        <span><strong>Ops</strong> Logs · Metrics · Recovery</span>
         <span><strong>Ziel</strong> Full-Duplex · low latency</span>
-        <span><strong>Stack</strong> LiveKit · Qwen-TTS · Postgres</span>
       </div>
 
       <div class="folio-cta-band">
