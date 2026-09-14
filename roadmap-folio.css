@@ -3,7 +3,7 @@
  * Description: Screen + print styles for the Miu Project roadmap folio.
  * Created: 2026-09-14
  * Last updated: 2026-09-14
- * Notes: Hochkant-Clips 9:16; Screen-Video ohne Poster-Stack; Typo-Polish.
+ * Notes: Screen dunkel; Print = saubere helle A4-Seiten für Bewerbung.
  */
 
 :root {
@@ -782,65 +782,307 @@ body.folio {
   .folio-btn, .board-row { transition: none; }
 }
 
-/* ——— Print / PDF ——— */
+/* ——— Print / PDF · saubere A4-Seiten (Bewerbung) ——— */
 @page {
-  size: A4;
-  margin: 12mm;
+  size: A4 portrait;
+  margin: 14mm 14mm 16mm;
 }
 
 @media print {
-  .no-print { display: none !important; }
-  .folio-bg, .folio-noise { display: none !important; }
-  body.folio {
-    background: #18191e !important;
-    color: #ececef !important;
+  .no-print,
+  .folio-toolbar,
+  .folio-bg,
+  .folio-noise,
+  .folio-wave,
+  .pdf-hint,
+  .pdf-interact-note,
+  .print-play,
+  .screen-video,
+  .media-frame video {
+    display: none !important;
+  }
+
+  html, body.folio {
+    background: #ffffff !important;
+    color: #1c1d22 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    font-size: 10.5pt;
   }
+
   .folio-sheet {
     max-width: none;
     margin: 0;
     padding: 0;
   }
+
+  /* Jede Section = eine A4-Seite */
   .folio-page {
+    break-after: page;
+    page-break-after: always;
     break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 8mm;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: #ffffff !important;
+    min-height: 0;
+  }
+  .folio-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .folio-eyebrow {
+    color: #5b6578 !important;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    margin-bottom: 6mm;
+  }
+  .folio-title {
+    font-size: 22pt !important;
+    color: #111318 !important;
+    margin-bottom: 4mm;
+    line-height: 1.15;
+  }
+  .folio-title span {
+    background: none !important;
+    -webkit-text-fill-color: #2563eb;
+    color: #2563eb !important;
+  }
+  .folio-lede {
+    font-size: 10.5pt;
+    line-height: 1.45;
+    color: #3a3d48 !important;
+    max-width: none;
+    margin-bottom: 6mm;
+  }
+  .folio-lede em { color: #1d4ed8 !important; font-style: italic; }
+
+  .why-box {
+    border: 1px solid #d8dde8;
+    background: #f6f8fc !important;
+    padding: 4mm 4.5mm;
+    margin-bottom: 5mm;
+    border-radius: 2mm;
+  }
+  .why-kicker {
+    color: #b45309 !important;
+    font-size: 7.5pt;
+    margin-bottom: 2.5mm;
+  }
+  .why-box li {
+    font-size: 9.5pt;
+    line-height: 1.4;
+    color: #2a2d36 !important;
+  }
+  .why-box li::before { background: #b45309; }
+  .why-box strong { color: #111318 !important; }
+
+  .folio-meta {
+    margin-bottom: 5mm;
+    gap: 2mm;
+  }
+  .folio-meta span {
+    background: #f3f4f7 !important;
+    border: 1px solid #d8dde8;
+    color: #3a3d48 !important;
+    font-size: 8pt;
+    border-radius: 999px;
+    padding: 1.5mm 3mm;
+  }
+  .folio-meta strong { color: #111318 !important; }
+
+  .folio-cta-band {
+    border: 1px solid #d8dde8;
+    background: #fafbfe !important;
+    padding: 4mm;
+    border-radius: 2mm;
+    margin: 0;
+  }
+  .folio-cta-kicker { color: #2563eb !important; font-size: 7.5pt; }
+  .folio-cta-copy { color: #3a3d48 !important; font-size: 9pt; }
+  .folio-cta {
+    background: #2563eb !important;
+    color: #fff !important;
+    border: none;
     box-shadow: none;
   }
-  .folio-page--cover { page-break-after: always; }
-  .folio-page--board { page-break-before: always; }
-  .board-row:hover, .folio-btn:hover { transform: none; }
-  a { color: inherit; }
-  .folio-cta, .folio-foot-links a, .media-btn {
-    color: #93c5fd !important;
+  .folio-cta--ghost {
+    background: #fff !important;
+    color: #2563eb !important;
+    border: 1px solid #93c5fd;
   }
-  .screen-video,
-  .media-frame video {
-    display: none !important;
+
+  .folio-sec { margin-bottom: 4mm; }
+  .folio-sec-num { color: #2563eb !important; font-size: 7.5pt; }
+  .folio-sec h2 {
+    color: #111318 !important;
+    font-size: 16pt !important;
+    margin-bottom: 2mm;
+  }
+  .folio-sec p { color: #5b6578 !important; font-size: 9.5pt; max-width: none; }
+
+  .layer-stack { gap: 2.5mm; }
+  .layer {
+    background: #fff !important;
+    border: 1px solid #d8dde8;
+    padding: 3mm 3.5mm;
+    border-radius: 2mm;
+    break-inside: avoid;
+  }
+  .layer-tag { font-size: 7pt; }
+  .layer--chat .layer-tag { color: #2563eb !important; }
+  .layer--core .layer-tag { color: #7c3aed !important; }
+  .layer--arch .layer-tag { color: #059669 !important; }
+  .layer--mma .layer-tag { color: #b45309 !important; }
+  .layer strong { color: #111318 !important; font-size: 11pt; }
+  .layer p { color: #3a3d48 !important; font-size: 9pt; }
+
+  .duo { gap: 3mm; margin-bottom: 4mm; }
+  .duo-card {
+    background: #fff !important;
+    border: 1px solid #d8dde8;
+    padding: 3.5mm;
+    border-radius: 2mm;
+  }
+  .duo-tag { color: #2563eb !important; }
+  .duo-card h3 { color: #111318 !important; font-size: 12pt; }
+  .duo-card > p { color: #3a3d48 !important; font-size: 9pt; }
+  .duo-foot { color: #5b6578 !important; font-size: 8pt !important; }
+  .duo-foot code { color: #1d4ed8 !important; }
+
+  .cascade-mini,
+  .cascade-mini--tight {
+    background: #f6f8fc !important;
+    border: 1px solid #d8dde8;
+    border-radius: 2mm;
+    padding: 2mm;
+  }
+  .cascade-mini--tight svg { max-height: 32mm; }
+
+  .clock-steps li {
+    background: #f6f8fc !important;
+    border: 1px solid #d8dde8;
+    color: #111318 !important;
+  }
+  .clock-steps small { color: #5b6578 !important; }
+
+  .lived-strip {
+    background: #f6f8fc !important;
+    border: 1px solid #d8dde8;
+    border-radius: 2mm;
+    padding: 3.5mm;
+  }
+  .lived-kicker { color: #b45309 !important; }
+  .lived-strip li {
+    background: #fff !important;
+    border: 1px solid #e5e7eb;
+    color: #3a3d48 !important;
+  }
+  .lived-strip li strong { color: #111318 !important; }
+
+  .board {
+    border: 1px solid #d8dde8;
+    border-radius: 2mm;
+    overflow: hidden;
+    margin-bottom: 3mm;
+  }
+  .board-head {
+    background: #f3f4f7 !important;
+    color: #5b6578 !important;
+    border-bottom: 1px solid #d8dde8;
+  }
+  .board-row {
+    background: #fff !important;
+    border-bottom: 1px solid #eef0f4;
+    color: #3a3d48 !important;
+    break-inside: avoid;
+  }
+  .board-row strong { color: #111318 !important; }
+  .board-row:hover { transform: none; background: #fff !important; }
+  .pill {
+    border: 1px solid #d8dde8;
+    background: #f3f4f7 !important;
+    color: #3a3d48 !important;
+  }
+  .pill-done { background: #ecfdf5 !important; color: #047857 !important; border-color: #a7f3d0; }
+  .pill-wip { background: #fffbeb !important; color: #b45309 !important; border-color: #fde68a; }
+  .pill-plan { background: #eff6ff !important; color: #1d4ed8 !important; border-color: #bfdbfe; }
+
+  .legend { color: #5b6578 !important; font-size: 8pt; margin-bottom: 4mm; }
+  .dot-done { background: #059669; }
+  .dot-wip { background: #d97706; }
+  .dot-plan { background: #2563eb; }
+
+  /* Medien: kompakt quer, keine riesigen Hochkant-Blöcke */
+  .media-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-bottom: 3mm;
+    justify-content: stretch;
+  }
+  .media-card {
+    background: #fff !important;
+    border: 1px solid #d8dde8;
+    border-radius: 2mm;
+    display: grid;
+    grid-template-columns: 28mm 1fr;
+    align-items: stretch;
+    overflow: hidden;
+  }
+  .media-frame {
+    width: 28mm;
+    height: 36mm;
+    max-height: 36mm;
+    aspect-ratio: auto;
+    margin: 0;
+    background: #111 !important;
   }
   .print-poster {
     display: block !important;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
-  .media-frame {
-    aspect-ratio: 9 / 16;
-    max-height: 95mm;
-    width: 54mm;
+  .media-card figcaption {
+    padding: 2.5mm 3mm;
+    gap: 1mm;
   }
-  .media-grid {
-    grid-template-columns: repeat(2, minmax(0, 54mm));
-    justify-content: start;
-    gap: 6mm;
+  .media-card figcaption strong {
+    color: #111318 !important;
+    font-size: 9pt;
   }
-  .pdf-hint {
-    border-style: solid;
+  .media-card figcaption span {
+    color: #5b6578 !important;
+    font-size: 7.5pt;
   }
-  .print-only,
-  .media-print-note {
-    display: block !important;
-    font-size: 0.7rem;
-    color: #5c5e6a;
-    margin-top: 0.35rem;
+  .media-actions { margin-top: 1mm; gap: 1.5mm; }
+  .media-btn {
+    background: #eff6ff !important;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8 !important;
+    font-size: 7.5pt;
+    padding: 1mm 2mm;
   }
+  .media-btn--play {
+    background: #ecfdf5 !important;
+    border-color: #a7f3d0;
+    color: #047857 !important;
+  }
+
+  .folio-foot {
+    border-top: 1px solid #d8dde8;
+    padding-top: 3mm;
+    margin-top: 2mm;
+  }
+  .folio-foot-brand { color: #111318 !important; font-size: 8pt; }
+  .folio-foot-note { color: #5b6578 !important; font-size: 7.5pt; }
+  .folio-foot-links a { color: #1d4ed8 !important; font-size: 8pt; }
+
+  a { color: inherit; }
 }
+
