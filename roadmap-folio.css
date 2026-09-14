@@ -359,16 +359,47 @@ body.folio {
 }
 .media-btn {
   display: inline-flex;
+  align-items: center;
   margin-top: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  background: rgba(96, 165, 250, 0.1);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent-soft);
   text-decoration: none;
 }
-.media-btn:hover { color: var(--text-primary); text-decoration: underline; }
-
-.media-print-note,
-.print-only { display: none; }
+.media-btn:hover {
+  color: var(--text-primary);
+  background: rgba(96, 165, 250, 0.2);
+  text-decoration: none;
+}
+.media-btn--play {
+  border-color: rgba(52, 211, 153, 0.45);
+  background: rgba(52, 211, 153, 0.12);
+  color: #6ee7b7;
+}
+.media-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+/* PDF-only: Play-Button über dem Poster (Hyperlink → MP4) */
+.print-play {
+  display: none;
+}
+.pdf-interact-note {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0.55rem 0 1rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  background: rgba(96, 165, 250, 0.08);
+}
 
 .folio-cta-band--foot { margin-top: 0.5rem; margin-bottom: 1.15rem; }
 

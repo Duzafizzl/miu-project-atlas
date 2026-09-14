@@ -4,7 +4,7 @@
   Description: Deutscher Knowledge/Learning-Folio (Screen + Bewerbungs-PDF) – Cascade, episodisch, Nested Learning.
   Created: 2026-09-14
   Last updated: 2026-09-14
-  Notes: Hochkant-Videos; Bewerbungs-PDF liegt außerhalb des Repos (Allianz-Ordner).
+  Notes: Hochkant-Videos; PDF-Play via Hyperlinks (kein Acrobat-Embed); Bewerbungs-PDF außerhalb Repo.
 -->
 <html lang="de" translate="no">
 <head>
@@ -229,13 +229,14 @@
       <header class="folio-sec" style="margin-top:1.25rem;">
         <span class="folio-sec-num">Embodiment</span>
         <h2>Körper nutzt dieselbe Wissensschicht</h2>
-        <p>Feldereignisse speisen Memory und MMA. In der PDF: Standbilder mit Links. Online: Clips abspielbar.</p>
+        <p>Feldereignisse speisen Memory und MMA. Online: Clips hier abspielbar. In der PDF: Poster + klickbare Play-Links (öffnen die Clips im Browser).</p>
       </header>
 
       <div class="media-grid">
         <figure class="media-card">
           <div class="media-frame">
             <img class="print-poster" src="assets/raspbear-nav2-exploration-poster.jpg" alt="Rasp-Bear Navigation Exploration" width="640" height="400">
+            <a class="print-play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-nav2-exploration.mp4" rel="noopener noreferrer" target="_blank">▶ Clip abspielen</a>
             <video class="screen-video no-print" controls playsinline preload="metadata" poster="assets/raspbear-nav2-exploration-poster.jpg">
               <source src="assets/raspbear-nav2-exploration.mp4" type="video/mp4">
             </video>
@@ -243,12 +244,16 @@
           <figcaption>
             <strong>Navigation · Exploration</strong>
             <span>Unbekannter Raum – Ereignisse fließen zurück ins Gedächtnissystem</span>
-            <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics Atlas ↗</a>
+            <div class="media-actions">
+              <a class="media-btn media-btn--play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-nav2-exploration.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+              <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics Atlas ↗</a>
+            </div>
           </figcaption>
         </figure>
         <figure class="media-card">
           <div class="media-frame">
             <img class="print-poster" src="assets/raspbear-first-ride-poster.jpg" alt="Rasp-Bear erste Fahrt" width="640" height="400">
+            <a class="print-play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-first-ride.mp4" rel="noopener noreferrer" target="_blank">▶ Clip abspielen</a>
             <video class="screen-video no-print" controls playsinline preload="metadata" poster="assets/raspbear-first-ride-poster.jpg">
               <source src="assets/raspbear-first-ride.mp4" type="video/mp4">
             </video>
@@ -256,12 +261,17 @@
           <figcaption>
             <strong>Rasp-Bear · Embodiment</strong>
             <span>Brain/Body-Split: Substrate plant, Pi fährt – Safety-Schicht hat Vorrang</span>
-            <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">House / Memory ↗</a>
+            <div class="media-actions">
+              <a class="media-btn media-btn--play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-first-ride.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+              <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">House / Memory ↗</a>
+            </div>
           </figcaption>
         </figure>
       </div>
 
-      <p class="pdf-hint no-print">PDF: Chrome → Drucken → Als PDF → <strong>Hintergrundgrafiken an</strong>. Hochkant-Clips werden zu Standbildern; Links bleiben klickbar.</p>
+      <p class="pdf-interact-note">Interaktivität in dieser PDF: klickbare Links (Clips, Atlas, LinkedIn). Eingebettete Video-Player brauchen Adobe Acrobat Pro – hier bewusst Link-Play, damit Preview, Browser und ATS zuverlässig öffnen.</p>
+
+      <p class="pdf-hint no-print">PDF-Export enthält klickbare ▶-Clip-Links. Eingebettete Player nur mit Acrobat Pro (hier nicht installiert).</p>
 
       <footer class="folio-foot">
         <div>
