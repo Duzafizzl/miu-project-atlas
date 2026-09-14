@@ -884,47 +884,48 @@ body.folio {
 
   .lived-strip { padding: 4mm; margin-top: 2mm; }
 
-  .board { margin-bottom: 3mm; }
+  .folio-sec--tight { margin-bottom: 2mm; margin-top: 2.5mm; }
+  .folio-sec--tight h2 { font-size: 12pt !important; margin-bottom: 1mm; }
+  .folio-sec--tight p { font-size: 8pt; margin: 0; max-width: none; }
+
+  .board { margin-bottom: 2mm; }
   .board-row {
     break-inside: avoid;
-    padding: 1.8mm 2.5mm;
-    font-size: 8.5pt;
+    padding: 1.5mm 2.2mm;
+    font-size: 8pt;
   }
-  .board-row strong { font-size: 9pt; }
+  .board-row strong { font-size: 8.5pt; }
+  .legend { margin-bottom: 1mm; font-size: 7.5pt; }
   .board-foot-note {
     font-size: 8pt;
     color: var(--text-muted);
-    margin: 3mm 0 4mm;
-    line-height: 1.4;
+    margin: 2mm 0;
+    line-height: 1.35;
   }
   .board-foot-note a { color: #93c5fd !important; }
 
   .folio-page--board .folio-foot {
     margin-top: 2mm;
+    padding-top: 2mm;
   }
 
-  /* Medien: kompakt auf der Slide, Design bleibt dunkel */
-  .folio-page--field .media-grid {
+  /* Medien kompakt unter Roadmap (gleiche letzte Slide) */
+  .media-grid,
+  .media-grid--compact {
     grid-template-columns: 1fr 1fr;
-    gap: 4mm;
+    gap: 3mm;
     justify-content: stretch;
-    margin-bottom: 6mm;
-  }
-  .media-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4mm;
-    justify-content: stretch;
-    margin-bottom: 3mm;
+    margin-bottom: 2.5mm;
   }
   .media-card {
     display: grid;
-    grid-template-columns: 28mm 1fr;
+    grid-template-columns: 22mm 1fr;
     align-items: stretch;
   }
   .media-frame {
-    width: 28mm;
-    height: 36mm;
-    max-height: 36mm;
+    width: 22mm;
+    height: 28mm;
+    max-height: 28mm;
     aspect-ratio: auto;
     margin: 0;
     background: #0a0b0e !important;
@@ -941,10 +942,14 @@ body.folio {
     object-position: center top;
   }
   .media-card figcaption {
-    padding: 3mm 3.5mm;
+    padding: 2mm 2.5mm;
   }
+  .media-card figcaption strong { font-size: 8pt; }
+  .media-card figcaption span { font-size: 7pt; }
   .media-btn {
     color: #93c5fd !important;
+    font-size: 7pt;
+    padding: 0.8mm 1.5mm;
   }
 
   .folio-cta, .folio-foot-links a, .media-btn {
