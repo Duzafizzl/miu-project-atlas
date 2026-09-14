@@ -2,7 +2,7 @@
 title: README.md
 description: GitHub Pages portfolio repo for the Miu Project architecture atlases.
 created: 2026-08-28
-updated: 2026-08-29
+updated: 2026-09-13
 ---
 
 # Miu Project · Substrate Atlas
@@ -13,7 +13,7 @@ Interactive architecture portfolio — solo-built embodied AI: PostgreSQL memory
 
 | Page | File | Contents |
 |------|------|----------|
-| System map | [`index.html`](index.html) | Stack, tools, timeline, skills, memory, robotics overview |
+| System map | [`index.html`](index.html) | Timeline, lived turn, house/memory, stack, tools, robotics overview, roadmap |
 | Robotics deep dive | [`robotics.html`](robotics.html) | Rasp-Bear SoftLoc, vision→action, field notes |
 
 Shared styles: [`atlas-shared.css`](atlas-shared.css) · media under [`assets/`](assets/).

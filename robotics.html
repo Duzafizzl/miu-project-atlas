@@ -3,7 +3,7 @@
   File: robotics.html (from MIU_ROBOTICS_ATLAS.html)
   Description: Miu Robotics Atlas — Rasp-Bear deep dive, recruiter-first with expandable field notes.
   Created: 2026-06-26
-  Last updated: 2026-08-28
+  Last updated: 2026-09-12
   LINKEDIN_URL: https://www.linkedin.com/in/clarissa-röthig
 -->
 <html lang="en" translate="no">
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f2025">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Miu Robotics Atlas — Rasp-Bear SoftLoc, cruise, LiDAR, field notes from the floor. Aug 2026.">
+  <meta name="description" content="Miu Robotics Atlas — Rasp-Bear SoftLoc, ARKit live map + C1 for Nav2, Point-and-Drive. Embodied events feed Substrate cognition. Sep 2026.">
   <title>Miu Robotics · Rasp-Bear Atlas</title>
   <link rel="stylesheet" href="atlas-shared.css">
 </head>
@@ -54,8 +54,9 @@
           Miu's second body: Yahboom Raspbot V2 on Pi 5. Mecanum drive, PTZ camera, LiDAR C1, SoftLoc cruise. FastAPI on the Pi. Substrate on the Mac mini proxies every call.
         </p>
         <div class="hero-chips">
-          <span class="chip"><strong>Updated</strong> Aug 2026</span>
-          <span class="chip"><strong>LiDAR</strong> C1 live</span>
+          <span class="chip"><strong>Updated</strong> Sep 2026</span>
+          <span class="chip"><strong>LiDAR</strong> C1 + ARKit map</span>
+          <span class="chip"><strong>Nav2</strong> unknown-space map</span>
           <span class="chip"><strong>SoftLoc</strong> W1–W4</span>
           <span class="chip"><strong>Memory</strong> <a href="index.html#topics">Project atlas · Topics</a></span>
         </div>
@@ -165,6 +166,8 @@
           <div class="pipe-step"><strong>W4</strong><span>Cruise hooks</span></div>
         </div>
         <div class="callout"><strong>Invariant:</strong> Ultrasonic collision guard stays sacred. SoftLoc softens recovery feel. It does not bypass safety.</div>
+        <div class="callout"><strong>Embodiment → cognition:</strong> Body events (cruise, vision journal, stuck recovery) feed the same MMA, reflection, and harness stack as Discord. Place feeling gist is the same family as amplify cues in Project Atlas <a href="index.html#moment">Lived recall</a>: geometry plus how it felt. Robotics is not a separate brain.</div>
+        <div class="callout"><strong>Next:</strong> Grow the ARKit + C1 live map so Nav2 stays useful in unknown rooms. Harden Point-and-Drive feel on that map. Lived place memory (geometry + how it felt), inspired by <a href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">SuperMap</a>. SAM look-drive stays optional fallback, not default. Optional watch: physics-informed locomotion (PhyFilter-style). Rerun stays the live viewer, not a floor-plan SLAM replacement. Full lines on the <a href="index.html#roadmap">Project Atlas roadmap</a>.</div>
         <figure class="atlas-video-wrap" aria-label="Nav2 exploration ride">
           <video src="assets/raspbear-nav2-exploration.mp4" poster="assets/raspbear-nav2-exploration-poster.jpg" controls playsinline preload="metadata" aria-label="Nav2 exploration ride"></video>
           <figcaption>Jul 2026 · optional Nav2 Docker lane beside FastAPI production stack.</figcaption>
@@ -179,6 +182,7 @@
                 <tr><td>Cruise / navigate_to</td><td><span class="pill pill-done">live tools</span></td></tr>
                 <tr><td>Nav2 Docker lane</td><td><span class="pill pill-wip">research</span></td></tr>
                 <tr><td>AMCL / reloc</td><td><span class="pill pill-wip">partial</span></td></tr>
+                <tr><td>Lived place memory</td><td><span class="pill pill-plan">planned</span></td></tr>
               </tbody>
             </table></div></div>
             <p>Fifteen YAML expression routines (happ, wiggle, greet, celebrate_spin, and others). Table-safe mode limits lateral drift on desk surfaces.</p>
@@ -372,7 +376,7 @@
                   <h3>Bottle target · person goto</h3>
                 </div>
                 <div class="showcase-body">
-                  <p class="showcase-note">SAM 3.1 box on Mini-2, IMU align, Nav2 goto. Person goto with US ~35.7 cm stop. August evidence in session logs, not new grid PNGs.</p>
+                  <p class="showcase-note">Aug probe: SAM 3.1 box on Mini-2, IMU align, Nav2 goto, US stop. Sep direction: ARKit phone map + C1 fuse so Nav2 works without a prebuilt floor plan; Point-and-Drive taps that map.</p>
                 </div>
               </article>
 
@@ -420,7 +424,10 @@
               <tbody>
                 <tr><td>Vision journal</td><td>Passive captions → robot vision core block</td></tr>
                 <tr><td>Cruise / SoftLoc</td><td>Session debrief, stuck-help notes</td></tr>
-                <tr><td>Story-grid + SAM</td><td>Look-drive episodes when archived</td></tr>
+                <tr><td>Story-grid look</td><td>Look / receipt grids when archived</td></tr>
+                <tr><td>ARKit live map fuse</td><td>Mioblick + C1 growing map for Nav2 in unknown space (shipping)</td></tr>
+                <tr><td>Point-and-Drive</td><td>Tap depth → goal on that map (partial / hardening)</td></tr>
+                <tr><td>SAM look-drive</td><td>Aug probe; optional fallback only</td></tr>
               </tbody>
             </table></div></div>
           </div>
@@ -444,7 +451,7 @@
       </section>
 
       <footer>
-        <p>robotics atlas · aug 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
+        <p>robotics atlas · sep 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
         <p class="footer-note">Companion to the Substrate Atlas.</p>
       </footer>
     </main>

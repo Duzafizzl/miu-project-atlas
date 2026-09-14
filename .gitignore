@@ -1,7 +1,7 @@
 # File: .gitignore
 # Description: Ignore OS and editor noise for miu-project-atlas GitHub Pages repo.
 # Created: 2026-08-28
-# Last updated: 2026-08-28
+# Last updated: 2026-09-13
 
 .DS_Store
 Thumbs.db
@@ -11,3 +11,10 @@ Thumbs.db
 .venv-whisper/
 __pycache__/
 *.pyc
+
+# Internal working notes — not for Pages
+drafts/
+
+# Orphan 3D surface (live surface lives on statistics site)
+mma-surface.html
+assets/mma-surface/
