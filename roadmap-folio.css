@@ -3,6 +3,7 @@
  * Description: Screen + print styles for the Miu Project roadmap folio.
  * Created: 2026-09-14
  * Last updated: 2026-09-14
+ * Notes: Screen-Video ohne print-poster Stack; Typo-Polish für Textblöcke.
  */
 
 :root {
@@ -154,10 +155,11 @@ body.folio {
 }
 
 .folio-lede {
-  max-width: 36rem;
-  font-size: 1.02rem;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
   color: var(--text-secondary);
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
 }
 .folio-lede em { color: var(--accent-soft); font-style: italic; }
 
@@ -258,8 +260,8 @@ body.folio {
 }
 
 .why-box {
-  margin: 0 0 1.15rem;
-  padding: 0.9rem 1rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
   border-radius: var(--radius);
   border: 1px solid rgba(245, 158, 11, 0.35);
   background: rgba(245, 158, 11, 0.07);
@@ -270,18 +272,18 @@ body.folio {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--warm);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.55rem;
 }
 .why-box ul {
   list-style: none;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.65rem;
 }
 .why-box li {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.45;
-  padding-left: 0.85rem;
+  line-height: 1.5;
+  padding-left: 0.95rem;
   position: relative;
 }
 .why-box li::before {
@@ -319,30 +321,36 @@ body.folio {
   background: rgba(0, 0, 0, 0.28);
 }
 .media-frame {
+  position: relative;
   aspect-ratio: 16 / 10;
   background: #0a0b0e;
+  overflow: hidden;
 }
-.media-frame video,
-.media-frame img {
+/* Screen: nur Video. Poster-img nur für PDF (siehe .print-poster). */
+.media-frame video.screen-video {
   display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.media-frame video {
   background: #000;
+  z-index: 1;
 }
 .media-card figcaption {
-  padding: 0.7rem 0.8rem 0.85rem;
+  padding: 0.75rem 0.9rem 0.95rem;
   display: grid;
-  gap: 0.25rem;
+  gap: 0.35rem;
 }
 .media-card figcaption strong {
   color: var(--text-primary);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 .media-card figcaption span {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
   color: var(--text-muted);
 }
 .media-btn {
@@ -360,19 +368,24 @@ body.folio {
 
 .folio-cta-band--foot { margin-top: 0.5rem; margin-bottom: 1.15rem; }
 
-.folio-sec { margin-bottom: 1.1rem; }
+.folio-sec { margin-bottom: 1.2rem; }
 .folio-sec-num {
-  display: inline-block;
+  display: block;
   font-size: 0.625rem; font-weight: 800;
-  letter-spacing: 0.16em; text-transform: uppercase;
+  letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--accent-soft); margin-bottom: 0.35rem;
 }
 .folio-sec h2 {
-  font-size: 1.35rem; font-weight: 700;
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem); font-weight: 700;
   color: var(--text-primary); letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem; line-height: 1.2;
 }
-.folio-sec p { font-size: 0.875rem; color: var(--text-muted); max-width: 36rem; }
+.folio-sec p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 38rem;
+}
 
 .bet-grid {
   display: grid;
@@ -556,7 +569,7 @@ body.folio {
   gap: 0.55rem;
 }
 .layer {
-  padding: 0.85rem 0.95rem;
+  padding: 0.95rem 1.05rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: rgba(46, 47, 54, 0.45);
@@ -567,15 +580,22 @@ body.folio {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 .layer strong {
   display: block;
   color: var(--text-primary);
-  font-size: 0.95rem;
-  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.3rem;
+  line-height: 1.25;
 }
-.layer p { font-size: 0.8125rem; color: var(--text-muted); }
+.layer p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
 .layer--chat { border-color: rgba(96, 165, 250, 0.3); }
 .layer--chat .layer-tag { color: #93c5fd; }
 .layer--core { border-color: rgba(167, 139, 250, 0.35); }
@@ -595,10 +615,12 @@ body.folio {
   .duo { grid-template-columns: 1fr; }
 }
 .duo-card {
-  padding: 0.95rem 1rem;
+  padding: 1.05rem 1.1rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
 }
 .duo-tag {
   font-size: 0.625rem;
@@ -606,17 +628,26 @@ body.folio {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-soft);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 .duo-card h3 {
   color: var(--text-primary);
-  font-size: 1.05rem;
-  margin-bottom: 0.45rem;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
 }
-.duo-card > p { font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 0.65rem; }
+.duo-card > p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
 .duo-foot {
-  font-size: 0.72rem !important;
-  color: var(--text-disabled) !important;
+  font-size: 0.75rem !important;
+  line-height: 1.45 !important;
+  color: var(--text-muted) !important;
+  margin-top: auto;
   margin-bottom: 0 !important;
 }
 .duo-foot code {
@@ -694,31 +725,21 @@ body.folio {
   margin-bottom: 0.15rem;
 }
 
-.media-frame {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  background: #0a0b0e center / cover no-repeat;
-}
 .print-poster {
-  display: none;
+  display: none !important;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.screen-video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #000;
 }
 .pdf-hint {
-  font-size: 0.72rem;
-  color: var(--text-disabled);
-  margin: 0.35rem 0 1rem;
-  padding: 0.55rem 0.7rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0.5rem 0 1.1rem;
+  padding: 0.65rem 0.8rem;
   border-radius: 10px;
-  border: 1px dashed rgba(255,255,255,0.12);
+  border: 1px dashed rgba(255,255,255,0.14);
+  background: rgba(0, 0, 0, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {
