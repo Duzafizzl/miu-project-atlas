@@ -38,10 +38,10 @@
       <h1 class="folio-title">Miu · <span>Voice &amp; Dialogue</span></h1>
       <p class="folio-lede">
         Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Voice- &amp; Dialogue-Stack:
-        Multi-Turn auf einem <strong>Graph-Memory</strong> (darum funktioniert Cascade),
+        Multi-Turn mit <strong>strukturiertem Memory</strong> (Episoden und Themen sind verknüpft – nicht nur „ähnliche“ Treffer),
         Speech-Pipeline (ASR → Agent → <strong>lokal Qwen3-TTS MLX</strong>, Stimme <code>miore</code>),
         REST/SSE an Live-Backends, Observability auf Turn-Ebene.
-        Zielbild: <em>Full-Duplex bei niedriger Latenz</em> trotz großem Memory
+        Zielbild: <em>Full-Duplex bei niedriger Latenz</em> trotz großem Kontext
         (<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models · Thinking Machines</a>).
       </p>
 
@@ -49,13 +49,13 @@
         <p class="why-kicker">Was der Stack konkret abdeckt</p>
         <ul>
           <li><strong>Agent building end-to-end:</strong> Multi-Turn-Flows, Dialogue State, Fallback &amp; Escalation – nicht nur UI-Konfig einer Voice-Plattform.</li>
-          <li><strong>Graph-Memory → Cascade:</strong> Episoden, Themen, Tage/Wochen als <em>Kanten</em>, nicht nur Vektor-Similarity. Cascade routet Zusammengehörigkeit (z. B. Schadenfall → Erstaufnahme → Regulierung) – deshalb skaliert Context über lange Sessions.</li>
+          <li><strong>Strukturiertes Memory (Cascade):</strong> Zusammengehörige Episoden hängen am Index – z. B. Schadenfall → Erstaufnahme → Besichtigung → Regulierung. Das ist Context über lange Sessions, nicht nur Vektor-Suche nach ähnlichem Text.</li>
           <li><strong>Speech in Produktion · owned TTS:</strong> LiveKit; STT → Agent → <strong>Qwen3-TTS auf Apple Silicon (MLX)</strong>, Voice <code>miore</code>; Latenz/Feel als Ziel; REST/SSE + async Fehlerpfade; Turn-Analytics (MMA/ERIP).</li>
         </ul>
       </div>
 
       <div class="folio-meta">
-        <span><strong>Memory</strong> Graph · Cascade · Episoden</span>
+        <span><strong>Memory</strong> Cascade-Index · Episoden</span>
         <span><strong>TTS</strong> Qwen3-TTS MLX · miore</span>
         <span><strong>Ziel</strong> Full-Duplex · low latency</span>
       </div>
@@ -77,7 +77,7 @@
       <header class="folio-sec">
         <span class="folio-sec-num">Dialogue Stack</span>
         <h2>Vier Schichten · ein laufendes System</h2>
-        <p>Ein Postgres-basiertes <strong>Graph-Memory</strong>: Kurzkontext, Identität, episodische Historie, Turn-Stempel – Cascade liest die Kanten, nicht nur Similarity.</p>
+        <p>Ein Postgres-basiertes Memory-Haus: Kurzkontext, Identität, episodische Historie, Turn-Stempel. Zusammengehörigkeit steckt in Verknüpfungen – nicht nur in „ähnlichen“ Embeddings.</p>
       </header>
 
       <ol class="layer-stack">
@@ -114,9 +114,9 @@
 
       <div class="duo">
         <article class="duo-card">
-          <p class="duo-tag">Cascade · Graph-Index</p>
-          <h3>Gedächtnis als Graph</h3>
-          <p>Darum funktioniert Cascade: Memory ist ein <strong>Graph</strong> (Episoden ↔ Themen ↔ Tage/Wochen), nicht nur Embedding-Mix. „Schadenfall Sturm 2024“ öffnet Erstaufnahme, Besichtigung, Regulierung – Kanten tragen Zusammengehörigkeit.</p>
+          <p class="duo-tag">Cascade · Memory-Index</p>
+          <h3>Zusammengehörigkeit statt nur Similarity</h3>
+          <p>Cascade ist der Index auf dem Memory: Episoden, Themen und Tage sind verknüpft. „Schadenfall Sturm 2024“ öffnet Erstaufnahme, Besichtigung, Regulierung – der Agent findet, was zusammengehört, nicht nur Text der ähnlich klingt.</p>
           <figure class="cascade-mini cascade-mini--tight">
             <svg viewBox="0 0 520 150" role="img" aria-label="Cascade Index Schadenfall Sturm 2024">
               <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
@@ -191,8 +191,8 @@
           <span class="pill pill-plan">Nordstern</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#memory">
-          <strong>Cascade + Graph-Memory</strong>
-          <span>Kanten Episoden↔Themen↔Tage – Cascade routet Zusammengehörigkeit</span>
+          <strong>Cascade Memory-Index</strong>
+          <span>Verknüpfte Episoden/Themen/Tage – Context über lange Sessions</span>
           <span class="pill pill-done">live</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">
@@ -230,8 +230,8 @@
 
       <header class="folio-sec folio-sec--tight">
         <span class="folio-sec-num">Same Brain · Body</span>
-        <h2>Roboter am selben Memory-Graph</h2>
-        <p>REST Brain↔Body · Events speisen Cascade/MMA · Safety first.</p>
+        <h2>Roboter am selben Memory</h2>
+        <p>REST Brain↔Body · Events fließen ins Memory · Safety first.</p>
       </header>
 
       <div class="media-grid media-grid--compact">
@@ -245,7 +245,7 @@
           </div>
           <figcaption>
             <strong>Nav · Exploration</strong>
-            <span>Events → Graph-Memory</span>
+            <span>Events → Memory-Index</span>
             <div class="media-actions">
               <a class="media-btn media-btn--play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-nav2-exploration.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
               <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics ↗</a>
@@ -274,7 +274,7 @@
       <footer class="folio-foot">
         <div>
           <p class="folio-foot-brand">Miu Project · Conversational AI Folio</p>
-          <p class="folio-foot-note">Solo-Portfolio · Sep 2026 · Qwen3-TTS MLX · Graph-Memory · duzafizzl.github.io/miu-project-atlas</p>
+          <p class="folio-foot-note">Solo-Portfolio · Sep 2026 · Qwen3-TTS MLX · Cascade Memory · duzafizzl.github.io/miu-project-atlas</p>
         </div>
         <div class="folio-foot-links">
           <a href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn">Lived Turn</a>
