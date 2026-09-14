@@ -3,7 +3,7 @@
  * Description: Screen + print styles for the Miu Project roadmap folio.
  * Created: 2026-09-14
  * Last updated: 2026-09-14
- * Notes: Screen + Print dunkel; Print nur als saubere A4-Slides layoutet.
+ * Notes: Print = dunkle A4-Slides; letzte Seite getrennt (kein Abschneiden).
  */
 
 :root {
@@ -813,13 +813,15 @@ body.folio {
     padding: 0;
   }
 
-  /* Eine Section = eine A4-Slide */
+  /* Eine Section = eine A4-Slide (Inhalt darf nicht abgeschnitten werden) */
   .folio-page {
     box-sizing: border-box;
     width: 100%;
-    min-height: 277mm; /* A4 − Ränder */
+    min-height: 0;
+    height: auto;
+    max-height: none;
     margin: 0;
-    padding: 8mm 9mm;
+    padding: 7mm 8mm;
     border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: none;
@@ -828,12 +830,19 @@ body.folio {
       #1f2025 !important;
     break-after: page;
     page-break-after: always;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    break-inside: auto;
+    page-break-inside: auto;
+    overflow: visible;
   }
   .folio-page:last-child {
     break-after: auto;
     page-break-after: auto;
+  }
+  .folio-page--cover,
+  .folio-page--board,
+  .folio-page--field {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
   .folio-page--cover {
     background:
@@ -878,12 +887,19 @@ body.folio {
   .board { margin-bottom: 3mm; }
   .board-row {
     break-inside: avoid;
-    padding: 2.2mm 3mm;
+    padding: 1.8mm 2.5mm;
+    font-size: 8.5pt;
   }
-  .board-row:hover, .folio-btn:hover { transform: none; }
-  .legend { margin-bottom: 4mm; font-size: 8pt; }
+  .board-row strong { font-size: 9pt; }
+  .legend { margin-bottom: 2mm; font-size: 8pt; }
 
   /* Medien: kompakt auf der Slide, Design bleibt dunkel */
+  .folio-page--field .media-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    justify-content: stretch;
+    margin-bottom: 6mm;
+  }
   .media-grid {
     grid-template-columns: 1fr 1fr;
     gap: 4mm;
@@ -892,13 +908,13 @@ body.folio {
   }
   .media-card {
     display: grid;
-    grid-template-columns: 32mm 1fr;
+    grid-template-columns: 28mm 1fr;
     align-items: stretch;
   }
   .media-frame {
-    width: 32mm;
-    height: 42mm;
-    max-height: 42mm;
+    width: 28mm;
+    height: 36mm;
+    max-height: 36mm;
     aspect-ratio: auto;
     margin: 0;
     background: #0a0b0e !important;
