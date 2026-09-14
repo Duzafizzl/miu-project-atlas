@@ -3,7 +3,7 @@
  * Description: Screen + print styles for the Miu Project roadmap folio.
  * Created: 2026-09-14
  * Last updated: 2026-09-14
- * Notes: Screen dunkel; Print = saubere helle A4-Seiten für Bewerbung.
+ * Notes: Screen + Print dunkel; Print nur als saubere A4-Slides layoutet.
  */
 
 :root {
@@ -782,10 +782,10 @@ body.folio {
   .folio-btn, .board-row { transition: none; }
 }
 
-/* ——— Print / PDF · saubere A4-Seiten (Bewerbung) ——— */
+/* ——— Print / PDF · dunkles Design, saubere A4-Slides ——— */
 @page {
   size: A4 portrait;
-  margin: 14mm 14mm 16mm;
+  margin: 10mm;
 }
 
 @media print {
@@ -796,18 +796,15 @@ body.folio {
   .folio-wave,
   .pdf-hint,
   .pdf-interact-note,
-  .print-play,
-  .screen-video,
-  .media-frame video {
+  .print-play {
     display: none !important;
   }
 
   html, body.folio {
-    background: #ffffff !important;
-    color: #1c1d22 !important;
+    background: #18191e !important;
+    color: #ececef !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-    font-size: 10.5pt;
   }
 
   .folio-sheet {
@@ -816,273 +813,121 @@ body.folio {
     padding: 0;
   }
 
-  /* Jede Section = eine A4-Seite */
+  /* Eine Section = eine A4-Slide */
   .folio-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 277mm; /* A4 − Ränder */
+    margin: 0;
+    padding: 8mm 9mm;
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    background:
+      linear-gradient(165deg, rgba(96, 165, 250, 0.07) 0%, transparent 42%),
+      #1f2025 !important;
     break-after: page;
     page-break-after: always;
     break-inside: avoid;
     page-break-inside: avoid;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    background: #ffffff !important;
-    min-height: 0;
   }
   .folio-page:last-child {
     break-after: auto;
     page-break-after: auto;
   }
+  .folio-page--cover {
+    background:
+      radial-gradient(ellipse 80% 50% at 70% -10%, rgba(96, 165, 250, 0.16) 0%, transparent 55%),
+      #1f2025 !important;
+  }
 
-  .folio-eyebrow {
-    color: #5b6578 !important;
-    font-size: 8pt;
-    letter-spacing: 0.12em;
-    margin-bottom: 6mm;
-  }
   .folio-title {
-    font-size: 22pt !important;
-    color: #111318 !important;
+    font-size: 26pt !important;
     margin-bottom: 4mm;
-    line-height: 1.15;
-  }
-  .folio-title span {
-    background: none !important;
-    -webkit-text-fill-color: #2563eb;
-    color: #2563eb !important;
   }
   .folio-lede {
-    font-size: 10.5pt;
-    line-height: 1.45;
-    color: #3a3d48 !important;
-    max-width: none;
-    margin-bottom: 6mm;
+    font-size: 11pt;
+    margin-bottom: 5mm;
+    max-width: 160mm;
   }
-  .folio-lede em { color: #1d4ed8 !important; font-style: italic; }
-
   .why-box {
-    border: 1px solid #d8dde8;
-    background: #f6f8fc !important;
-    padding: 4mm 4.5mm;
     margin-bottom: 5mm;
-    border-radius: 2mm;
+    padding: 4.5mm 5mm;
   }
-  .why-kicker {
-    color: #b45309 !important;
-    font-size: 7.5pt;
-    margin-bottom: 2.5mm;
-  }
-  .why-box li {
-    font-size: 9.5pt;
-    line-height: 1.4;
-    color: #2a2d36 !important;
-  }
-  .why-box li::before { background: #b45309; }
-  .why-box strong { color: #111318 !important; }
-
-  .folio-meta {
-    margin-bottom: 5mm;
-    gap: 2mm;
-  }
-  .folio-meta span {
-    background: #f3f4f7 !important;
-    border: 1px solid #d8dde8;
-    color: #3a3d48 !important;
-    font-size: 8pt;
-    border-radius: 999px;
-    padding: 1.5mm 3mm;
-  }
-  .folio-meta strong { color: #111318 !important; }
-
-  .folio-cta-band {
-    border: 1px solid #d8dde8;
-    background: #fafbfe !important;
-    padding: 4mm;
-    border-radius: 2mm;
-    margin: 0;
-  }
-  .folio-cta-kicker { color: #2563eb !important; font-size: 7.5pt; }
-  .folio-cta-copy { color: #3a3d48 !important; font-size: 9pt; }
-  .folio-cta {
-    background: #2563eb !important;
-    color: #fff !important;
-    border: none;
-    box-shadow: none;
-  }
-  .folio-cta--ghost {
-    background: #fff !important;
-    color: #2563eb !important;
-    border: 1px solid #93c5fd;
-  }
+  .why-box li { font-size: 9.5pt; }
+  .folio-meta { margin-bottom: 5mm; }
+  .folio-cta-band { margin: 0; padding: 4.5mm 5mm; }
 
   .folio-sec { margin-bottom: 4mm; }
-  .folio-sec-num { color: #2563eb !important; font-size: 7.5pt; }
-  .folio-sec h2 {
-    color: #111318 !important;
-    font-size: 16pt !important;
-    margin-bottom: 2mm;
-  }
-  .folio-sec p { color: #5b6578 !important; font-size: 9.5pt; max-width: none; }
+  .folio-sec h2 { font-size: 16pt !important; }
+  .folio-sec p { font-size: 10pt; max-width: 160mm; }
 
-  .layer-stack { gap: 2.5mm; }
-  .layer {
-    background: #fff !important;
-    border: 1px solid #d8dde8;
-    padding: 3mm 3.5mm;
-    border-radius: 2mm;
-    break-inside: avoid;
-  }
-  .layer-tag { font-size: 7pt; }
-  .layer--chat .layer-tag { color: #2563eb !important; }
-  .layer--core .layer-tag { color: #7c3aed !important; }
-  .layer--arch .layer-tag { color: #059669 !important; }
-  .layer--mma .layer-tag { color: #b45309 !important; }
-  .layer strong { color: #111318 !important; font-size: 11pt; }
-  .layer p { color: #3a3d48 !important; font-size: 9pt; }
+  .layer-stack { gap: 3mm; }
+  .layer { padding: 3.5mm 4mm; break-inside: avoid; }
 
-  .duo { gap: 3mm; margin-bottom: 4mm; }
-  .duo-card {
-    background: #fff !important;
-    border: 1px solid #d8dde8;
-    padding: 3.5mm;
-    border-radius: 2mm;
-  }
-  .duo-tag { color: #2563eb !important; }
-  .duo-card h3 { color: #111318 !important; font-size: 12pt; }
-  .duo-card > p { color: #3a3d48 !important; font-size: 9pt; }
-  .duo-foot { color: #5b6578 !important; font-size: 8pt !important; }
-  .duo-foot code { color: #1d4ed8 !important; }
-
-  .cascade-mini,
+  .duo { gap: 3.5mm; margin-bottom: 4mm; }
+  .duo-card { padding: 4mm; }
   .cascade-mini--tight {
-    background: #f6f8fc !important;
-    border: 1px solid #d8dde8;
-    border-radius: 2mm;
-    padding: 2mm;
+    margin: 3mm 0;
+    padding: 2.5mm;
   }
-  .cascade-mini--tight svg { max-height: 32mm; }
+  .cascade-mini--tight svg { max-height: 38mm; }
 
-  .clock-steps li {
-    background: #f6f8fc !important;
-    border: 1px solid #d8dde8;
-    color: #111318 !important;
-  }
-  .clock-steps small { color: #5b6578 !important; }
+  .lived-strip { padding: 4mm; margin-top: 2mm; }
 
-  .lived-strip {
-    background: #f6f8fc !important;
-    border: 1px solid #d8dde8;
-    border-radius: 2mm;
-    padding: 3.5mm;
-  }
-  .lived-kicker { color: #b45309 !important; }
-  .lived-strip li {
-    background: #fff !important;
-    border: 1px solid #e5e7eb;
-    color: #3a3d48 !important;
-  }
-  .lived-strip li strong { color: #111318 !important; }
-
-  .board {
-    border: 1px solid #d8dde8;
-    border-radius: 2mm;
-    overflow: hidden;
-    margin-bottom: 3mm;
-  }
-  .board-head {
-    background: #f3f4f7 !important;
-    color: #5b6578 !important;
-    border-bottom: 1px solid #d8dde8;
-  }
+  .board { margin-bottom: 3mm; }
   .board-row {
-    background: #fff !important;
-    border-bottom: 1px solid #eef0f4;
-    color: #3a3d48 !important;
     break-inside: avoid;
+    padding: 2.2mm 3mm;
   }
-  .board-row strong { color: #111318 !important; }
-  .board-row:hover { transform: none; background: #fff !important; }
-  .pill {
-    border: 1px solid #d8dde8;
-    background: #f3f4f7 !important;
-    color: #3a3d48 !important;
-  }
-  .pill-done { background: #ecfdf5 !important; color: #047857 !important; border-color: #a7f3d0; }
-  .pill-wip { background: #fffbeb !important; color: #b45309 !important; border-color: #fde68a; }
-  .pill-plan { background: #eff6ff !important; color: #1d4ed8 !important; border-color: #bfdbfe; }
+  .board-row:hover, .folio-btn:hover { transform: none; }
+  .legend { margin-bottom: 4mm; font-size: 8pt; }
 
-  .legend { color: #5b6578 !important; font-size: 8pt; margin-bottom: 4mm; }
-  .dot-done { background: #059669; }
-  .dot-wip { background: #d97706; }
-  .dot-plan { background: #2563eb; }
-
-  /* Medien: kompakt quer, keine riesigen Hochkant-Blöcke */
+  /* Medien: kompakt auf der Slide, Design bleibt dunkel */
   .media-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 3mm;
-    margin-bottom: 3mm;
+    gap: 4mm;
     justify-content: stretch;
+    margin-bottom: 3mm;
   }
   .media-card {
-    background: #fff !important;
-    border: 1px solid #d8dde8;
-    border-radius: 2mm;
     display: grid;
-    grid-template-columns: 28mm 1fr;
+    grid-template-columns: 32mm 1fr;
     align-items: stretch;
-    overflow: hidden;
   }
   .media-frame {
-    width: 28mm;
-    height: 36mm;
-    max-height: 36mm;
+    width: 32mm;
+    height: 42mm;
+    max-height: 42mm;
     aspect-ratio: auto;
     margin: 0;
-    background: #111 !important;
+    background: #0a0b0e !important;
+  }
+  .screen-video,
+  .media-frame video {
+    display: none !important;
   }
   .print-poster {
     display: block !important;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
   }
   .media-card figcaption {
-    padding: 2.5mm 3mm;
-    gap: 1mm;
+    padding: 3mm 3.5mm;
   }
-  .media-card figcaption strong {
-    color: #111318 !important;
-    font-size: 9pt;
-  }
-  .media-card figcaption span {
-    color: #5b6578 !important;
-    font-size: 7.5pt;
-  }
-  .media-actions { margin-top: 1mm; gap: 1.5mm; }
   .media-btn {
-    background: #eff6ff !important;
-    border: 1px solid #bfdbfe;
-    color: #1d4ed8 !important;
-    font-size: 7.5pt;
-    padding: 1mm 2mm;
-  }
-  .media-btn--play {
-    background: #ecfdf5 !important;
-    border-color: #a7f3d0;
-    color: #047857 !important;
+    color: #93c5fd !important;
   }
 
-  .folio-foot {
-    border-top: 1px solid #d8dde8;
-    padding-top: 3mm;
-    margin-top: 2mm;
+  .folio-cta, .folio-foot-links a, .media-btn {
+    color: #93c5fd !important;
   }
-  .folio-foot-brand { color: #111318 !important; font-size: 8pt; }
-  .folio-foot-note { color: #5b6578 !important; font-size: 7.5pt; }
-  .folio-foot-links a { color: #1d4ed8 !important; font-size: 8pt; }
+  .folio-foot {
+    margin-top: 3mm;
+    padding-top: 3mm;
+  }
 
   a { color: inherit; }
 }
-
