@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--
   File: roadmap.html
-  Description: Deutscher Knowledge/Learning-Roadmap-Folio (PDF-tauglich) – Cascade, episodisch, Nested Learning.
+  Description: Deutscher Knowledge/Learning-Folio (Screen + Bewerbungs-PDF) – Cascade, episodisch, Nested Learning.
   Created: 2026-09-14
   Last updated: 2026-09-14
-  Notes: Video ohne Poster-Overlay; Cascade-Beispiel Schadenfall/Versicherung.
+  Notes: Hochkant-Videos; Bewerbungs-PDF liegt außerhalb des Repos (Allianz-Ordner).
 -->
 <html lang="de" translate="no">
 <head>
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f2025">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Miu Project · Knowledge &amp; Learning Folio. Cascade-Index, episodisches Gedächtnis, Nested Learning. Screen + PDF.">
+  <meta name="description" content="Miu Project · Knowledge &amp; Learning Folio. Cascade-Index, episodisches Gedächtnis, Nested Learning. Bewerbungs-PDF mit klickbaren Links.">
   <title>Miu Project · Knowledge &amp; Learning Folio</title>
   <link rel="stylesheet" href="roadmap-folio.css">
 </head>
@@ -32,35 +32,36 @@
     <!-- SEITE 1: Knowledge Thesis -->
     <section class="folio-page folio-page--cover" aria-label="Titelseite Knowledge">
       <p class="folio-eyebrow">
-        Solo R&amp;D · Knowledge &amp; Continual Learning · seit Nov 2025
+        Solo R&amp;D · Knowledge Systems &amp; Continual Learning · seit Nov 2025
         <span class="folio-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       </p>
       <h1 class="folio-title">Miu · <span>Lernen &amp; Erinnern</span></h1>
       <p class="folio-lede">
-        Nicht „Chatbot mit Suche“. Ein Companion, der Wissen <em>über Tage verarbeitet</em>:
-        strukturierter Gedächtnis-Index, episodische Langzeit-Erinnerung, und ein Lern-Agent,
-        der Neues einbaut – ohne das Alte plattzuwalzen.
+        Kein Chatbot mit Suchanhang – ein Companion-System, das Wissen
+        <em>über Tage hinweg strukturiert verarbeitet</em>:
+        Graph-Index für Zusammengehörigkeit, episodische Langzeit-Erinnerung und ein Lern-Agent,
+        der neues Wissen einpflegt, ohne bestehende Identität zu überschreiben.
       </p>
 
       <div class="why-box">
-        <p class="why-kicker">Warum das für Enterprise / Allianz interessant ist</p>
+        <p class="why-kicker">Relevanz für Knowledge Systems · Versicherung &amp; Enterprise</p>
         <ul>
-          <li><strong>Continual Learning statt Amnesie:</strong> Neues Wissen auf mehreren Zeitskalen – ohne jedes Update die Identität zu überschreiben (Nested-Learning-Idee, angepasst).</li>
-          <li><strong>Struktur statt nur Similarity:</strong> Cascade ist ein Graph-Index („Schadenfall · Sturm 2024“ → was gehört zusammen). Vektor-Suche findet Ähnliches; der Index findet Zusammengehörigkeit.</li>
-          <li><strong>Episoden + Steuerung:</strong> Langzeit-Episoden mit Datum/Tags. Metakognition (MMA) stempelt Turns. Riskante Writes nur nach HITL – Governance im Loop.</li>
+          <li><strong>Continual Learning ohne Amnesie:</strong> Wissen wird auf mehreren Zeitskalen aktualisiert – ohne bei jedem Update die Arbeitsidentität zu überschreiben (Nested-Learning-Idee, angepasst umgesetzt).</li>
+          <li><strong>Struktur statt nur Similarity:</strong> Cascade ist ein Graph-Index (Beispiel: „Schadenfall · Sturm 2024“ → Erstaufnahme, Besichtigung, Regulierung). Vektorsuche findet Ähnliches; der Index findet Zusammengehörigkeit.</li>
+          <li><strong>Episoden + Governance:</strong> Langzeit-Episoden mit Datum und Tags. Metakognition (MMA) stempelt Turns. Riskante Schreibzugriffe nur nach Human-in-the-Loop – Steuerung bleibt im Prozess.</li>
         </ul>
       </div>
 
       <div class="folio-meta">
         <span><strong>Kern</strong> Cascade · Episoden · Learning Agent</span>
-        <span><strong>Stand</strong> Sep 2026</span>
+        <span><strong>Stand</strong> September 2026</span>
         <span><strong>Stack</strong> Postgres · Substrate · HITL</span>
       </div>
 
       <div class="folio-cta-band">
         <div>
-          <p class="folio-cta-kicker">Interaktiv im Atlas</p>
-          <p class="folio-cta-copy">Lived Turn, Cascade-SVG, Day-Weather, Nested-Learning-Details – klickbar online. Dieses Folio ist der PDF-taugliche Leave-behind.</p>
+          <p class="folio-cta-kicker">Live-Demo</p>
+          <p class="folio-cta-copy">Lived Turn, Cascade und Nested Learning sind interaktiv im Online-Atlas. Diese Seite ist die PDF-taugliche Übersicht – Links öffnen die Live-Demos.</p>
         </div>
         <div class="folio-cta-stack">
           <a class="folio-cta" href="https://duzafizzl.github.io/miu-project-atlas/#memory" rel="noopener noreferrer" target="_blank">Memory im Atlas ↗</a>
@@ -73,30 +74,30 @@
     <section class="folio-page" aria-label="Vier Gedächtnis-Schichten">
       <header class="folio-sec">
         <span class="folio-sec-num">Architektur</span>
-        <h2>Vier Schichten · ein Haus</h2>
-        <p>Alles in einem Postgres-Haus. Kurz: was gerade passierte · wer Miu ist · was früher war · wie der Turn gestempelt wurde.</p>
+        <h2>Vier Schichten · ein System</h2>
+        <p>Ein Postgres-basiertes Gedächtnishaus: aktueller Kontext, Arbeitsidentität, episodische Historie und Metakognition pro Turn.</p>
       </header>
 
       <ol class="layer-stack">
         <li class="layer layer--chat">
           <span class="layer-tag">Kurzkontext</span>
           <strong>Chat-Verlauf</strong>
-          <p>Letzte Turns und Zusammenfassungen. Was gerade im Raum passiert ist.</p>
+          <p>Aktuelle Turns und Zusammenfassungen – was gerade im Gesprächsraum passiert.</p>
         </li>
         <li class="layer layer--core">
           <span class="layer-tag">Arbeits-Identität</span>
           <strong>Core Memory Blocks</strong>
-          <p>Beschriftete Blöcke mit Zeichenlimit. Manche immer im Prompt – manche nur bei Kanal, Keyword oder Regime.</p>
+          <p>Beschriftete Blöcke mit Zeichenlimit. Manche sind dauerhaft im Prompt, andere nur bei Kanal, Keyword oder Regime.</p>
         </li>
         <li class="layer layer--arch">
           <span class="layer-tag">Langzeit · episodisch</span>
           <strong>Archival Episodes</strong>
-          <p>Durchsuchbare Episoden mit Datum, Tags, Embeddings. Das ist die episodische Schicht – „was damals passiert ist“.</p>
+          <p>Durchsuchbare Episoden mit Datum, Tags und Embeddings – die episodische Schicht („was damals geschehen ist“).</p>
         </li>
         <li class="layer layer--mma">
           <span class="layer-tag">Metakognition</span>
           <strong>MMA Events</strong>
-          <p>Stempel auf Chat-Nachrichten (Kurzfassung, ERIP, Topics). Nicht die private Erinnerungs-Injekt – die kommt davor als Kontext.</p>
+          <p>Strukturierte Stempel auf Chat-Nachrichten (Kurzfassung, ERIP, Topics). Die private Erinnerungs-Injekt erfolgt separat als Kontext vor der Antwort.</p>
         </li>
       </ol>
     </section>
@@ -106,14 +107,14 @@
       <header class="folio-sec">
         <span class="folio-sec-num">Index &amp; Lernen</span>
         <h2>Cascade + Learning Agent</h2>
-        <p>Zwei Hebel: <em>finden was zusammengehört</em>, und <em>lernen ohne Amnesie</em>.</p>
+        <p>Zwei Hebel: Zusammengehörigkeit finden – und lernen, ohne bestehende Struktur zu zerstören.</p>
       </header>
 
       <div class="duo">
         <article class="duo-card">
           <p class="duo-tag">Cascade</p>
           <h3>Gedächtnis als Index</h3>
-          <p>Wie Menschen erinnern: „Schadenfall Sturm 2024“ ist der Schlüssel. Aufklappen – und Meldung, Besichtigung, Regulierung hängen am Regal. Episoden → Themen → Tage → Wochen. Kanten schlagen reinen Cosine-Mix.</p>
+          <p>Analog zur menschlichen Erinnerung: „Schadenfall Sturm 2024“ ist der Einstieg. Darunter hängen Erstaufnahme, Besichtigung und Regulierung. Episoden → Themen → Tage → Wochen. Graph-Kanten ergänzen reine Similarity-Suche.</p>
           <figure class="cascade-mini cascade-mini--tight">
             <svg viewBox="0 0 520 150" role="img" aria-label="Cascade Index Schadenfall Sturm 2024">
               <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
@@ -135,13 +136,13 @@
               <text x="260" y="142" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="700">Fallgraph</text>
             </svg>
           </figure>
-          <p class="duo-foot">Tools: <code>cascade_search</code> · Kanten in Postgres · Blätter bleiben bei Rollups.</p>
+          <p class="duo-foot">Tools: <code>cascade_search</code> · Kanten in Postgres · Blatt-Episoden bleiben bei Rollups erhalten.</p>
         </article>
 
         <article class="duo-card">
           <p class="duo-tag">Learning Agent</p>
-          <h3>Lernen auf mehreren Takten</h3>
-          <p>Hintergrund-Editor: alle ~10 Turns Core, alle ~50 Archival. So bleibt, was schon „geklickt“ hat. Design-Anleihe an Google Nested Learning + MIRAS/Titans – <strong>angepasste Mechanik, kein Modell-Port</strong>.</p>
+          <h3>Lernen auf mehreren Zeitskalen</h3>
+          <p>Hintergrund-Editor: ca. alle 10 Turns Core-Memory, ca. alle 50 Turns Archival. Bewährtes bleibt stabil. Design-Anleihe an Nested Learning (Google) sowie MIRAS/Titans – <strong>eigene Mechanik, kein Modell-Port</strong>.</p>
           <ol class="clock-steps">
             <li><strong>Chat</strong><small>Main Agent</small></li>
             <li><strong>÷10</strong><small>LA · Core</small></li>
@@ -149,16 +150,16 @@
             <li><strong>EOD</strong><small>Themengraph</small></li>
             <li><strong>Woche</strong><small>Rollup → Core</small></li>
           </ol>
-          <p class="duo-foot">Verbotene Regale (Identität, gewisse Summaries) bleiben für den Learning Agent gesperrt. HITL für riskante Writes.</p>
+          <p class="duo-foot">Geschützte Bereiche (Identität, ausgewählte Summaries) sind für den Learning Agent gesperrt. Riskante Writes nur mit Human-in-the-Loop.</p>
         </article>
       </div>
 
       <div class="lived-strip">
-        <p class="lived-kicker">Lived Turn · der Beweis-Moment</p>
+        <p class="lived-kicker">Lived Turn · Nachweis im laufenden System</p>
         <ol>
-          <li><strong>Frage</strong> zieht eine alte Episode</li>
-          <li><strong>Rise</strong> landet nur im Kontext (kein Abruf-Schild)</li>
-          <li><strong>Antwort</strong> wird gepostet</li>
+          <li><strong>Frage</strong> ruft eine frühere Episode ab</li>
+          <li><strong>Rise</strong> fließt nur in den Kontext (kein Abruf-Schild in der Antwort)</li>
+          <li><strong>Antwort</strong> wird veröffentlicht</li>
           <li><strong>MMA</strong> stempelt beide Chat-Seiten</li>
         </ol>
         <a class="folio-cta folio-cta--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn" rel="noopener noreferrer" target="_blank">Lived Turn im Atlas ↗</a>
@@ -169,47 +170,47 @@
     <section class="folio-page folio-page--board" aria-label="Knowledge Roadmap">
       <header class="folio-sec">
         <span class="folio-sec-num">Roadmap</span>
-        <h2>Knowledge · was als Nächstes kommt</h2>
-        <p>Schwerpunkt Lernen &amp; Erinnern. Robotics hängt am selben Gehirn – Details im Robotics-Atlas.</p>
+        <h2>Knowledge · nächste Schritte</h2>
+        <p>Fokus Lernen und Erinnern. Embodiment nutzt dieselbe Wissensschicht – Details im Robotics-Atlas.</p>
       </header>
 
       <div class="board" role="table">
         <div class="board-head" role="row">
-          <span>Track</span><span>Was</span><span>Status</span>
+          <span>Track</span><span>Inhalt</span><span>Status</span>
         </div>
-        <a class="board-row" href="index.html#moment">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#moment">
           <strong>Bridge Rise</strong>
           <span>Seltene autobiografische Injekt · Amplify nur mit Quelle</span>
           <span class="pill pill-wip">in Arbeit</span>
         </a>
-        <a class="board-row" href="index.html#memory">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#memory">
           <strong>Cascade-Index</strong>
           <span>Graph-Regal Episoden ↔ Themen ↔ Tage/Wochen</span>
           <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" href="index.html#cognition">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">
           <strong>Learning Agent</strong>
           <span>Multi-Takt Core/Archival · Nested-Learning-Idee</span>
           <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" href="index.html#mma-day-climate">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#mma-day-climate">
           <strong>MMA / ERIP</strong>
           <span>Metakognition auf Chat · Topics + E·R·I·P</span>
           <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" href="index.html#self-shape">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#self-shape">
           <strong>Harness Self-Shape</strong>
-          <span>Haus-Fixes &amp; neue Fähigkeiten · HITL · Verify</span>
+          <span>System-Fixes &amp; neue Fähigkeiten · HITL · Verify</span>
           <span class="pill pill-wip">in Arbeit</span>
         </a>
-        <a class="board-row" href="index.html#capabilities">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#capabilities">
           <strong>HiSkill + SkillOpt</strong>
           <span>Skill-Graph live · Offline-Optimierung offen</span>
           <span class="pill pill-wip">teilweise</span>
         </a>
-        <a class="board-row" href="robotics.html">
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">
           <strong>Ortgedächtnis (Body)</strong>
-          <span>Fahren + Gefühl am Ort → später Amplify-Anker</span>
+          <span>Fahren + Gefühl am Ort → spätere Amplify-Anker</span>
           <span class="pill pill-plan">geplant</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/statistics/" rel="noopener noreferrer" target="_blank">
@@ -225,11 +226,10 @@
         <span><i class="dot dot-plan"></i> geplant</span>
       </div>
 
-      <!-- PDF-feste Beweisflächen: Poster + URL, Screen: optional Video -->
       <header class="folio-sec" style="margin-top:1.25rem;">
-        <span class="folio-sec-num">Feld</span>
-        <h2>Körper hängt am selben Wissen</h2>
-        <p>Embodiment speist dieselbe Memory/MMA-Schicht. Im PDF: Standbilder + Links. Am Screen: Clips abspielbar.</p>
+        <span class="folio-sec-num">Embodiment</span>
+        <h2>Körper nutzt dieselbe Wissensschicht</h2>
+        <p>Feldereignisse speisen Memory und MMA. In der PDF: Standbilder mit Links. Online: Clips abspielbar.</p>
       </header>
 
       <div class="media-grid">
@@ -241,8 +241,8 @@
             </video>
           </div>
           <figcaption>
-            <strong>Nav · Exploration</strong>
-            <span>Unbekannter Raum – Events fließen zurück ins Gedächtnis-Haus</span>
+            <strong>Navigation · Exploration</strong>
+            <span>Unbekannter Raum – Ereignisse fließen zurück ins Gedächtnissystem</span>
             <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics Atlas ↗</a>
           </figcaption>
         </figure>
@@ -254,19 +254,19 @@
             </video>
           </div>
           <figcaption>
-            <strong>Rasp-Bear · Körper</strong>
-            <span>Brain/Body-Split: Substrate denkt, Pi fährt – T0 heilig</span>
+            <strong>Rasp-Bear · Embodiment</strong>
+            <span>Brain/Body-Split: Substrate plant, Pi fährt – Safety-Schicht hat Vorrang</span>
             <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">House / Memory ↗</a>
           </figcaption>
         </figure>
       </div>
 
-      <p class="pdf-hint">PDF-Tipp: Chrome → Drucken → Als PDF → <strong>Hintergrundgrafiken an</strong>. Videos werden zu Postern; Links bleiben klickbar.</p>
+      <p class="pdf-hint no-print">PDF: Chrome → Drucken → Als PDF → <strong>Hintergrundgrafiken an</strong>. Hochkant-Clips werden zu Standbildern; Links bleiben klickbar.</p>
 
       <footer class="folio-foot">
         <div>
           <p class="folio-foot-brand">Miu Project · Knowledge &amp; Learning Folio</p>
-          <p class="folio-foot-note">Solo-Portfolio · Sep 2026 · Status online aktueller als jedes PDF</p>
+          <p class="folio-foot-note">Solo-Portfolio · September 2026 · Live-Atlas: duzafizzl.github.io/miu-project-atlas</p>
         </div>
         <div class="folio-foot-links">
           <a href="https://duzafizzl.github.io/miu-project-atlas/#memory">Memory</a>
