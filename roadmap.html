@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <!--
   File: roadmap.html
-  Description: Print-ready interactive Miu Project roadmap folio (screen + Save as PDF).
+  Description: Deutscher Knowledge/Learning-Roadmap-Folio (PDF-tauglich) – Cascade, episodisch, Nested Learning.
   Created: 2026-09-14
   Last updated: 2026-09-14
 -->
-<html lang="en" translate="no">
+<html lang="de" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f2025">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Miu Project roadmap folio · mapless nav, lived memory, harness self-shape. Leave-behind + live links.">
-  <title>Miu Project · Roadmap Folio</title>
+  <meta name="description" content="Miu Project · Knowledge &amp; Learning Folio. Cascade-Index, episodisches Gedächtnis, Nested Learning. Screen + PDF.">
+  <title>Miu Project · Knowledge &amp; Learning Folio</title>
   <link rel="stylesheet" href="roadmap-folio.css">
 </head>
 <body class="folio">
@@ -20,220 +20,256 @@
   <div class="folio-noise" aria-hidden="true"></div>
 
   <header class="folio-toolbar no-print">
-    <a class="folio-back" href="index.html#roadmap">← Atlas</a>
+    <a class="folio-back" href="index.html#memory">← Zum Atlas (Memory)</a>
     <div class="folio-toolbar-actions">
-      <a class="folio-btn folio-btn--ghost" href="https://duzafizzl.github.io/miu-project-atlas/" rel="noopener noreferrer" target="_blank">Live site</a>
-      <button type="button" class="folio-btn" id="folio-print">Save as PDF</button>
+      <a class="folio-btn folio-btn--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#cognition" rel="noopener noreferrer" target="_blank">Live-Atlas</a>
+      <button type="button" class="folio-btn" id="folio-print">Als PDF speichern</button>
     </div>
   </header>
 
   <main class="folio-sheet">
-    <!-- PAGE 1 · COVER + THREAD -->
-    <section class="folio-page folio-page--cover" aria-label="Cover">
+    <!-- SEITE 1: Knowledge Thesis -->
+    <section class="folio-page folio-page--cover" aria-label="Titelseite Knowledge">
       <p class="folio-eyebrow">
-        Solo R&amp;D · embodied AI
+        Solo R&amp;D · Knowledge &amp; Continual Learning · seit Nov 2025
         <span class="folio-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       </p>
-      <h1 class="folio-title">The Miu <span>Project</span></h1>
+      <h1 class="folio-title">Miu · <span>Lernen &amp; Erinnern</span></h1>
       <p class="folio-lede">
-        A companion that <em>processes knowledge over days</em> — then grows a body.
-        This folio is the next chapter of the red thread.
+        Nicht „Chatbot mit Suche“. Ein Companion, der Wissen <em>über Tage verarbeitet</em>:
+        strukturierter Gedächtnis-Index, episodische Langzeit-Erinnerung, und ein Lern-Agent,
+        der Neues einbaut – ohne das Alte plattzuwalzen.
       </p>
 
-      <div class="folio-meta">
-        <span><strong>Since</strong> Nov 2025</span>
-        <span><strong>Snapshot</strong> Sep 2026</span>
-        <span><strong>Focus</strong> Mapless nav · lived place memory</span>
+      <div class="why-box">
+        <p class="why-kicker">Warum das für Enterprise / Allianz interessant ist</p>
+        <ul>
+          <li><strong>Continual Learning statt Amnesie:</strong> Neues Wissen auf mehreren Zeitskalen – ohne jedes Update die Identität zu überschreiben (Nested-Learning-Idee, angepasst).</li>
+          <li><strong>Struktur statt nur Similarity:</strong> Cascade ist ein Graph-Index („Urlaub 2025“ → was gehört zusammen). Vektor-Suche findet Ähnliches; der Index findet Zusammengehörigkeit.</li>
+          <li><strong>Episoden + Steuerung:</strong> Langzeit-Episoden mit Datum/Tags. Metakognition (MMA) stempelt Turns. Riskante Writes nur nach HITL – Governance im Loop.</li>
+        </ul>
       </div>
 
-      <figure class="thread-rail" aria-label="Red thread">
-        <figcaption>Red thread</figcaption>
-        <ol class="thread-stops">
-          <li><a href="index.html#timeline"><strong>01</strong> Build</a><small>Discord → body</small></li>
-          <li><a href="index.html#journey"><strong>02</strong> Forks</a><small>closed on purpose</small></li>
-          <li><a href="index.html#moment"><strong>03</strong> Lived</a><small>rise ≠ reply</small></li>
-          <li><a href="index.html#cognition"><strong>04</strong> House</a><small>memory index</small></li>
-          <li class="is-now"><a href="#now"><strong>05</strong> Next</a><small>mapless + place feel</small></li>
-        </ol>
-        <svg class="thread-svg" viewBox="0 0 640 36" aria-hidden="true">
-          <defs>
-            <linearGradient id="tg" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#60a5fa"/>
-              <stop offset="55%" stop-color="#93c5fd"/>
-              <stop offset="100%" stop-color="#f59e0b"/>
-            </linearGradient>
-          </defs>
-          <path d="M12 18 H628" stroke="url(#tg)" stroke-width="2" stroke-dasharray="4 6" fill="none" opacity="0.85"/>
-          <circle cx="12" cy="18" r="4" fill="#60a5fa"/>
-          <circle cx="166" cy="18" r="4" fill="#60a5fa"/>
-          <circle cx="320" cy="18" r="4" fill="#93c5fd"/>
-          <circle cx="474" cy="18" r="4" fill="#93c5fd"/>
-          <circle cx="628" cy="18" r="5.5" fill="#f59e0b"/>
-        </svg>
-      </figure>
+      <div class="folio-meta">
+        <span><strong>Kern</strong> Cascade · Episoden · Learning Agent</span>
+        <span><strong>Stand</strong> Sep 2026</span>
+        <span><strong>Stack</strong> Postgres · Substrate · HITL</span>
+      </div>
 
       <div class="folio-cta-band">
         <div>
-          <p class="folio-cta-kicker">Interactive atlas</p>
-          <p class="folio-cta-copy">Lived turn, Cascade graph, day weather, robotics deep dive — open the live house.</p>
+          <p class="folio-cta-kicker">Interaktiv im Atlas</p>
+          <p class="folio-cta-copy">Lived Turn, Cascade-SVG, Day-Weather, Nested-Learning-Details – klickbar online. Dieses Folio ist der PDF-taugliche Leave-behind.</p>
         </div>
-        <a class="folio-cta" href="https://duzafizzl.github.io/miu-project-atlas/" rel="noopener noreferrer" target="_blank">
-          duzafizzl.github.io/miu-project-atlas
-          <span aria-hidden="true">↗</span>
-        </a>
+        <div class="folio-cta-stack">
+          <a class="folio-cta" href="https://duzafizzl.github.io/miu-project-atlas/#memory" rel="noopener noreferrer" target="_blank">Memory im Atlas ↗</a>
+          <a class="folio-cta folio-cta--ghost" href="https://duzafizzl.github.io/statistics/" rel="noopener noreferrer" target="_blank">Statistics Surface</a>
+        </div>
       </div>
     </section>
 
-    <!-- PAGE 1b / continues · BETS -->
-    <section class="folio-page" id="now" aria-label="Now shipping">
+    <!-- SEITE 1b: Vier Schichten -->
+    <section class="folio-page" aria-label="Vier Gedächtnis-Schichten">
       <header class="folio-sec">
-        <span class="folio-sec-num">Now</span>
-        <h2>Active bets</h2>
-        <p>Honest status. Shipped stays shipped. Partial means floor-feel still gates.</p>
+        <span class="folio-sec-num">Architektur</span>
+        <h2>Vier Schichten · ein Haus</h2>
+        <p>Alles in einem Postgres-Haus. Kurz: was gerade passierte · wer Miu ist · was früher war · wie der Turn gestempelt wurde.</p>
       </header>
 
-      <div class="bet-grid">
-        <article class="bet bet--main">
-          <div class="bet-top">
-            <span class="pill pill-wip">main challenge</span>
-            <h3>Nav · mapless</h3>
-          </div>
-          <p>Cruise without a prebuilt floor plan. Pose / global map still open. ARKit live map + Point-and-Drive harden on the floor under T0.</p>
-          <ul class="bet-tags">
-            <li>Mioblick ARKit</li>
-            <li>LiDAR C1 fuse</li>
-            <li>Nav2 unknown space</li>
-          </ul>
+      <ol class="layer-stack">
+        <li class="layer layer--chat">
+          <span class="layer-tag">Kurzkontext</span>
+          <strong>Chat-Verlauf</strong>
+          <p>Letzte Turns und Zusammenfassungen. Was gerade im Raum passiert ist.</p>
+        </li>
+        <li class="layer layer--core">
+          <span class="layer-tag">Arbeits-Identität</span>
+          <strong>Core Memory Blocks</strong>
+          <p>Beschriftete Blöcke mit Zeichenlimit. Manche immer im Prompt – manche nur bei Kanal, Keyword oder Regime.</p>
+        </li>
+        <li class="layer layer--arch">
+          <span class="layer-tag">Langzeit · episodisch</span>
+          <strong>Archival Episodes</strong>
+          <p>Durchsuchbare Episoden mit Datum, Tags, Embeddings. Das ist die episodische Schicht – „was damals passiert ist“.</p>
+        </li>
+        <li class="layer layer--mma">
+          <span class="layer-tag">Metakognition</span>
+          <strong>MMA Events</strong>
+          <p>Stempel auf Chat-Nachrichten (Kurzfassung, ERIP, Topics). Nicht die private Erinnerungs-Injekt – die kommt davor als Kontext.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SEITE 2: Cascade + Learning -->
+    <section class="folio-page" aria-label="Cascade und Learning Agent">
+      <header class="folio-sec">
+        <span class="folio-sec-num">Index &amp; Lernen</span>
+        <h2>Cascade + Learning Agent</h2>
+        <p>Zwei Hebel: <em>finden was zusammengehört</em>, und <em>lernen ohne Amnesie</em>.</p>
+      </header>
+
+      <div class="duo">
+        <article class="duo-card">
+          <p class="duo-tag">Cascade</p>
+          <h3>Gedächtnis als Index</h3>
+          <p>Wie Menschen erinnern: „Ich war 2025 im Urlaub“ ist der Schlüssel. Aufklappen – und Reisen, Leute, Momente hängen am Regal. Episoden → Themen → Tage → Wochen. Kanten schlagen reinen Cosine-Mix.</p>
+          <figure class="cascade-mini cascade-mini--tight">
+            <svg viewBox="0 0 520 150" role="img" aria-label="Cascade Index Urlaub 2025">
+              <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
+                <path d="M260,26 C210,50 150,64 110,80"/>
+                <path d="M260,26 C260,50 260,64 260,80"/>
+                <path d="M260,26 C310,50 370,64 410,80"/>
+                <path d="M110,98 C180,114 230,122 260,128" stroke="rgba(52,211,153,0.4)"/>
+                <path d="M410,98 C340,114 290,122 260,128" stroke="rgba(52,211,153,0.4)"/>
+              </g>
+              <rect x="188" y="10" width="144" height="28" rx="8" fill="rgba(167,139,250,0.22)" stroke="#c4b5fd"/>
+              <text x="260" y="29" text-anchor="middle" fill="#ede9fe" font-size="11" font-weight="700">Urlaub · 2025</text>
+              <rect x="48" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="110" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">Strandwoche</text>
+              <rect x="198" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="260" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">Reisetage</text>
+              <rect x="348" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="410" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">das eine Chaos</text>
+              <rect x="208" y="130" width="104" height="16" rx="6" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.5)"/>
+              <text x="260" y="142" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="700">Tagesgraph</text>
+            </svg>
+          </figure>
+          <p class="duo-foot">Tools: <code>cascade_search</code> · Kanten in Postgres · Blätter bleiben bei Rollups.</p>
         </article>
-        <article class="bet">
-          <div class="bet-top">
-            <span class="pill pill-plan">planned</span>
-            <h3>Lived place memory</h3>
-          </div>
-          <p>Map grows while driving. Places keep geometry <em>and</em> how it felt — same family as Bridge Rise amplify cues.</p>
-        </article>
-        <article class="bet">
-          <div class="bet-top">
-            <span class="pill pill-wip">shipping</span>
-            <h3>House · harness</h3>
-          </div>
-          <p>Agent proposes Substrate fixes and new capabilities via <code>harness_fix_submit</code>. Myzel HITL, then verify.</p>
-        </article>
-        <article class="bet">
-          <div class="bet-top">
-            <span class="pill pill-wip">shipping</span>
-            <h3>Memory · Bridge Rise</h3>
-          </div>
-          <p>Sparse autobiographical recall. Rise into context ≠ posted reply. Amplify needs source binding.</p>
+
+        <article class="duo-card">
+          <p class="duo-tag">Learning Agent</p>
+          <h3>Lernen auf mehreren Takten</h3>
+          <p>Hintergrund-Editor: alle ~10 Turns Core, alle ~50 Archival. So bleibt, was schon „geklickt“ hat. Design-Anleihe an Google Nested Learning + MIRAS/Titans – <strong>angepasste Mechanik, kein Modell-Port</strong>.</p>
+          <ol class="clock-steps">
+            <li><strong>Chat</strong><small>Main Agent</small></li>
+            <li><strong>÷10</strong><small>LA · Core</small></li>
+            <li><strong>÷50</strong><small>LA · Archival</small></li>
+            <li><strong>EOD</strong><small>Themengraph</small></li>
+            <li><strong>Woche</strong><small>Rollup → Core</small></li>
+          </ol>
+          <p class="duo-foot">Verbotene Regale (Identität, gewisse Summaries) bleiben für den Learning Agent gesperrt. HITL für riskante Writes.</p>
         </article>
       </div>
 
-      <figure class="cascade-mini" aria-label="Cascade memory index">
-        <figcaption>Memory index · Cascade</figcaption>
-        <svg viewBox="0 0 520 160" role="img" aria-label="holiday 2025 hub linked to episodes and day rollup">
-          <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
-            <path d="M260,28 C210,55 150,70 110,88"/>
-            <path d="M260,28 C260,55 260,70 260,88"/>
-            <path d="M260,28 C310,55 370,70 410,88"/>
-            <path d="M110,108 C180,125 230,132 260,140" stroke="rgba(52,211,153,0.4)"/>
-            <path d="M410,108 C340,125 290,132 260,140" stroke="rgba(52,211,153,0.4)"/>
-          </g>
-          <rect x="188" y="12" width="144" height="28" rx="8" fill="rgba(167,139,250,0.22)" stroke="#c4b5fd"/>
-          <text x="260" y="31" text-anchor="middle" fill="#ede9fe" font-size="11" font-weight="700">holiday · 2025</text>
-          <rect x="48" y="90" width="124" height="26" rx="7" fill="rgba(46,47,54,0.9)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
-          <text x="110" y="107" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">beach week</text>
-          <rect x="198" y="90" width="124" height="26" rx="7" fill="rgba(46,47,54,0.9)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
-          <text x="260" y="107" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">travel days</text>
-          <rect x="348" y="90" width="124" height="26" rx="7" fill="rgba(46,47,54,0.9)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
-          <text x="410" y="107" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">funny disaster</text>
-          <rect x="208" y="138" width="104" height="18" rx="6" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.5)"/>
-          <text x="260" y="151" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="700">day graph</text>
-        </svg>
-        <p>Edges beat cosine soup. Ask for a season — open the shelf.</p>
-      </figure>
+      <div class="lived-strip">
+        <p class="lived-kicker">Lived Turn · der Beweis-Moment</p>
+        <ol>
+          <li><strong>Frage</strong> zieht eine alte Episode</li>
+          <li><strong>Rise</strong> landet nur im Kontext (kein Abruf-Schild)</li>
+          <li><strong>Antwort</strong> wird gepostet</li>
+          <li><strong>MMA</strong> stempelt beide Chat-Seiten</li>
+        </ol>
+        <a class="folio-cta folio-cta--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn" rel="noopener noreferrer" target="_blank">Lived Turn im Atlas ↗</a>
+      </div>
     </section>
 
-    <!-- PAGE 2 · FULL BOARD -->
-    <section class="folio-page folio-page--board" aria-label="Roadmap board">
+    <!-- SEITE 3: Roadmap Knowledge + Beweisbilder (PDF-fest) -->
+    <section class="folio-page folio-page--board" aria-label="Knowledge Roadmap">
       <header class="folio-sec">
-        <span class="folio-sec-num">Board</span>
-        <h2>Roadmap · one glance</h2>
-        <p>Same truth as the Atlas. Tap a row title online for the deep dive.</p>
+        <span class="folio-sec-num">Roadmap</span>
+        <h2>Knowledge · was als Nächstes kommt</h2>
+        <p>Schwerpunkt Lernen &amp; Erinnern. Robotics hängt am selben Gehirn – Details im Robotics-Atlas.</p>
       </header>
 
-      <div class="board" role="table" aria-label="Roadmap status board">
+      <div class="board" role="table">
         <div class="board-head" role="row">
-          <span role="columnheader">Track</span>
-          <span role="columnheader">Scope</span>
-          <span role="columnheader">Status</span>
+          <span>Track</span><span>Was</span><span>Status</span>
         </div>
-        <a class="board-row" role="row" href="index.html#roadmap">
-          <strong>Nav · mapless</strong>
-          <span>Cruise without prebuilt floor plan</span>
-          <span class="pill pill-wip">main challenge</span>
+        <a class="board-row" href="index.html#moment">
+          <strong>Bridge Rise</strong>
+          <span>Seltene autobiografische Injekt · Amplify nur mit Quelle</span>
+          <span class="pill pill-wip">in Arbeit</span>
         </a>
-        <a class="board-row" role="row" href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">
-          <strong>Nav · lived place</strong>
-          <span>Grow map + feeling gist while driving</span>
-          <span class="pill pill-plan">planned</span>
+        <a class="board-row" href="index.html#memory">
+          <strong>Cascade-Index</strong>
+          <span>Graph-Regal Episoden ↔ Themen ↔ Tage/Wochen</span>
+          <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" role="row" href="index.html#self-shape">
-          <strong>House · harness</strong>
-          <span>Propose fix / new capability · HITL · verify</span>
-          <span class="pill pill-wip">shipping</span>
+        <a class="board-row" href="index.html#cognition">
+          <strong>Learning Agent</strong>
+          <span>Multi-Takt Core/Archival · Nested-Learning-Idee</span>
+          <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" role="row" href="index.html#moment">
-          <strong>Memory · Bridge Rise</strong>
-          <span>Sparse rise into context · amplify bound</span>
-          <span class="pill pill-wip">shipping</span>
+        <a class="board-row" href="index.html#mma-day-climate">
+          <strong>MMA / ERIP</strong>
+          <span>Metakognition auf Chat · Topics + E·R·I·P</span>
+          <span class="pill pill-done">live</span>
         </a>
-        <a class="board-row" role="row" href="robotics.html">
-          <strong>Sense · ARKit map</strong>
-          <span>Phone depth/pose ⊕ chassis C1 → growing map</span>
-          <span class="pill pill-wip">shipping</span>
+        <a class="board-row" href="index.html#self-shape">
+          <strong>Harness Self-Shape</strong>
+          <span>Haus-Fixes &amp; neue Fähigkeiten · HITL · Verify</span>
+          <span class="pill pill-wip">in Arbeit</span>
         </a>
-        <a class="board-row" role="row" href="robotics.html">
-          <strong>Nav · Point-and-Drive</strong>
-          <span>Tap depth → map goal under T0</span>
-          <span class="pill pill-wip">partial</span>
+        <a class="board-row" href="index.html#capabilities">
+          <strong>HiSkill + SkillOpt</strong>
+          <span>Skill-Graph live · Offline-Optimierung offen</span>
+          <span class="pill pill-wip">teilweise</span>
         </a>
-        <a class="board-row" role="row" href="index.html#capabilities">
-          <strong>Skills · HiSkill + Opt</strong>
-          <span>Graph + Scout live · SkillOpt bridge open</span>
-          <span class="pill pill-wip">partial</span>
+        <a class="board-row" href="robotics.html">
+          <strong>Ortgedächtnis (Body)</strong>
+          <span>Fahren + Gefühl am Ort → später Amplify-Anker</span>
+          <span class="pill pill-plan">geplant</span>
         </a>
-        <a class="board-row" role="row" href="index.html#timeline">
-          <strong>Presence · voice + face</strong>
-          <span>Qwen3-TTS miore + Flip speak sessions</span>
-          <span class="pill pill-done">shipped</span>
+        <a class="board-row" href="https://duzafizzl.github.io/statistics/" rel="noopener noreferrer" target="_blank">
+          <strong>Statistics Surface</strong>
+          <span>Längere Tag×Zeit-Auswertung (Research-Toolkit)</span>
+          <span class="pill pill-done">öffentlich</span>
         </a>
       </div>
 
       <div class="legend">
-        <span><i class="dot dot-done"></i> shipped / learned</span>
-        <span><i class="dot dot-wip"></i> shipping / partial</span>
-        <span><i class="dot dot-plan"></i> planned / watchlist</span>
+        <span><i class="dot dot-done"></i> live / geliefert</span>
+        <span><i class="dot dot-wip"></i> in Arbeit</span>
+        <span><i class="dot dot-plan"></i> geplant</span>
       </div>
 
-      <aside class="folio-more">
-        <h3>Also on the board</h3>
-        <ul>
-          <li><span class="pill pill-done">learned</span> SAM look-drive — Aug probe, not default goto</li>
-          <li><span class="pill pill-wip">deploy pending</span> Recovery UX — reverse-until-clear + voice</li>
-          <li><span class="pill pill-plan">watchlist</span> PhyFilter-style loco residuals</li>
-          <li><span class="pill pill-plan">planned</span> Audio-driven lipsync beyond talk clips</li>
-          <li><span class="pill pill-wip">W1</span> Maker — Fusion → Bambu one-click</li>
-        </ul>
-      </aside>
+      <!-- PDF-feste Beweisflächen: Poster + URL, Screen: optional Video -->
+      <header class="folio-sec" style="margin-top:1.25rem;">
+        <span class="folio-sec-num">Feld</span>
+        <h2>Körper hängt am selben Wissen</h2>
+        <p>Embodiment speist dieselbe Memory/MMA-Schicht. Im PDF: Standbilder + Links. Am Screen: Clips abspielbar.</p>
+      </header>
+
+      <div class="media-grid">
+        <figure class="media-card">
+          <div class="media-frame" style="background-image:url(assets/raspbear-nav2-exploration-poster.jpg)">
+            <img class="print-poster" src="assets/raspbear-nav2-exploration-poster.jpg" alt="Rasp-Bear Navigation Exploration" width="640" height="400">
+            <video class="screen-video no-print" controls playsinline preload="none" poster="assets/raspbear-nav2-exploration-poster.jpg">
+              <source src="assets/raspbear-nav2-exploration.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>
+            <strong>Nav · Exploration</strong>
+            <span>Unbekannter Raum – Events fließen zurück ins Gedächtnis-Haus</span>
+            <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics Atlas ↗</a>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <div class="media-frame" style="background-image:url(assets/raspbear-first-ride-poster.jpg)">
+            <img class="print-poster" src="assets/raspbear-first-ride-poster.jpg" alt="Rasp-Bear erste Fahrt" width="640" height="400">
+            <video class="screen-video no-print" controls playsinline preload="none" poster="assets/raspbear-first-ride-poster.jpg">
+              <source src="assets/raspbear-first-ride.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>
+            <strong>Rasp-Bear · Körper</strong>
+            <span>Brain/Body-Split: Substrate denkt, Pi fährt – T0 heilig</span>
+            <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">House / Memory ↗</a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="pdf-hint">PDF-Tipp: Chrome → Drucken → Als PDF → <strong>Hintergrundgrafiken an</strong>. Videos werden zu Postern; Links bleiben klickbar.</p>
 
       <footer class="folio-foot">
         <div>
-          <p class="folio-foot-brand">Substrate Atlas · Roadmap Folio</p>
-          <p class="folio-foot-note">Solo portfolio snapshot · Sep 2026 · status moves on the live site</p>
+          <p class="folio-foot-brand">Miu Project · Knowledge &amp; Learning Folio</p>
+          <p class="folio-foot-note">Solo-Portfolio · Sep 2026 · Status online aktueller als jedes PDF</p>
         </div>
         <div class="folio-foot-links">
-          <a href="https://duzafizzl.github.io/miu-project-atlas/">Atlas</a>
-          <a href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics</a>
+          <a href="https://duzafizzl.github.io/miu-project-atlas/#memory">Memory</a>
+          <a href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn">Lived Turn</a>
           <a href="https://duzafizzl.github.io/statistics/">Statistics</a>
           <a href="https://www.linkedin.com/in/clarissa-r%C3%B6thig">LinkedIn</a>
         </div>
@@ -248,6 +284,7 @@
         module: "roadmap-folio",
         level: "INFO",
         message: "print_requested",
+        focus: "knowledge_learning",
       }));
       window.print();
     });
