@@ -38,7 +38,8 @@
       <h1 class="folio-title">Miu · <span>Voice &amp; Dialogue</span></h1>
       <p class="folio-lede">
         Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Voice- &amp; Dialogue-Stack:
-        Multi-Turn mit Memory-Kontext, Speech-Pipeline (ASR → Agent → <strong>lokal Qwen3-TTS MLX</strong>, eigene Stimme <code>miore</code>),
+        Multi-Turn auf einem <strong>Graph-Memory</strong> (darum funktioniert Cascade),
+        Speech-Pipeline (ASR → Agent → <strong>lokal Qwen3-TTS MLX</strong>, Stimme <code>miore</code>),
         REST/SSE an Live-Backends, Observability auf Turn-Ebene.
         Zielbild: <em>Full-Duplex bei niedriger Latenz</em> trotz großem Memory
         (<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models · Thinking Machines</a>).
@@ -47,15 +48,15 @@
       <div class="why-box">
         <p class="why-kicker">Was der Stack konkret abdeckt</p>
         <ul>
-          <li><strong>Agent building end-to-end:</strong> Multi-Turn-Flows, Intent-/Context-Routing (Cascade), Dialogue State &amp; Memory über Sessions, Fallback &amp; Escalation – nicht nur UI-Konfig einer Voice-Plattform.</li>
-          <li><strong>Speech in Produktion · owned TTS:</strong> LiveKit-Sessions; STT → Agent → <strong>Qwen3-TTS auf Apple Silicon (MLX)</strong>, Voice <code>miore</code> (kein ElevenLabs-Default); Latenz/Feel als Qualitätsziel; REST/SSE + async Fehlerpfade.</li>
-          <li><strong>Observability &amp; Qualität:</strong> Turn-Analytics (MMA/ERIP), Topics, strukturierte Logs – Drop-offs und Regressionen nachvollziehbar; reusable Patterns für schnellere Delivery.</li>
+          <li><strong>Agent building end-to-end:</strong> Multi-Turn-Flows, Dialogue State, Fallback &amp; Escalation – nicht nur UI-Konfig einer Voice-Plattform.</li>
+          <li><strong>Graph-Memory → Cascade:</strong> Episoden, Themen, Tage/Wochen als <em>Kanten</em>, nicht nur Vektor-Similarity. Cascade routet Zusammengehörigkeit (z. B. Schadenfall → Erstaufnahme → Regulierung) – deshalb skaliert Context über lange Sessions.</li>
+          <li><strong>Speech in Produktion · owned TTS:</strong> LiveKit; STT → Agent → <strong>Qwen3-TTS auf Apple Silicon (MLX)</strong>, Voice <code>miore</code>; Latenz/Feel als Ziel; REST/SSE + async Fehlerpfade; Turn-Analytics (MMA/ERIP).</li>
         </ul>
       </div>
 
       <div class="folio-meta">
+        <span><strong>Memory</strong> Graph · Cascade · Episoden</span>
         <span><strong>TTS</strong> Qwen3-TTS MLX · miore</span>
-        <span><strong>Memory</strong> Cascade · Episoden · Core</span>
         <span><strong>Ziel</strong> Full-Duplex · low latency</span>
       </div>
 
@@ -76,7 +77,7 @@
       <header class="folio-sec">
         <span class="folio-sec-num">Dialogue Stack</span>
         <h2>Vier Schichten · ein laufendes System</h2>
-        <p>Was ein Multi-Turn-Agent braucht: Kurzkontext, stabile Identität, episodische Historie, und Stempel pro Turn – in einem Postgres-Haus.</p>
+        <p>Ein Postgres-basiertes <strong>Graph-Memory</strong>: Kurzkontext, Identität, episodische Historie, Turn-Stempel – Cascade liest die Kanten, nicht nur Similarity.</p>
       </header>
 
       <ol class="layer-stack">
@@ -113,9 +114,9 @@
 
       <div class="duo">
         <article class="duo-card">
-          <p class="duo-tag">Cascade · Intent / Context Routing</p>
-          <h3>Gedächtnis als Index</h3>
-          <p>Wie Context Management jenseits reiner Similarity: „Schadenfall Sturm 2024“ öffnet Erstaufnahme, Besichtigung, Regulierung. Episoden → Themen → Tage → Wochen – für Multi-Turn-Flows mit echtem Fallgraph.</p>
+          <p class="duo-tag">Cascade · Graph-Index</p>
+          <h3>Gedächtnis als Graph</h3>
+          <p>Darum funktioniert Cascade: Memory ist ein <strong>Graph</strong> (Episoden ↔ Themen ↔ Tage/Wochen), nicht nur Embedding-Mix. „Schadenfall Sturm 2024“ öffnet Erstaufnahme, Besichtigung, Regulierung – Kanten tragen Zusammengehörigkeit.</p>
           <figure class="cascade-mini cascade-mini--tight">
             <svg viewBox="0 0 520 150" role="img" aria-label="Cascade Index Schadenfall Sturm 2024">
               <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
@@ -190,8 +191,8 @@
           <span class="pill pill-plan">Nordstern</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#memory">
-          <strong>Cascade + Memory</strong>
-          <span>Episoden · Core · Dialogue-State über Tage – nicht nur Similarity</span>
+          <strong>Cascade + Graph-Memory</strong>
+          <span>Kanten Episoden↔Themen↔Tage – Cascade routet Zusammengehörigkeit</span>
           <span class="pill pill-done">live</span>
         </a>
         <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">
