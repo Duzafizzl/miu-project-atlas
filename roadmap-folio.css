@@ -891,7 +891,17 @@ body.folio {
     font-size: 8.5pt;
   }
   .board-row strong { font-size: 9pt; }
-  .legend { margin-bottom: 2mm; font-size: 8pt; }
+  .board-foot-note {
+    font-size: 8pt;
+    color: var(--text-muted);
+    margin: 3mm 0 4mm;
+    line-height: 1.4;
+  }
+  .board-foot-note a { color: #93c5fd !important; }
+
+  .folio-page--board .folio-foot {
+    margin-top: 2mm;
+  }
 
   /* Medien: kompakt auf der Slide, Design bleibt dunkel */
   .folio-page--field .media-grid {
