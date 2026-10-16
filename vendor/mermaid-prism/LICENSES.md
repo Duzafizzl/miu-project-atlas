@@ -11,8 +11,8 @@ This folder is a **build artifact**, not source. It is a self-contained ES-modul
 [mermaid-prism](https://github.com/duzafizzl/mermaid-prism) (MIT © 2026 Clarissa Röthig,
 see `LICENSE-mermaid-prism.txt`) so the static Atlas can import it on GitHub Pages without a bundler.
 
-- Built from mermaid-prism commit `d313e20` (clean `git archive HEAD` export, no working-tree WIP).
-- Vite 8 library build, ESM, minified, no source maps. `mermaid-prism.js` = entry; `chunks/` = lazy chunks
+- Built from mermaid-prism commit `bb08adb` (clean `git archive HEAD` export, no working-tree WIP).
+- Vite 8 library build, ESM, minified, no source maps. `mermaid-prism.js` = entry (public API + `parseMermaid` + lazy `renderDrill3d`); `chunks/` = lazy chunks
   (three.js / 3D renderer and Mermaid diagram types load only when used); `prism.css` = themes + player bar.
 - Every third-party package is included **unmodified**.
 
