@@ -1,0 +1,164 @@
+/*
+ * File: prism-lab.css
+ * Description: Prism lab page layout + the "atlas" mermaid-prism theme (data-theme="atlas"), mapped from atlas-shared.css tokens. Dark only.
+ * Created: 2026-10-17
+ * Last updated: 2026-10-17
+ */
+
+/* ── Prism theme: atlas ─────────────────────────────────────────────────
+ * Same token contract as graphite/reqvar (vendor/mermaid-prism/prism.css).
+ * Values come from atlas-shared.css: --bg-*, --accent #60a5fa, --warm #f59e0b, --green #34d399.
+ */
+.prism[data-theme="atlas"] {
+  color-scheme: dark;
+
+  --prism-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --prism-stage: #1d1e23;
+  --prism-grid: rgba(147, 197, 253, 0.05);
+  --prism-ink: #f7f8ff;
+
+  --prism-accent: #60a5fa;
+  --prism-ok: #34d399;
+  --prism-warn: #f59e0b;
+  --prism-danger: #f87171;
+
+  --prism-surface: linear-gradient(180deg, rgba(46, 47, 54, 0.92), rgba(38, 39, 45, 0.86));
+  --prism-surface-solid: #2e2f36;
+  --prism-border: rgba(96, 165, 250, 0.16);
+  --prism-border-strong: rgba(96, 165, 250, 0.3);
+  --prism-light-edge: rgba(255, 255, 255, 0.05);
+
+  --prism-shadow-c1: rgba(0, 0, 0, 0.34);
+  --prism-shadow-c2: rgba(0, 0, 0, 0.38);
+  --prism-shadow-c3: rgba(0, 0, 0, 0.42);
+  --prism-shadow:
+    0 1px 1px -0.5px var(--prism-shadow-c1),
+    0 3px 3px -1.5px var(--prism-shadow-c1),
+    0 6px 6px -3px var(--prism-shadow-c2),
+    0 12px 12px -6px var(--prism-shadow-c3);
+  --prism-shadow-hover:
+    0 1px 1px -0.5px var(--prism-shadow-c1),
+    0 3px 3px -1.5px var(--prism-shadow-c1),
+    0 8px 8px -4px var(--prism-shadow-c2),
+    0 16px 20px -8px var(--prism-shadow-c3),
+    0 0 18px -6px rgba(96, 165, 250, 0.45);
+  --prism-shadow-soft: 0 1px 2px var(--prism-shadow-c1), 0 4px 10px -4px var(--prism-shadow-c2);
+
+  --prism-group-surface: rgba(96, 165, 250, 0.035);
+  --prism-group-surface-nested: rgba(255, 255, 255, 0.022);
+  --prism-group-surface-solid: #222329;
+  --prism-group-border: rgba(96, 165, 250, 0.14);
+  --prism-group-light-edge: rgba(255, 255, 255, 0.04);
+  --prism-shadow-group: 0 0 0 0 transparent;
+
+  --prism-edge: rgba(147, 197, 253, 0.32);
+  --prism-edge-hover: rgba(147, 197, 253, 0.7);
+  --prism-glow-opacity: 0.2;
+
+  --prism-label-surface: #26272d;
+  --prism-note-surface: rgba(46, 47, 54, 0.9);
+  --prism-block-surface: rgba(255, 255, 255, 0.018);
+
+  border-radius: 14px;
+}
+
+/* Long portfolio page: a touch on a diagram must still scroll the page vertically. */
+.prism[data-theme="atlas"] .prism-viewport { touch-action: pan-y; }
+
+/* ── Lab layout ─────────────────────────────────────────────────────── */
+.lab-main {
+  position: relative; z-index: 2;
+  max-width: 64rem; margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.75rem) 5rem;
+}
+
+.lab-hero { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--border); }
+.lab-hero h1 { margin-bottom: 0.85rem; }
+.lab-hero p { max-width: 42rem; }
+.lab-back { font-size: 0.8125rem; color: var(--accent-soft); text-decoration: none; }
+.lab-back:hover { text-decoration: underline; }
+
+.lab-legend {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 0; padding: 0; list-style: none;
+}
+.lab-legend li {
+  margin: 0; font-size: 0.75rem; color: var(--text-muted);
+  padding: 0.3rem 0.65rem; border-radius: 999px;
+  border: 1px solid var(--border); background: rgba(255, 255, 255, 0.02);
+}
+.lab-legend li strong { color: var(--text-primary); font-weight: 600; }
+
+.lab-main > section { padding: 2.75rem 0; border-bottom: 1px solid var(--border); }
+.lab-main > section:last-of-type { border-bottom: 0; }
+
+.lab-pair {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+}
+
+/* Figure shell: atlas flow-board look around a Prism mount. */
+.lab-fig {
+  margin: 1.25rem 0; padding: 1rem 1rem 0.9rem;
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  border-radius: var(--radius-notch);
+  min-width: 0;
+}
+.lab-pair .lab-fig { margin: 0; }
+.lab-fig-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  margin-bottom: 0.75rem; min-height: 1.75rem;
+}
+.lab-fig-head figcaption {
+  font-size: 0.625rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin: 0;
+}
+.lab-src {
+  margin: 0.7rem 0 0; font-size: 0.75rem; color: var(--text-disabled); max-width: none;
+}
+.lab-src a { color: var(--text-muted); }
+
+/* 2D / 3D segmented switch */
+.lab-modes {
+  display: inline-flex; padding: 2px; gap: 2px; flex: none;
+  border-radius: 9px; background: var(--bg-deep); border: 1px solid var(--border);
+}
+.lab-modes button {
+  font: 600 0.6875rem/1 var(--font-ui); letter-spacing: 0.04em;
+  color: var(--text-muted); background: transparent; border: 0;
+  padding: 0.4rem 0.7rem; border-radius: 7px; cursor: pointer;
+  transition: background var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
+}
+.lab-modes button:hover { color: var(--text-primary); }
+.lab-modes button[aria-pressed="true"] { background: var(--accent-dim); color: var(--accent-soft); }
+.lab-modes button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lab-modes[hidden] { display: none; }
+
+/* Mount + fallback: fallback (original atlas markup) shows until Prism mounts. */
+.lab-mount { min-height: 0; }
+.lab-mount:empty { display: none; }
+.lab-fig[data-state="ready"] .lab-fallback { display: none; }
+.lab-fig[data-state="loading"] .lab-fallback { opacity: 0.55; transition: opacity 0.3s var(--ease); }
+.lab-fig[data-state="error"] .lab-fig-note { display: block; }
+.lab-fig-note { display: none; font-size: 0.75rem; color: var(--warm); margin: 0.5rem 0 0; }
+.lab-fallback { margin: 0; }
+.lab-fallback .flow-board { margin: 0; padding: 0; background: none; border: 0; }
+
+/* Height targets per kind (Prism reads --prism-height on the viewport). */
+.lab-fig .prism { --prism-height: 420px; }
+.lab-fig--tall .prism { --prism-height: 560px; }
+.lab-fig--short .prism { --prism-height: 260px; }
+.lab-fig--3d .prism { --prism-height: 460px; }
+
+@media (max-width: 40rem) {
+  .lab-hero { padding-top: 2.25rem; }
+  .lab-fig { padding: 0.8rem 0.7rem 0.75rem; }
+  .lab-fig .prism { --prism-height: 380px; }
+  .lab-fig--tall .prism { --prism-height: 520px; }
+  .lab-fig--short .prism { --prism-height: 240px; }
+  .lab-fig--3d .prism { --prism-height: 400px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-fig[data-state="loading"] .lab-fallback,
+  .lab-modes button { transition: none; }
+}

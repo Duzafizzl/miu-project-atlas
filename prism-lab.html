@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<!--
+  File: prism-lab.html
+  Description: Prism lab (probe) — the Atlas architecture diagrams rewritten 1:1 as Mermaid text and rendered with the vendored mermaid-prism (2D, iso 3D, flow player). Original atlas markup stays as fallback.
+  Created: 2026-10-17
+  Last updated: 2026-10-17
+-->
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f2025">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Prism lab · Miu Project Atlas diagrams rendered with mermaid-prism.">
+  <title>Prism lab · Miu Project Atlas</title>
+  <link rel="stylesheet" href="atlas-shared.css">
+  <link rel="stylesheet" href="vendor/mermaid-prism/prism.css">
+  <link rel="stylesheet" href="prism-lab.css">
+  <script type="module" src="prism-lab.js"></script>
+</head>
+<body>
+  <div class="canvas" aria-hidden="true"></div>
+  <div class="grid-noise" aria-hidden="true"></div>
+
+  <main class="lab-main">
+    <header class="lab-hero">
+      <a class="lab-back" href="index.html">← Substrate Atlas</a>
+      <p class="hero-eyebrow">Prism lab · probe</p>
+      <h1>Atlas diagrams, <span class="accent">in motion</span></h1>
+      <p>The architecture figures from the Atlas, written as plain Mermaid and drawn by <a href="https://github.com/duzafizzl/mermaid-prism" rel="noopener noreferrer" target="_blank">mermaid-prism</a>. Same nodes, same words. Click a card to light its path. Where a figure tells a process, the player walks it step by step; a card with two incoming arrows waits until both arrive.</p>
+      <ul class="lab-legend" aria-label="How to read">
+        <li><strong>2D</strong> glass cards</li>
+        <li><strong>3D</strong> iso layers · drag to orbit</li>
+        <li><strong>Player</strong> Space · ← → · Home</li>
+      </ul>
+    </header>
+
+    <!-- ── 01 · Lived turn ─────────────────────────────────────────── -->
+    <section id="lab-lived">
+      <div class="sec-head"><span class="sec-index">01</span><h2>Lived recall · one turn</h2></div>
+      <p class="section-desc">Rise into context → real reply → MMA stamps both chat sides.</p>
+
+      <figure class="lab-fig" id="fig-lived-turn" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>One turn · rise ≠ reply</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  ask["1 · User asks<br/>11 Sep 2026"]
+  subgraph rise["2 · Loaded into context only · not posted"]
+    glass["In context · glass<br/>one clean thought"]
+    amplify["In context · amplify<br/>episode mid-Jun 2026"]
+  end
+  reply["3 · Agent reply · posted<br/>11 Sep 2026"]:::accent
+  subgraph mma["4 · MMA stamps the chat"]
+    received["message_received<br/>L1 · from the user line"]
+    sent["message_sent<br/>L1 · from the posted reply"]
+  end
+  ask --> glass
+  ask --> amplify
+  glass --> reply
+  amplify --> reply
+  reply --> received
+  reply --> sent
+  class mma amber
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback">
+          <ol class="flow-pipe-steps">
+            <li><span>User asks</span><small>11 Sep 2026</small></li>
+            <li><span>Loaded into context only</span><small>glass · amplify · not posted</small></li>
+            <li><span>Agent reply · posted</span><small>11 Sep 2026</small></li>
+            <li><span>MMA stamps the chat</span><small>user + agent, not the private rise</small></li>
+          </ol>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+        <p class="lab-src">Source: <a href="index.html#lived-turn">Atlas · Lived recall</a></p>
+      </figure>
+    </section>
+
+    <!-- ── 02 · House · cognition ──────────────────────────────────── -->
+    <section id="lab-cognition">
+      <div class="sec-head"><span class="sec-index">02</span><h2>The house · cognition</h2></div>
+      <p class="section-desc">One day in the loop, and the harness branch that can reshape the house.</p>
+
+      <figure class="lab-fig" id="fig-cognition-loop" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>One day in the loop · ↻ next day</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  chat["01 · Companion chat<br/>presence first"]:::accent
+  embodied["02 · Embodied presence<br/>voice · face · Flip · Rasp-Bear"]
+  tasks["03 · Tasks & heartbeats<br/>clock-aware · Whoop · harness-extend"]
+  tools["04 · Tools & body work<br/>research · print · drive · look"]
+  stamps["05 · MMA stamps<br/>user + agent, after the reply"]:::amber
+  reflect["06 · Reflect<br/>daily close · multi-day patterns"]
+  compress["07 · Compress<br/>cascade climb · leaves stay"]
+  rise["↑ Lived rise<br/>sparse thought, when earned"]:::accent
+  chat --> embodied
+  embodied --> tasks
+  tasks --> tools
+  tools --> stamps
+  stamps --> reflect
+  reflect --> compress
+  compress -->|next day| chat
+  compress -.-> rise
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback">
+          <ol class="flow-pipe-steps">
+            <li><span>Companion chat</span><small>presence first</small></li>
+            <li><span>Embodied presence</span><small>voice · face · Flip · Rasp-Bear</small></li>
+            <li><span>Tasks &amp; heartbeats</span><small>clock-aware</small></li>
+            <li><span>Tools &amp; body work</span><small>research · print · drive · look</small></li>
+            <li><span>MMA stamps</span><small>after the reply</small></li>
+            <li><span>Reflect</span><small>daily close</small></li>
+            <li><span>Compress</span><small>leaves stay</small></li>
+            <li><span>Lived rise</span><small>when earned</small></li>
+          </ol>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+        <p class="lab-src">Source: <a href="index.html#cognition">Atlas · The house · cognition</a> (loop-cycle)</p>
+      </figure>
+
+      <figure class="lab-fig" id="fig-harness" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>Harness · reshape house (branch)</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  diagnose["Diagnose<br/>watchdog detects"]
+  submit["harness_fix_submit<br/>fix or new capability"]
+  hitl["Myzel HITL<br/>gates risky apply"]:::amber
+  verify["Verify"]:::ok
+  diagnose --> submit
+  submit --> hitl
+  hitl --> verify
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback">
+          <ol class="flow-pipe-steps">
+            <li><span>Diagnose</span><small>watchdog</small></li>
+            <li><span>harness_fix_submit</span><small>fix or capability</small></li>
+            <li><span>Myzel HITL</span><small>risky apply</small></li>
+            <li><span>Verify</span></li>
+          </ol>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+        <p class="lab-src">Source: <a href="index.html#cognition">Atlas · loop-beat branch</a> + Harness card</p>
+      </figure>
+    </section>
+
+    <!-- ── 03 · Memory ─────────────────────────────────────────────── -->
+    <section id="lab-memory">
+      <div class="sec-head"><span class="sec-index">03</span><h2>Memory · how it holds</h2></div>
+      <p class="section-desc">Four layers in one Postgres house, the Cascade index as a real graph, and the find / learn / read paths.</p>
+
+      <div class="lab-pair">
+        <figure class="lab-fig lab-fig--3d" id="fig-mem-stack" data-modes="3d 2d">
+          <div class="lab-fig-head"><figcaption>Four layers · one Postgres house</figcaption>
+            <div class="lab-modes" role="group" aria-label="View" hidden><button type="button" data-mode="2d" aria-pressed="false">2D</button><button type="button" data-mode="3d" aria-pressed="true">3D</button></div>
+          </div>
+          <script type="text/plain" class="lab-code">
+flowchart TB
+  subgraph house["Four layers · one Postgres house"]
+    direction TB
+    chat["Chat history<br/>Short context"]
+    core["Core memory blocks<br/>Working identity"]
+    arch["Archival<br/>Long-term episodes"]
+    events["MMA events<br/>Metacognition"]
+  end
+  chat ~~~ core
+  core ~~~ arch
+  arch ~~~ events
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback">
+            <ol class="flow-pipe-steps">
+              <li><span>Chat history</span><small>Short context</small></li>
+              <li><span>Core memory blocks</span><small>Working identity</small></li>
+              <li><span>Archival</span><small>Long-term episodes</small></li>
+              <li><span>MMA events</span><small>Metacognition</small></li>
+            </ol>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the plain layers.</p>
+          <p class="lab-src">Source: <a href="index.html#memory">Atlas · mem-stack</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-cascade" data-modes="2d 3d">
+          <div class="lab-fig-head"><figcaption>Cascade index · illustrative shelf</figcaption>
+            <div class="lab-modes" role="group" aria-label="View" hidden><button type="button" data-mode="2d" aria-pressed="true">2D</button><button type="button" data-mode="3d" aria-pressed="false">3D</button></div>
+          </div>
+          <script type="text/plain" class="lab-code">
+flowchart TB
+  hub["holiday · 2025<br/>index key"]:::accent
+  beach["beach week<br/>episode"]
+  travel["travel days<br/>episode"]
+  funny["funny disaster<br/>episode"]
+  people["people<br/>theme"]
+  places["places<br/>theme"]
+  day["day graph"]
+  week["week<br/>rollup"]
+  month["month<br/>rollup"]
+  hub --> beach
+  hub --> travel
+  hub --> funny
+  beach --> people
+  travel --> people
+  funny --> places
+  people --> day
+  places --> day
+  day --> week
+  day --> month
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback">
+            <svg class="cascade-svg" viewBox="0 0 720 320" role="img" aria-label="Cascade memory graph: holiday 2025 hub linked to episodes, themes, day rollup">
+              <g class="cascade-edges" fill="none" stroke-linecap="round">
+                <path d="M360,48 C300,90 220,110 160,128" stroke="rgba(196,181,253,0.45)" stroke-width="1.6"></path>
+                <path d="M360,48 C360,90 360,100 360,128" stroke="rgba(196,181,253,0.45)" stroke-width="1.6"></path>
+                <path d="M360,48 C420,90 500,110 560,128" stroke="rgba(196,181,253,0.45)" stroke-width="1.6"></path>
+                <path d="M160,148 C220,175 280,188 340,198" stroke="rgba(96,165,250,0.4)" stroke-width="1.4"></path>
+                <path d="M360,148 C360,170 350,185 340,198" stroke="rgba(96,165,250,0.4)" stroke-width="1.4"></path>
+                <path d="M560,148 C500,175 420,188 380,198" stroke="rgba(245,158,11,0.45)" stroke-width="1.5"></path>
+                <path d="M200,210 C280,230 320,245 360,258" stroke="rgba(52,211,153,0.4)" stroke-width="1.4"></path>
+                <path d="M520,210 C440,230 400,245 360,258" stroke="rgba(52,211,153,0.4)" stroke-width="1.4"></path>
+                <path d="M360,278 C280,295 220,300 180,300" stroke="rgba(167,139,250,0.35)" stroke-width="1.3"></path>
+                <path d="M360,278 C440,295 500,300 540,300" stroke="rgba(167,139,250,0.35)" stroke-width="1.3"></path>
+              </g>
+              <g class="cascade-nodes" font-family="inherit">
+                <g transform="translate(360,36)"><rect x="-78" y="-18" width="156" height="36" rx="10" class="node-hub"></rect><text text-anchor="middle" y="5" class="node-hub-text">holiday · 2025</text></g>
+                <g transform="translate(160,138)"><rect x="-62" y="-16" width="124" height="32" rx="8" class="node-ep"></rect><text text-anchor="middle" y="5" class="node-ep-text">beach week</text></g>
+                <g transform="translate(360,138)"><rect x="-62" y="-16" width="124" height="32" rx="8" class="node-ep"></rect><text text-anchor="middle" y="5" class="node-ep-text">travel days</text></g>
+                <g transform="translate(560,138)"><rect x="-70" y="-16" width="140" height="32" rx="8" class="node-ep"></rect><text text-anchor="middle" y="5" class="node-ep-text">funny disaster</text></g>
+                <g transform="translate(200,210)"><rect x="-54" y="-14" width="108" height="28" rx="8" class="node-theme"></rect><text text-anchor="middle" y="5" class="node-theme-text">people</text></g>
+                <g transform="translate(520,210)"><rect x="-54" y="-14" width="108" height="28" rx="8" class="node-theme"></rect><text text-anchor="middle" y="5" class="node-theme-text">places</text></g>
+                <g transform="translate(360,270)"><rect x="-58" y="-14" width="116" height="28" rx="8" class="node-day"></rect><text text-anchor="middle" y="5" class="node-day-text">day graph</text></g>
+                <g transform="translate(180,300)"><rect x="-36" y="-12" width="72" height="24" rx="7" class="node-roll"></rect><text text-anchor="middle" y="4" class="node-roll-text">week</text></g>
+                <g transform="translate(540,300)"><rect x="-40" y="-12" width="80" height="24" rx="7" class="node-roll"></rect><text text-anchor="middle" y="4" class="node-roll-text">month</text></g>
+              </g>
+            </svg>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the original graph.</p>
+          <p class="lab-src">Source: <a href="index.html#cascade-graph-viz">Atlas · Cascade graph</a> (SVG edges mapped to the nearest node)</p>
+        </figure>
+      </div>
+
+      <figure class="lab-fig" id="fig-find-order" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>Find · typical find order</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  search["memory_search<br/>facade · routes"]:::accent
+  cascade["cascade<br/>themes · days"]
+  grep["circle grep<br/>time spiral"]
+  archival["archival<br/>episodes"]
+  conversation["conversation<br/>chat FTS"]
+  gnostic["gnostic<br/>spark lane"]
+  search --> cascade
+  cascade --> grep
+  grep --> archival
+  archival --> conversation
+  conversation --> gnostic
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback"><div class="flow-pipe flow-pipe--search"><ol class="flow-pipe-steps">
+          <li><span>memory_search</span><small>facade · routes</small></li>
+          <li><span>cascade</span><small>themes · days</small></li>
+          <li><span>circle grep</span><small>time spiral</small></li>
+          <li><span>archival</span><small>episodes</small></li>
+          <li><span>conversation</span><small>chat FTS</small></li>
+          <li><span>gnostic</span><small>spark lane</small></li>
+        </ol></div></div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+        <p class="lab-src">Source: <a href="index.html#memory-search-deep">Atlas · Find · search workflow</a></p>
+      </figure>
+
+      <div class="lab-pair">
+        <figure class="lab-fig" id="fig-find-graph" data-modes="2d" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Find on the graph</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  cs["cascade_search<br/>themes · days"]:::accent
+  grep["circle grep<br/>time spiral"]
+  details["get details<br/>edges · tags"]
+  chat["optional chat<br/>conversation"]
+  cs --> grep
+  grep --> details
+  details --> chat
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback"><div class="flow-pipe flow-pipe--search"><ol class="flow-pipe-steps">
+            <li><span>cascade_search</span><small>themes · days</small></li>
+            <li><span>circle grep</span><small>time spiral</small></li>
+            <li><span>get details</span><small>edges · tags</small></li>
+            <li><span>optional chat</span><small>conversation</small></li>
+          </ol></div></div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+          <p class="lab-src">Source: <a href="index.html#memory-cascade-deep">Atlas · Cascade find path</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-block-life" data-modes="2d" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Core block lifecycle</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  edit["Create / edit<br/>insert · replace · rethink"]
+  delta["Delta line<br/>what changed"]
+  version["Version<br/>compare · drift"]
+  gate["Gate<br/>channel · keyword · regime"]:::amber
+  prompt["Prompt<br/>only if matched"]:::accent
+  edit --> delta
+  delta --> version
+  version --> gate
+  gate --> prompt
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback"><div class="flow-pipe"><ol class="flow-pipe-steps">
+            <li><span>Create / edit</span><small>insert · replace · rethink</small></li>
+            <li><span>Delta line</span><small>what changed</small></li>
+            <li><span>Version</span><small>compare · drift</small></li>
+            <li><span>Gate</span><small>channel · keyword · regime</small></li>
+            <li><span>Prompt</span><small>only if matched</small></li>
+          </ol></div></div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+          <p class="lab-src">Source: <a href="index.html#memory-blocks-deep">Atlas · Core blocks</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-two-clocks" data-modes="2d" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Learning · two clocks</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  turns["Chat turns<br/>main agent"]:::accent
+  ten["Every 10<br/>LA · core"]
+  fifty["Every 50<br/>LA · archival"]
+  eod["EOD<br/>theme graph"]:::amber
+  roll["Week / month<br/>rollup → core"]
+  turns --> ten
+  ten --> fifty
+  fifty --> eod
+  eod --> roll
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback"><div class="flow-pipe flow-pipe--warm"><ol class="flow-pipe-steps">
+            <li><span>Chat turns</span><small>main agent</small></li>
+            <li><span>Every 10</span><small>LA · core</small></li>
+            <li><span>Every 50</span><small>LA · archival</small></li>
+            <li><span>EOD</span><small>theme graph</small></li>
+            <li><span>Week / month</span><small>rollup → core</small></li>
+          </ol></div></div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+          <p class="lab-src">Source: <a href="index.html#memory-learn-deep">Atlas · Learning Agent</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-hortus" data-modes="2d" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Long read · Hortus page walk</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  start["Start<br/>open source"]:::accent
+  page["Page<br/>~chunk"]
+  next["Next / jump<br/>session"]
+  bookmark["Bookmark<br/>keep"]
+  archive["Archive<br/>episode"]
+  start --> page
+  page --> next
+  next --> bookmark
+  bookmark --> archive
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback"><div class="flow-pipe"><ol class="flow-pipe-steps">
+            <li><span>Start</span><small>open source</small></li>
+            <li><span>Page</span><small>~chunk</small></li>
+            <li><span>Next / jump</span><small>session</small></li>
+            <li><span>Bookmark</span><small>keep</small></li>
+            <li><span>Archive</span><small>episode</small></li>
+          </ol></div></div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the plain steps.</p>
+          <p class="lab-src">Source: <a href="index.html#memory-read-deep">Atlas · Long reading</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 04 · Stack ──────────────────────────────────────────────── -->
+    <section id="lab-stack">
+      <div class="sec-head"><span class="sec-index">04</span><h2>Stack</h2></div>
+      <p class="section-desc">What runs where. Miu never talks to a Pi or phone directly. Everything goes through Substrate proxies.</p>
+
+      <div class="lab-pair">
+        <figure class="lab-fig" id="fig-control-path" data-modes="2d" data-player="on" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Control path</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  human["Human · Discord · IDE<br/>input"]
+  substrate["Substrate API<br/>Mini-1 · Postgres"]:::accent
+  bodies["Bodies · Flip · Pi<br/>robot · phone"]
+  human --> substrate
+  substrate --> bodies
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback flow-board">
+            <div class="flow-row flow-row--path">
+              <div class="flow-node">Human · Discord · IDE<small>input</small></div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node accent">Substrate API<small>Mini-1 · Postgres</small></div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node">Bodies · Flip · Pi<small>robot · phone</small></div>
+            </div>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+          <p class="lab-src">Source: <a href="index.html#stack">Atlas · Stack · Control path</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-voice-path" data-modes="2d" data-player="on" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Voice path</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  mic["Mic · Discord · Flip<br/>STT"]
+  llm["Substrate LLM<br/>stream reply"]:::accent
+  tts["Qwen3-TTS MLX<br/>miore voice"]:::amber
+  mic --> llm
+  llm --> tts
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback flow-board">
+            <div class="flow-row flow-row--path">
+              <div class="flow-node">Mic · Discord · Flip<small>STT</small></div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node accent">Substrate LLM<small>stream reply</small></div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node warm">Qwen3-TTS MLX<small>miore voice</small></div>
+            </div>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+          <p class="lab-src">Source: <a href="index.html#topics">Atlas · Presence and voice</a></p>
+        </figure>
+      </div>
+
+      <div class="lab-pair">
+        <figure class="lab-fig lab-fig--3d" id="fig-fleet" data-modes="3d 2d">
+          <div class="lab-fig-head"><figcaption>Compute fleet</figcaption>
+            <div class="lab-modes" role="group" aria-label="View" hidden><button type="button" data-mode="2d" aria-pressed="false">2D</button><button type="button" data-mode="3d" aria-pressed="true">3D</button></div>
+          </div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  subgraph fleet["Compute fleet"]
+    mini1["Mini-1<br/>Substrate · Postgres"]:::accent
+    mini2["Mini-2<br/>Ollama · SAM 3.1"]
+    s64["Substrate64<br/>M1 Pro · MLX sidecars"]:::amber
+    pi["Pi body<br/>Rasp-Bear"]
+  end
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback flow-board">
+            <div class="flow-grid">
+              <div class="flow-node accent">Mini-1<small>Substrate · Postgres</small></div>
+              <div class="flow-node">Mini-2<small>Ollama · SAM 3.1</small></div>
+              <div class="flow-node warm">Substrate64<small>M1 Pro · MLX sidecars</small></div>
+              <div class="flow-node">Pi body<small>Rasp-Bear</small></div>
+            </div>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+          <p class="lab-src">Source: <a href="index.html#stack">Atlas · Stack · Compute fleet</a></p>
+        </figure>
+
+        <figure class="lab-fig" id="fig-face-speak" data-modes="2d" data-player="on" data-narrow="TB">
+          <div class="lab-fig-head"><figcaption>Miu Face · speak session</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+          <script type="text/plain" class="lab-code">
+flowchart LR
+  session["speak session<br/>FaceArbiter hold"]:::accent
+  done["tts_done"]
+  idle["speak_ended_idle<br/>back to scene loop"]
+  session --> done
+  done --> idle
+          </script>
+          <div class="lab-mount"></div>
+          <div class="lab-fallback flow-board">
+            <div class="flow-row">
+              <div class="flow-node accent">speak session<small>FaceArbiter hold</small></div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node">tts_done</div>
+              <div class="flow-wire" aria-hidden="true"></div>
+              <div class="flow-node">speak_ended_idle<small>back to scene loop</small></div>
+            </div>
+          </div>
+          <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+          <p class="lab-src">Source: <a href="index.html#topics">Atlas · Faces</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 05 · Robotics ───────────────────────────────────────────── -->
+    <section id="lab-robotics">
+      <div class="sec-head"><span class="sec-index">05</span><h2>Robotics · Rasp-Bear</h2></div>
+      <p class="section-desc">Brain and body stay split. Body events flow back into the same memory stack.</p>
+
+      <figure class="lab-fig" id="fig-brain-body" data-modes="2d 3d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>Control path · always through Substrate</figcaption>
+          <div class="lab-modes" role="group" aria-label="View" hidden><button type="button" data-mode="2d" aria-pressed="true">2D</button><button type="button" data-mode="3d" aria-pressed="false">3D</button></div>
+        </div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  input["Input<br/>Agent · Discord"]
+  substrate["Substrate<br/>proxy on Mini"]:::accent
+  pibody["Pi body<br/>FastAPI"]
+  actuators["Actuators<br/>Mecanum · PTZ"]:::amber
+  input --> substrate
+  substrate --> pibody
+  pibody --> actuators
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback flow-board">
+          <div class="flow-row flow-row--path flow-row--steps-4">
+            <div class="flow-node">Input<small>Agent · Discord</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Substrate<small>proxy on Mini</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Pi body<small>FastAPI</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Actuators<small>Mecanum · PTZ</small></div>
+          </div>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+        <p class="lab-src">Source: <a href="robotics.html">Robotics atlas · Overview</a></p>
+      </figure>
+
+      <figure class="lab-fig" id="fig-vision-journal" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>Vision journal · end-to-end</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  snap["Pi snapshot<br/>JPEG"]
+  caption["Mac caption<br/>vision model"]
+  gate["Link gate<br/>green = write"]:::amber
+  buffer["Buffer<br/>flush queue"]
+  block["Vision block<br/>robot context"]:::accent
+  snap --> caption
+  caption --> gate
+  gate --> buffer
+  buffer --> block
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback flow-board">
+          <div class="flow-row flow-row--path flow-row--steps-5">
+            <div class="flow-node">Pi snapshot<small>JPEG</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Mac caption<small>vision model</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Link gate<small>green = write</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Buffer<small>flush queue</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Vision block<small>robot context</small></div>
+          </div>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+        <p class="lab-src">Source: <a href="robotics.html">Robotics atlas · Vision and vision→action</a></p>
+      </figure>
+
+      <figure class="lab-fig" id="fig-embodied-memory" data-modes="2d" data-player="on" data-narrow="TB">
+        <div class="lab-fig-head"><figcaption>Body → brain memory · no parallel silo</figcaption><div class="lab-modes" role="group" aria-label="View" hidden></div></div>
+        <script type="text/plain" class="lab-code">
+flowchart LR
+  sense["Pi sense / act<br/>LiDAR · US · cruise"]
+  event["Caption / event<br/>vision journal"]:::amber
+  stamp["Substrate stamp<br/>archival · L1"]:::accent
+  eod["Cascade EOD<br/>23:30"]
+  sense --> event
+  event --> stamp
+  stamp --> eod
+        </script>
+        <div class="lab-mount"></div>
+        <div class="lab-fallback flow-board">
+          <div class="flow-row flow-row--stack">
+            <div class="flow-node">Pi sense / act<small>LiDAR · US · cruise</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node warm">Caption / event<small>vision journal</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node accent">Substrate stamp<small>archival · L1</small></div>
+            <div class="flow-wire" aria-hidden="true"></div>
+            <div class="flow-node">Cascade EOD<small>23:30</small></div>
+          </div>
+        </div>
+        <p class="lab-fig-note">Prism could not draw this one; showing the original board.</p>
+        <p class="lab-src">Source: <a href="robotics.html">Robotics atlas · Stack integration</a></p>
+      </figure>
+
+      <p class="flow-note">Roadmap stays a table on purpose (phases with status pills read better as rows): <a href="index.html#roadmap">Atlas · Roadmap</a>.</p>
+    </section>
+
+    <footer>
+      <p class="footer-note">Probe · not linked from the Atlas yet. Diagrams by mermaid-prism (MIT) · bundled licenses: <a href="vendor/mermaid-prism/LICENSES.md">vendor/mermaid-prism/LICENSES.md</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>
