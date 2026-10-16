@@ -116,20 +116,41 @@ function setupSwitch(fig, modes) {
   });
 }
 
+const NEAR_PX = 400;
+
 function boot() {
   const figs = [...document.querySelectorAll(".lab-fig")];
   log("INFO", "lab_boot", { figure_count: figs.length, reduced_motion: reducedMotion() });
+  const start = (fig, via) => {
+    if (fig.dataset.state) return;
+    io.unobserve(fig);
+    log("DEBUG", "figure_start", { figure_id: fig.id, via });
+    renderFigure(fig, fig.dataset.modes.split(" ")[0]).finally(scheduleSweep);
+  };
   const io = new IntersectionObserver(
     (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        io.unobserve(entry.target);
-        const modes = (entry.target.dataset.modes || "2d").split(/\s+/);
-        renderFigure(entry.target, modes[0]);
-      }
+      for (const entry of entries) if (entry.isIntersecting) start(entry.target, "observer");
     },
-    { rootMargin: "400px 0px" }
+    { rootMargin: `${NEAR_PX}px 0px` }
   );
+  // Mounting a figure changes the heights above its neighbours; an observer entry can be missed while
+  // layout shifts mid-scroll. A cheap rect sweep after each mount and on scroll catches those.
+  let sweepQueued = false;
+  function sweep() {
+    sweepQueued = false;
+    const limit = window.innerHeight + NEAR_PX;
+    for (const fig of figs) {
+      if (fig.dataset.state) continue;
+      const r = fig.getBoundingClientRect();
+      if (r.bottom > -NEAR_PX && r.top < limit) start(fig, "sweep");
+    }
+  }
+  function scheduleSweep() {
+    if (sweepQueued) return;
+    sweepQueued = true;
+    requestAnimationFrame(sweep);
+  }
+  window.addEventListener("scroll", scheduleSweep, { passive: true });
   for (const fig of figs) {
     const modes = (fig.dataset.modes || "2d").split(/\s+/).filter((m) => m === "2d" || m === "3d");
     fig.dataset.modes = modes.join(" ") || "2d";
