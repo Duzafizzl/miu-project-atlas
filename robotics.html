@@ -3,7 +3,7 @@
   File: robotics.html (from MIU_ROBOTICS_ATLAS.html)
   Description: Miu Robotics Atlas — Rasp-Bear deep dive, recruiter-first with expandable field notes.
   Created: 2026-06-26
-  Last updated: 2026-09-12
+  Last updated: 2026-10-17
   LINKEDIN_URL: https://www.linkedin.com/in/clarissa-röthig
 -->
 <html lang="en" translate="no">
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f2025">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Miu Robotics Atlas — Rasp-Bear SoftLoc, ARKit live map + C1 for Nav2, Point-and-Drive. Embodied events feed Substrate cognition. Sep 2026.">
+  <meta name="description" content="Miu Robotics Atlas — Rasp-Bear SoftLoc, iPhone eyes, person follow on a calibrated drive gate, Point-and-Drive. Embodied events feed Substrate cognition. Oct 2026.">
   <title>Miu Robotics · Rasp-Bear Atlas</title>
   <link rel="stylesheet" href="atlas-shared.css">
 </head>
@@ -51,12 +51,13 @@
         <p class="hero-eyebrow">Companion · Robotics deep dive</p>
         <h1><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Rasp-Bear <span class="accent">Atlas</span></h1>
         <p class="recruiter-lede">
-          Miu's second body: Yahboom Raspbot V2 on Pi 5. Mecanum drive, PTZ camera, LiDAR C1, SoftLoc cruise. FastAPI on the Pi. Substrate on the Mac mini proxies every call.
+          Miu's second body: Yahboom Raspbot V2 on Pi 5. Mecanum drive, a pan-tilt head that carries an iPhone as its eyes (LiveKit stream), LiDAR C1, SoftLoc cruise. FastAPI on the Pi. Substrate on the Mac mini proxies every call.
         </p>
         <div class="hero-chips">
-          <span class="chip"><strong>Updated</strong> Sep 2026</span>
-          <span class="chip"><strong>LiDAR</strong> C1 + ARKit map</span>
-          <span class="chip"><strong>Nav2</strong> unknown-space map</span>
+          <span class="chip"><strong>Updated</strong> Oct 2026</span>
+          <span class="chip"><strong>Eyes</strong> iPhone · LiveKit</span>
+          <span class="chip"><strong>LiDAR</strong> C1</span>
+          <span class="chip"><strong>Drive</strong> Calibrated gate</span>
           <span class="chip"><strong>SoftLoc</strong> W1–W4</span>
           <span class="chip"><strong>Memory</strong> <a href="index.html#topics">Project atlas · Topics</a></span>
         </div>
@@ -65,7 +66,7 @@
       <section id="overview">
         <div class="sec-head"><span class="sec-index">00</span><h2>Overview</h2></div>
         <p class="section-desc">Pi runs reflexes and movement. Mac runs the agent loop. Nothing hits GPIO without the proxy.</p>
-        <div class="callout"><strong>Rider → Rasp-Bear:</strong> Legged XGO proved the split, then left the lab after a servo failure. Mobility moved to Mecanum on Pi 5.</div>
+        <div class="callout"><strong>Rider → Rasp-Bear:</strong> Legged XGO proved the split, then left the lab in May 2026 after a leg servo failure. Mobility moved to Mecanum on Pi 5.</div>
         <div class="compare-grid">
           <div class="compare-card">
             <div class="compare-tag">Pi body</div>
@@ -74,8 +75,10 @@
               <li>FastAPI move, stop, PTZ, IMU rotate</li>
               <li>LiDAR C1 with exclusive <code>lidar_mode</code></li>
               <li>SoftLoc PTZ ↔ chassis arbitration</li>
+              <li>One calibrated chassis gate for every continuous drive</li>
               <li>Collision guard T0 on ultrasonic</li>
-              <li>Animatrix daemon and expression YAML</li>
+              <li>iPhone eyes pulled into one shared frame; body speaker for the LiveKit voice</li>
+              <li>Expression YAML routines (Animatrix idle FSM paused for a rewrite)</li>
             </ul>
           </div>
           <div class="compare-card">
@@ -83,7 +86,7 @@
             <h3>What Substrate adds</h3>
             <ul>
               <li>Raspbot proxy for all body endpoints</li>
-              <li>Agent tools: cruise, navigate_to, places, speak</li>
+              <li>Lean body palette: observe, follow, move, explore, stop, status</li>
               <li>NEURAL.FEED dashboard tab</li>
               <li>Vision journal and caption routing</li>
               <li>Heartbeat inject with robot status</li>
@@ -102,51 +105,41 @@
             <div class="flow-node warm">Actuators<small>Mecanum · PTZ</small></div>
           </div>
         </figure>
-        <h3>Body tools (live)</h3>
-        <p class="section-desc" style="margin-top:0;">What Miu calls on the floor. Full agent toolkit: <a href="index.html#capabilities">Project Atlas · Tools</a>.</p>
-        <div class="tool-cap-grid" aria-label="Rasp-Bear body tools">
+        <h3>Body palette (live)</h3>
+        <p class="section-desc" style="margin-top:0;">What Miu can do on the floor: six capabilities instead of dozens of tool names. Older body tool names alias into them. Full agent toolkit: <a href="index.html#capabilities">Project Atlas · Tools</a>.</p>
+        <div class="tool-cap-grid" aria-label="Rasp-Bear body capabilities">
           <article class="tool-cap">
             <div class="compare-tag">Drive</div>
             <h3>Locomotion</h3>
-            <p>Cruise, places, IMU rotate, SoftLoc settle.</p>
+            <p>Move, stop, explore. Every continuous drive goes through one calibrated chassis gate. IMU rotate, SoftLoc settle.</p>
             <div class="tool-cap-chips">
-              <span class="tool-chip">raspbot_cruise</span>
-              <span class="tool-chip">raspbot_navigate_to</span>
-              <span class="tool-chip">raspbot_move</span>
-              <span class="tool-chip">raspbot_wait_until</span>
+              <span class="tool-chip">move</span>
+              <span class="tool-chip">stop</span>
+              <span class="tool-chip">explore</span>
             </div>
           </article>
           <article class="tool-cap">
             <div class="compare-tag">See</div>
             <h3>Vision → action</h3>
-            <p>Person-search, approach, story-grid, mapping run.</p>
+            <p>Observe through the iPhone eyes: story-grid look, person-search, approach.</p>
             <div class="tool-cap-chips">
-              <span class="tool-chip">raspbot_search_person</span>
-              <span class="tool-chip">raspbot_approach_target</span>
-              <span class="tool-chip">raspbot_align_story_grid</span>
-              <span class="tool-chip">raspbot_camera_snapshot</span>
+              <span class="tool-chip">observe</span>
+            </div>
+          </article>
+          <article class="tool-cap">
+            <div class="compare-tag">Follow</div>
+            <h3>Person follow</h3>
+            <p>YOLO-seg lock on a person, re-seeded once a second. Head leads, body follows. <span class="pill pill-wip">probe</span></p>
+            <div class="tool-cap-chips">
+              <span class="tool-chip">follow</span>
             </div>
           </article>
           <article class="tool-cap">
             <div class="compare-tag">Sense</div>
             <h3>LiDAR · PTZ · guard</h3>
-            <p>Exclusive lidar mode. PTZ soft-wait. T0 stays on Pi.</p>
+            <p>Body status at a glance. Exclusive lidar mode. PTZ soft-wait. T0 stays on Pi.</p>
             <div class="tool-cap-chips">
-              <span class="tool-chip">raspbot_lidar_scan</span>
-              <span class="tool-chip">raspbot_ptz_look</span>
-              <span class="tool-chip">raspbot_ptz_home</span>
-              <span class="tool-chip">raspbot_observe</span>
-            </div>
-          </article>
-          <article class="tool-cap">
-            <div class="compare-tag">Express</div>
-            <h3>Voice · routines</h3>
-            <p>Speak on the bear. YAML expressions. Memo TTS.</p>
-            <div class="tool-cap-chips">
-              <span class="tool-chip">raspbot_speak</span>
-              <span class="tool-chip">raspbot_run_routine</span>
-              <span class="tool-chip">generate_raspbot_memo_tts</span>
-              <span class="tool-chip">raspbot_set_anchor</span>
+              <span class="tool-chip">status</span>
             </div>
           </article>
         </div>
@@ -167,7 +160,7 @@
         </div>
         <div class="callout"><strong>Invariant:</strong> Ultrasonic collision guard stays sacred. SoftLoc softens recovery feel. It does not bypass safety.</div>
         <div class="callout"><strong>Embodiment → cognition:</strong> Body events (cruise, vision journal, stuck recovery) feed the same MMA, reflection, and harness stack as Discord. Place feeling gist is the same family as amplify cues in Project Atlas <a href="index.html#moment">Lived recall</a>: geometry plus how it felt. Robotics is not a separate brain.</div>
-        <div class="callout"><strong>Next:</strong> Grow the ARKit + C1 live map so Nav2 stays useful in unknown rooms. Harden Point-and-Drive feel on that map. Lived place memory (geometry + how it felt), inspired by <a href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">SuperMap</a>. SAM look-drive stays optional fallback, not default. Optional watch: physics-informed locomotion (PhyFilter-style). Rerun stays the live viewer, not a floor-plan SLAM replacement. Full lines on the <a href="index.html#roadmap">Project Atlas roadmap</a>.</div>
+        <div class="callout"><strong>Next:</strong> Mapless nav. The ARKit + C1 live map for Nav2 in unknown rooms is paused until then. Harden person follow and Point-and-Drive feel. Lived place memory (geometry + how it felt), inspired by <a href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">SuperMap</a>. SAM look-drive stays optional fallback, not default. Optional watch: physics-informed locomotion (PhyFilter-style). Rerun stays the live viewer, not a floor-plan SLAM replacement. Full lines on the <a href="index.html#roadmap">Project Atlas roadmap</a>.</div>
         <figure class="atlas-video-wrap" aria-label="Nav2 exploration ride">
           <video src="assets/raspbear-nav2-exploration.mp4" poster="assets/raspbear-nav2-exploration-poster.jpg" controls playsinline preload="metadata" aria-label="Nav2 exploration ride"></video>
           <figcaption>Jul 2026 · optional Nav2 Docker lane beside FastAPI production stack.</figcaption>
@@ -179,21 +172,26 @@
               <thead><tr><th>Capability</th><th>Status</th></tr></thead>
               <tbody>
                 <tr><td>SoftLoc W1–W4</td><td><span class="pill pill-done">shipped</span></td></tr>
-                <tr><td>Cruise / navigate_to</td><td><span class="pill pill-done">live tools</span></td></tr>
-                <tr><td>Nav2 Docker lane</td><td><span class="pill pill-wip">research</span></td></tr>
-                <tr><td>AMCL / reloc</td><td><span class="pill pill-wip">partial</span></td></tr>
+                <tr><td>Lean body palette</td><td><span class="pill pill-done">live</span></td></tr>
+                <tr><td>Calibrated chassis gate</td><td><span class="pill pill-done">live</span></td></tr>
+                <tr><td>Person follow</td><td><span class="pill pill-wip">probe</span></td></tr>
+                <tr><td>Nav2 Docker lane</td><td><span class="pill pill-wip">optional lane</span></td></tr>
+                <tr><td>ARKit + C1 live map</td><td><span class="pill pill-plan">paused</span></td></tr>
+                <tr><td>AMCL / reloc</td><td><span class="pill pill-plan">deferred</span></td></tr>
                 <tr><td>Lived place memory</td><td><span class="pill pill-plan">planned</span></td></tr>
               </tbody>
             </table></div></div>
-            <p>Fifteen YAML expression routines (happ, wiggle, greet, celebrate_spin, and others). Table-safe mode limits lateral drift on desk surfaces.</p>
-            <div class="agent-led"><strong>Animatrix</strong> is our Pi FSM: slumber after idle, observe on a timer, PTZ nudge toward motion. Teleop override pauses all cycles immediately.</div>
+            <p>Nineteen YAML expression routines (happ, wiggle, greet, celebrate_spin, and others). Table-safe mode limits lateral drift on desk surfaces.</p>
+            <div class="agent-led"><strong>Animatrix</strong>, our idle FSM on the Pi (slumber after idle, observe on a timer), is paused since Sep 2026 after a PTZ look-around runaway. Safety first: it stays off until a rewrite.</div>
             <div class="panel"><div class="panel-scroll"><table>
               <thead><tr><th>Service</th><th>Purpose</th><th>Tier</th></tr></thead>
               <tbody>
                 <tr><td>Collision guard</td><td>Ultrasonic abort parallel to API</td><td><strong>T0 sacred</strong></td></tr>
                 <tr><td>IMU rotate</td><td>Closed-loop yaw servo</td><td>T1–T2</td></tr>
                 <tr><td>Expression runner</td><td>YAML routine executor</td><td>T2</td></tr>
-                <tr><td>LiveKit camera</td><td>WebRTC for NEURAL.FEED</td><td>T2</td></tr>
+                <tr><td>LiveKit eyes</td><td>iPhone frames to the Pi shared frame; Mini publishes the live view for NEURAL.FEED</td><td>T2</td></tr>
+                <tr><td>Body voice</td><td>Qwen3-TTS over LiveKit to the bear speaker</td><td>T2</td></tr>
+                <tr><td>Ears</td><td>Sipeed mic array, direction of arrival <span class="pill pill-wip">probe</span></td><td>—</td></tr>
               </tbody>
             </table></div></div>
           </div>
@@ -202,11 +200,11 @@
 
       <section id="vision">
         <div class="sec-head"><span class="sec-index">02</span><h2>Vision and vision→action</h2></div>
-        <p class="section-desc">Passive journal for memory. Active bridges for person-search, approach, and click-nav are live.</p>
+        <p class="section-desc">Passive journal for memory. Active bridges for person-search and approach are live. Point-and-Drive (tap-to-drive) is partial; person follow is a probe.</p>
         <figure class="flow-board" aria-label="Vision journal pipeline">
           <figcaption>Vision journal · end-to-end</figcaption>
           <div class="flow-row flow-row--path flow-row--steps-5">
-            <div class="flow-node">Pi snapshot<small>JPEG</small></div>
+            <div class="flow-node">iPhone frame<small>shared JPEG</small></div>
             <div class="flow-wire" aria-hidden="true"></div>
             <div class="flow-node">Mac caption<small>vision model</small></div>
             <div class="flow-wire" aria-hidden="true"></div>
@@ -220,10 +218,11 @@
         <div class="panel"><div class="panel-scroll"><table>
           <thead><tr><th>Channel</th><th>Description</th><th>Limit</th></tr></thead>
           <tbody>
-            <tr><td>LiveKit WebRTC</td><td>640×480 in NEURAL.FEED</td><td>Not SLAM-grade</td></tr>
-            <tr><td>JPEG snapshot</td><td>Shared frame from camera</td><td>Single frame</td></tr>
+            <tr><td>LiveKit iPhone stream</td><td>720p in NEURAL.FEED</td><td>Not SLAM-grade</td></tr>
+            <tr><td>JPEG snapshot</td><td>Shared frame from the iPhone eyes</td><td>Single frame</td></tr>
             <tr><td>Person-search</td><td>Vision→action sweep + navigate</td><td><span class="pill pill-done">live</span></td></tr>
-            <tr><td>Click-nav</td><td>Point on image → chassis goal</td><td><span class="pill pill-done">live</span></td></tr>
+            <tr><td>Person follow</td><td>YOLO-seg lock, head leads, body follows</td><td><span class="pill pill-wip">probe</span></td></tr>
+            <tr><td>Tap-to-drive</td><td>Point on image → chassis goal (Point-and-Drive)</td><td><span class="pill pill-wip">partial</span></td></tr>
           </tbody>
         </table></div></div>
       </section>
@@ -376,7 +375,7 @@
                   <h3>Bottle target · person goto</h3>
                 </div>
                 <div class="showcase-body">
-                  <p class="showcase-note">Aug probe: SAM 3.1 box on Mini-2, IMU align, Nav2 goto, US stop. Sep direction: ARKit phone map + C1 fuse so Nav2 works without a prebuilt floor plan; Point-and-Drive taps that map.</p>
+                  <p class="showcase-note">Aug probe: SAM 3.1 box on Mini-2, IMU align, Nav2 goto, US stop. Sep direction: ARKit phone map + C1 fuse so Nav2 works without a prebuilt floor plan; Point-and-Drive taps that map. That map is paused for now.</p>
                 </div>
               </article>
 
@@ -389,7 +388,7 @@
         <div class="sec-head"><span class="sec-index">04</span><h2>Stack integration</h2></div>
         <p class="section-desc">How the body feeds Substrate memory and agent tools.</p>
         <ul>
-          <li>Agent tools live: cruise, navigate_to, places, speak, move, PTZ, expressions</li>
+          <li>Agent capabilities live: observe, follow, move, explore, stop, status (lean palette); speech from the bear's own speaker</li>
           <li>Heartbeat inject: robot status + vision summary in scheduled turns</li>
           <li>Robot events → mood bus / FaceArbiter → Tabby and Miu Face (T2 only)</li>
           <li>Vision journal and cruise logs stamp into the same cascade as Discord chat</li>
@@ -414,7 +413,7 @@
             <div class="panel"><div class="panel-scroll"><table>
               <thead><tr><th>Integration</th><th>Behavior</th><th>Status</th></tr></thead>
               <tbody>
-                <tr><td>Agent tools</td><td>Cruise, navigate_to, places, speak</td><td><span class="pill pill-done">live</span></td></tr>
+                <tr><td>Agent capabilities</td><td>Observe, follow, move, explore, stop, status</td><td><span class="pill pill-done">live</span></td></tr>
                 <tr><td>NEURAL.FEED tab</td><td>Teleop, stream, telemetry</td><td><span class="pill pill-done">live</span></td></tr>
                 <tr><td>Face embodiment</td><td>Robot events → mood bus</td><td><span class="pill pill-wip">partial</span></td></tr>
               </tbody>
@@ -425,7 +424,7 @@
                 <tr><td>Vision journal</td><td>Passive captions → robot vision core block</td></tr>
                 <tr><td>Cruise / SoftLoc</td><td>Session debrief, stuck-help notes</td></tr>
                 <tr><td>Story-grid look</td><td>Look / receipt grids when archived</td></tr>
-                <tr><td>ARKit live map fuse</td><td>Mioblick + C1 growing map for Nav2 in unknown space (shipping)</td></tr>
+                <tr><td>ARKit live map fuse</td><td>Mioblick + C1 growing map for Nav2 in unknown space (paused)</td></tr>
                 <tr><td>Point-and-Drive</td><td>Tap depth → goal on that map (partial / hardening)</td></tr>
                 <tr><td>SAM look-drive</td><td>Aug probe; optional fallback only</td></tr>
               </tbody>
@@ -442,16 +441,18 @@
             <tr><td>RPLidar C1</td><td><span class="pill pill-done">installed</span></td></tr>
             <tr><td>WitMotion USB IMU</td><td><span class="pill pill-done">rotate-servo live</span></td></tr>
             <tr><td>Ultrasonic T0</td><td><span class="pill pill-done">sacred</span></td></tr>
-            <tr><td>PTZ camera</td><td><span class="pill pill-done">soft-wait with SoftLoc</span></td></tr>
-            <tr><td>Yahboom Raspbot V2 chassis</td><td><span class="pill pill-done">Mecanum · Pi 5</span></td></tr>
-            <tr><td>Rider XGO (history)</td><td>Retired · servo failure</td></tr>
+            <tr><td>PTZ head (iPhone eyes)</td><td><span class="pill pill-done">soft-wait with SoftLoc</span></td></tr>
+            <tr><td>USB webcam</td><td>Removed · the iPhone is the camera</td></tr>
+            <tr><td>Sipeed mic array (ears)</td><td><span class="pill pill-wip">probe</span></td></tr>
+            <tr><td>Yahboom Raspbot V2 chassis</td><td><span class="pill pill-done">Mecanum · Pi 5 · calibrated drive gate</span></td></tr>
+            <tr><td>Rider XGO (history)</td><td>Retired May 2026 · servo failure</td></tr>
           </tbody>
         </table></div></div>
         <a class="atlas-link" href="index.html">Miu Project Atlas (system overview)</a>
       </section>
 
       <footer>
-        <p>robotics atlas · sep 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
+        <p>robotics atlas · oct 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
         <p class="footer-note">Companion to the Substrate Atlas.</p>
       </footer>
     </main>
