@@ -146,6 +146,11 @@
   contain: size layout;
 }
 .lab-mount .prism3d > canvas { position: absolute; inset: 0; }
+/* The 3D framing does not reserve room for the player bar; a taller stage keeps the last plate clear. */
+.lab-fig[data-player="on"] .lab-mount .prism3d { aspect-ratio: 1 / 1; }
+@media (max-width: 40rem) {
+  .lab-fig[data-player="on"] .lab-mount .prism3d { aspect-ratio: 3 / 4; }
+}
 .lab-fig--3d .lab-mount, .lab-fig[data-mode="3d"] .lab-mount { border-radius: 14px; overflow: hidden; }
 .lab-mount:empty { display: none; }
 .lab-fig[data-state="ready"] .lab-fallback { display: none; }
