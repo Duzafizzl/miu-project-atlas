@@ -136,6 +136,16 @@
 
 /* Mount + fallback: fallback (original atlas markup) shows until Prism mounts. */
 .lab-mount { min-height: 0; }
+/* 3D host: Prism sets the wrapper to height:100% of an auto-height mount, so canvas size and its
+ * ResizeObserver feed each other (≈100 000 px tall). Give the wrapper its own size and contain it. */
+.lab-mount .prism3d {
+  height: auto !important;
+  aspect-ratio: 4 / 3;
+  max-height: 70vh;
+  min-height: 300px !important;
+  contain: size layout;
+}
+.lab-mount .prism3d > canvas { position: absolute; inset: 0; }
 .lab-fig--3d .lab-mount, .lab-fig[data-mode="3d"] .lab-mount { border-radius: 14px; overflow: hidden; }
 .lab-mount:empty { display: none; }
 .lab-fig[data-state="ready"] .lab-fallback { display: none; }
