@@ -51,7 +51,7 @@ flowchart LR
     amplify["In context · amplify<br/>episode mid-Jun 2026"]
   end
   reply["3 · Agent reply · posted<br/>11 Sep 2026"]:::accent
-  subgraph mma["4 · MMA stamps the chat"]
+  subgraph mma["4 · MMA stamps"]
     received["message_received<br/>L1 · from the user line"]
     sent["message_sent<br/>L1 · from the posted reply"]
   end
@@ -100,7 +100,6 @@ flowchart LR
   tools --> stamps
   stamps --> reflect
   reflect --> compress
-  compress -->|next day| chat
   compress -.-> rise
         </script>
         <div class="lab-mount"></div>
@@ -158,7 +157,7 @@ flowchart LR
           </div>
           <script type="text/plain" class="lab-code">
 flowchart TB
-  subgraph house["Four layers · one Postgres house"]
+  subgraph house["One Postgres house"]
     direction TB
     chat["Chat history<br/>Short context"]
     core["Core memory blocks<br/>Working identity"]
