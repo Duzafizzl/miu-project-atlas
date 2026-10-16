@@ -158,6 +158,8 @@
   .lab-fig--tall .prism { --prism-height: 520px; }
   .lab-fig--short .prism { --prism-height: 240px; }
   .lab-fig--3d .prism { --prism-height: 400px; }
+  /* Narrow player bar: give the caption the room; speed stays on keys 1 / 2 / 3. */
+  .lab-fig .prism-player-speed { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
