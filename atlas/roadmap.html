@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--
+  File: roadmap.html
+  Description: Dunkles Conversational-AI-Folio (A4-Slides) – Voice, Multi-Turn, Memory, Full-Duplex-Nordstern.
+  Created: 2026-09-14
+  Last updated: 2026-11-05
+  Notes: Qwen3-TTS + Graph-Memory; letzte Folie = Roadmap + Roboter kompakt · Nov Track Brain / STT.
+-->
+<html lang="de" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f2025">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Miu Project · Conversational AI Folio. Voice agents, multi-turn context, memory index, production observability.">
+  <title>Miu Project · Conversational AI Folio</title>
+  <link rel="stylesheet" href="roadmap-folio.css">
+</head>
+<body class="folio">
+  <div class="folio-bg" aria-hidden="true"></div>
+  <div class="folio-noise" aria-hidden="true"></div>
+
+  <header class="folio-toolbar no-print">
+    <a class="folio-back" href="index.html#memory">← Zum Atlas (Memory)</a>
+    <div class="folio-toolbar-actions">
+      <a class="folio-btn folio-btn--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#cognition" rel="noopener noreferrer" target="_blank">Live-Atlas</a>
+      <button type="button" class="folio-btn" id="folio-print">Als PDF speichern</button>
+    </div>
+  </header>
+
+  <main class="folio-sheet">
+    <!-- SLIDE 1 -->
+    <section class="folio-page folio-page--cover" aria-label="Titelseite Conversational AI">
+      <p class="folio-eyebrow">
+        Solo R&amp;D · Conversational / Voice Agents · seit Nov 2025
+        <span class="folio-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      </p>
+      <h1 class="folio-title">Miu · <span>Voice &amp; Dialogue</span></h1>
+      <p class="folio-lede">
+        Nicht Plattform-Konfiguration allein – ein <em>hands-on gebauter</em> Voice- &amp; Dialogue-Stack:
+        Multi-Turn mit <strong>strukturiertem Memory</strong> (Episoden und Themen sind verknüpft – nicht nur „ähnliche“ Treffer),
+        Speech-Pipeline (ASR → Agent → <strong>lokal Qwen3-TTS MLX</strong>, Stimme <code>miore</code>),
+        REST/SSE an Live-Backends, Observability auf Turn-Ebene.
+        Zielbild: <em>Full-Duplex bei niedriger Latenz</em> trotz großem Kontext
+        (<a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models · Thinking Machines</a>).
+      </p>
+
+      <div class="why-box">
+        <p class="why-kicker">Was der Stack konkret abdeckt</p>
+        <ul>
+          <li><strong>Agent building end-to-end:</strong> Multi-Turn-Flows, Dialogue State, Fallback &amp; Escalation – nicht nur UI-Konfig einer Voice-Plattform.</li>
+          <li><strong>Strukturiertes Memory (Cascade):</strong> Zusammengehörige Episoden hängen am Index – z. B. Schadenfall → Erstaufnahme → Besichtigung → Regulierung. Das ist Context über lange Sessions, nicht nur Vektor-Suche nach ähnlichem Text.</li>
+          <li><strong>Speech in Produktion · owned TTS:</strong> LiveKit; STT → Agent → <strong>Qwen3-TTS auf Apple Silicon (MLX)</strong>, Voice <code>miore</code>; Latenz/Feel als Ziel; REST/SSE + async Fehlerpfade; Turn-Analytics (MMA/ERIP).</li>
+        </ul>
+      </div>
+
+      <div class="folio-meta">
+        <span><strong>Memory</strong> Cascade-Index · Episoden</span>
+        <span><strong>TTS</strong> Qwen3-TTS MLX · miore</span>
+        <span><strong>Ziel</strong> Full-Duplex · low latency</span>
+      </div>
+
+      <div class="folio-cta-band">
+        <div>
+          <p class="folio-cta-kicker">Live-Demo &amp; Research-Anker</p>
+          <p class="folio-cta-copy">Lived Turn + Cascade im Atlas. Architektur-Nordstern für interaktive Voice: Thinking Machines’ Interaction Models (micro-turns, contemporality, background intelligence).</p>
+        </div>
+        <div class="folio-cta-stack">
+          <a class="folio-cta" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn" rel="noopener noreferrer" target="_blank">Lived Turn ↗</a>
+          <a class="folio-cta folio-cta--ghost" href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Interaction Models ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="folio-page" aria-label="Dialogue Stack">
+      <header class="folio-sec">
+        <span class="folio-sec-num">Dialogue Stack</span>
+        <h2>Vier Schichten · ein laufendes System</h2>
+        <p>Ein Postgres-basiertes Memory-Haus: Kurzkontext, Identität, episodische Historie, Turn-Stempel. Zusammengehörigkeit steckt in Verknüpfungen – nicht nur in „ähnlichen“ Embeddings.</p>
+      </header>
+
+      <ol class="layer-stack">
+        <li class="layer layer--chat">
+          <span class="layer-tag">Session / Kurzkontext</span>
+          <strong>Chat-Verlauf</strong>
+          <p>Aktuelle Turns und Summaries – Dialogue State für den laufenden Call/Chat.</p>
+        </li>
+        <li class="layer layer--core">
+          <span class="layer-tag">Agent-Identität</span>
+          <strong>Core Memory Blocks</strong>
+          <p>Beschriftete Blöcke mit Limit. Manche immer im Prompt, andere nur bei Kanal, Keyword oder Regime – wiederverwendbare Agent-Patterns.</p>
+        </li>
+        <li class="layer layer--arch">
+          <span class="layer-tag">Langzeit · episodisch</span>
+          <strong>Archival Episodes</strong>
+          <p>Durchsuchbare Episoden mit Datum, Tags, Embeddings – Kontext über Sessions hinweg (nicht nur Similarity-Mix).</p>
+        </li>
+        <li class="layer layer--mma">
+          <span class="layer-tag">Observability</span>
+          <strong>MMA Events</strong>
+          <p>Turn-Stempel (Kurzfassung, ERIP, Topics). Grundlage für Quality-Regression, Drop-off-Lesen und Root-Cause – nicht nur Chat-Log.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="folio-page" aria-label="Context Routing und Learning">
+      <header class="folio-sec">
+        <span class="folio-sec-num">Context &amp; Lernen</span>
+        <h2>Cascade + Learning Agent</h2>
+        <p>Zwei Hebel für Agent-Qualität: <em>Zusammengehörigkeit routen</em>, und <em>lernen ohne Amnesie</em>.</p>
+      </header>
+
+      <div class="duo">
+        <article class="duo-card">
+          <p class="duo-tag">Cascade · Memory-Index</p>
+          <h3>Zusammengehörigkeit statt nur Similarity</h3>
+          <p>Cascade ist der Index auf dem Memory: Episoden, Themen und Tage sind verknüpft. „Schadenfall Sturm 2024“ öffnet Erstaufnahme, Besichtigung, Regulierung – der Agent findet, was zusammengehört, nicht nur Text der ähnlich klingt.</p>
+          <figure class="cascade-mini cascade-mini--tight">
+            <svg viewBox="0 0 520 150" role="img" aria-label="Cascade Index Schadenfall Sturm 2024">
+              <g fill="none" stroke="rgba(196,181,253,0.45)" stroke-width="1.4">
+                <path d="M260,26 C210,50 150,64 110,80"/>
+                <path d="M260,26 C260,50 260,64 260,80"/>
+                <path d="M260,26 C310,50 370,64 410,80"/>
+                <path d="M110,98 C180,114 230,122 260,128" stroke="rgba(52,211,153,0.4)"/>
+                <path d="M410,98 C340,114 290,122 260,128" stroke="rgba(52,211,153,0.4)"/>
+              </g>
+              <rect x="158" y="10" width="204" height="28" rx="8" fill="rgba(167,139,250,0.22)" stroke="#c4b5fd"/>
+              <text x="260" y="29" text-anchor="middle" fill="#ede9fe" font-size="11" font-weight="700">Schadenfall · Sturm 2024</text>
+              <rect x="48" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="110" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">Erstaufnahme</text>
+              <rect x="198" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="260" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">Besichtigung</text>
+              <rect x="348" y="82" width="124" height="24" rx="7" fill="rgba(46,47,54,0.95)" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>
+              <text x="410" y="98" text-anchor="middle" fill="#ececef" font-size="10" font-weight="600">Regulierung</text>
+              <rect x="208" y="130" width="104" height="16" rx="6" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.5)"/>
+              <text x="260" y="142" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="700">Fallgraph</text>
+            </svg>
+          </figure>
+          <p class="duo-foot">Tools: <code>cascade_search</code> · Kanten in Postgres · anschlussfähig an Intent-/Slot-Flows ohne Amnesie.</p>
+        </article>
+
+        <article class="duo-card">
+          <p class="duo-tag">Learning Agent · Continuous Improvement</p>
+          <h3>Lernen auf mehreren Takten</h3>
+          <p>Hintergrund-Editor: ~10 Turns Core, ~50 Archival. Bewährte Dialogue-Patterns bleiben stabil. Nested-Learning-Idee – <strong>eigene Mechanik, kein Modell-Port</strong>.</p>
+          <ol class="clock-steps">
+            <li><strong>Turn</strong><small>Main Agent</small></li>
+            <li><strong>÷10</strong><small>LA · Core</small></li>
+            <li><strong>÷50</strong><small>LA · Archival</small></li>
+            <li><strong>EOD</strong><small>Themengraph</small></li>
+            <li><strong>Woche</strong><small>Rollup → Core</small></li>
+          </ol>
+          <p class="duo-foot">Geschützte Regale gesperrt · riskante Writes mit Approval-Gate · Fallback/Escalation als Design.</p>
+        </article>
+      </div>
+
+      <div class="lived-strip">
+        <p class="lived-kicker">Lived Turn · Mechanik an einem Beispiel-Turn</p>
+        <ol>
+          <li><strong>User</strong> zieht eine alte Episode</li>
+          <li><strong>Rise</strong> nur im Kontext (kein Abruf-Schild)</li>
+          <li><strong>Antwort</strong> geht live raus</li>
+          <li><strong>MMA</strong> stempelt beide Seiten</li>
+        </ol>
+        <a class="folio-cta folio-cta--ghost" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn" rel="noopener noreferrer" target="_blank">Lived Turn im Atlas ↗</a>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="folio-page folio-page--board" aria-label="Roadmap Conversational">
+      <header class="folio-sec">
+        <span class="folio-sec-num">Roadmap</span>
+        <h2>Was für Voice / Dialogue als Nächstes zählt</h2>
+        <p>Voice-Nordstern: Full-Duplex + niedrige Latenz trotz großem Memory-Kontext – siehe <a href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">Thinking Machines · Interaction Models</a>.</p>
+      </header>
+
+      <div class="board" role="table">
+        <div class="board-head" role="row">
+          <span>Track</span><span>Warum relevant für Conversational AI</span><span>Status</span>
+        </div>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn">
+          <strong>Lived Turn / Voice Path</strong>
+          <span>STT → Agent → Qwen3-TTS MLX (miore) in Live-Sessions · Parakeet; DeepFilterNet Mini-first probe</span>
+          <span class="pill pill-done">live</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">
+          <strong>Track Brain · Body</strong>
+          <span>Person + object follow @ ~8&nbsp;Hz · WorldAnchor3D · embodied events → same Memory</span>
+          <span class="pill pill-wip">shipping</span>
+        </a>
+        <a class="board-row" href="https://thinkingmachines.ai/blog/interaction-models/" rel="noopener noreferrer" target="_blank">
+          <strong>Full-Duplex Voice</strong>
+          <span>Nordstern: simultan hören/sprechen · low latency · großer Memory-Kontext asynchron</span>
+          <span class="pill pill-plan">Nordstern</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#memory">
+          <strong>Cascade Memory-Index</strong>
+          <span>Verknüpfte Episoden/Themen/Tage – Context über lange Sessions</span>
+          <span class="pill pill-done">live</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#cognition">
+          <strong>Learning Agent</strong>
+          <span>Continuous improvement ohne Identity-Overwrite</span>
+          <span class="pill pill-done">live</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#mma-day-climate">
+          <strong>MMA / ERIP Observability</strong>
+          <span>Turn-Analytics, Topics, Qualitätsstempel</span>
+          <span class="pill pill-done">live</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#moment">
+          <strong>Bridge Rise</strong>
+          <span>Kontrollierte Kontext-Injekt · Amplify nur mit Quelle</span>
+          <span class="pill pill-done">live</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/miu-project-atlas/#capabilities">
+          <strong>Reusable Agent Patterns</strong>
+          <span>HiSkill-Graph · Shared Templates</span>
+          <span class="pill pill-wip">teilweise</span>
+        </a>
+        <a class="board-row" href="https://duzafizzl.github.io/statistics/" rel="noopener noreferrer" target="_blank">
+          <strong>Statistics Surface</strong>
+          <span>Tag×Zeit-Auswertung (Quality / Research)</span>
+          <span class="pill pill-done">öffentlich</span>
+        </a>
+      </div>
+
+      <div class="legend">
+        <span><i class="dot dot-done"></i> live / geliefert</span>
+        <span><i class="dot dot-wip"></i> in Arbeit</span>
+        <span><i class="dot dot-plan"></i> geplant</span>
+      </div>
+
+      <header class="folio-sec folio-sec--tight">
+        <span class="folio-sec-num">Same Brain · Body</span>
+        <h2>Roboter am selben Memory</h2>
+        <p>REST Brain↔Body · Events fließen ins Memory · Safety first.</p>
+      </header>
+
+      <div class="media-grid media-grid--compact">
+        <figure class="media-card">
+          <div class="media-frame">
+            <img class="print-poster" src="assets/raspbear-nav2-exploration-poster.jpg" alt="Rasp-Bear Navigation Exploration" width="640" height="400">
+            <a class="print-play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-nav2-exploration.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+            <video class="screen-video no-print" controls playsinline preload="metadata" poster="assets/raspbear-nav2-exploration-poster.jpg">
+              <source src="assets/raspbear-nav2-exploration.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>
+            <strong>Nav · Exploration</strong>
+            <span>Events → Memory-Index</span>
+            <div class="media-actions">
+              <a class="media-btn media-btn--play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-nav2-exploration.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+              <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/robotics.html">Robotics ↗</a>
+            </div>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <div class="media-frame">
+            <img class="print-poster" src="assets/raspbear-first-ride-poster.jpg" alt="Rasp-Bear erste Fahrt" width="640" height="400">
+            <a class="print-play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-first-ride.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+            <video class="screen-video no-print" controls playsinline preload="metadata" poster="assets/raspbear-first-ride-poster.jpg">
+              <source src="assets/raspbear-first-ride.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>
+            <strong>Rasp-Bear · Body API</strong>
+            <span>Brain/Body-Split · Safety first</span>
+            <div class="media-actions">
+              <a class="media-btn media-btn--play" href="https://duzafizzl.github.io/miu-project-atlas/assets/raspbear-first-ride.mp4" rel="noopener noreferrer" target="_blank">▶ Clip</a>
+              <a class="media-btn" href="https://duzafizzl.github.io/miu-project-atlas/#memory">Memory ↗</a>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <footer class="folio-foot">
+        <div>
+          <p class="folio-foot-brand">Miu Project · Conversational AI Folio</p>
+          <p class="folio-foot-note">Solo-Portfolio · Nov 2026 · Qwen3-TTS MLX · Cascade Memory · Track Brain · duzafizzl.github.io/miu-project-atlas</p>
+        </div>
+        <div class="folio-foot-links">
+          <a href="https://duzafizzl.github.io/miu-project-atlas/#lived-turn">Lived Turn</a>
+          <a href="https://duzafizzl.github.io/miu-project-atlas/#memory">Memory</a>
+          <a href="https://thinkingmachines.ai/blog/interaction-models/">Interaction Models</a>
+          <a href="https://www.linkedin.com/in/clarissa-r%C3%B6thig">LinkedIn</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("folio-print")?.addEventListener("click", () => {
+      console.info(JSON.stringify({
+        timestamp: new Date().toISOString(),
+        module: "roadmap-folio",
+        level: "INFO",
+        message: "print_requested",
+        focus: "conversational_ai_voice",
+      }));
+      window.print();
+    });
+  </script>
+</body>
+</html>

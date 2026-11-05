@@ -22,3 +22,7 @@ drafts/
 # Orphan 3D surface (live surface lives on statistics site)
 mma-surface.html
 assets/mma-surface/
+
+# nested after landing move
+atlas/assets/mma-surface/
+atlas/assets/miu-face/

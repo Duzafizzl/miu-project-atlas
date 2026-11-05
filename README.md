@@ -1,26 +1,21 @@
 ---
 title: README.md
-description: GitHub Pages portfolio repo for the Miu Project architecture atlases.
+description: GitHub Pages entry for The Miu Project — Three.js scroll landing + nested Atlas.
 created: 2026-08-28
-updated: 2026-10-17
+updated: 2026-11-05
 ---
 
-# Miu Project · Substrate Atlas
+# The Miu Project
 
-Interactive architecture portfolio — solo-built embodied AI: PostgreSQL memory, Raspberry Pi robots (Rasp-Bear with iPhone eyes), LiveKit presence, owned Qwen3-TTS voice, SoftLoc navigation, skills stack.
+**Live:** https://duzafizzl.github.io/miu-project-atlas/
 
-**Live site:** https://duzafizzl.github.io/miu-project-atlas/
+| Surface | Path |
+|---|---|
+| **Landing** (Three.js scroll story) | [`index.html`](index.html) · root |
+| **Substrate Atlas** (deep dive) | [`atlas/index.html`](atlas/index.html) |
+| Robotics deep dive | [`atlas/robotics.html`](atlas/robotics.html) |
+| Conversational folio | [`atlas/roadmap.html`](atlas/roadmap.html) |
 
-| Page | File | Contents |
-|------|------|----------|
-| System map | [`index.html`](index.html) | Timeline, lived turn, house/memory, how we build safely, stack, tools, lab projects, robotics overview, roadmap |
-| Roadmap folio | [`roadmap.html`](roadmap.html) | Print-ready leave-behind (Save as PDF) · red thread + status board |
-| Robotics deep dive | [`robotics.html`](robotics.html) | Rasp-Bear SoftLoc, body palette, vision→action, field notes |
+Old root URLs `robotics.html` / `roadmap.html` redirect into `atlas/`.
 
-Shared styles: [`atlas-shared.css`](atlas-shared.css) · folio: [`roadmap-folio.css`](roadmap-folio.css) · media under [`assets/`](assets/).
-
----
-
-Deployed via **GitHub Pages** from `main` (static HTML + assets).
-
-**Attribution:** Built with [Cursor](https://cursor.com) (AI-assisted). Human-reviewed portfolio reference.
+Source for the scroll site: local `miu-project-website` (preview build). Atlas facts live under `atlas/`.
