@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!--
+  File: atlas-v2.html
+  Description: Atlas v2 prototype — the Miu Project as a drillable Prism-3D system (L0 Miu → L1 subsystems → L2 flows), chapters synced to the drill level. Content taken verbatim from index.html (committed state).
+  Created: 2026-10-17
+  Last updated: 2026-10-17
+-->
+<html lang="en" data-accent="ember">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#111213">
+  <title>Miu · Atlas (v2 prototype)</title>
+  <meta name="description" content="The Miu Project as a drillable system: lived recall, the house, memory, voice and face, stack, bodies.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="vendor/mermaid-prism/prism.css">
+  <link rel="stylesheet" href="atlas-v2.css">
+  <script>
+    (function () {
+      var a = new URLSearchParams(location.search).get("accent");
+      if (a === "blue" || a === "ember") document.documentElement.dataset.accent = a;
+    })();
+  </script>
+</head>
+<body>
+  <header class="v2-bar">
+    <a class="v2-mark" href="#c-miu">Miu <span>· Atlas</span></a>
+    <nav class="v2-tabs v2-glass" aria-label="Chapters" style="border-radius:999px">
+      <a href="#c-miu" data-tab="">System map</a>
+      <a href="#c-lived" data-tab="lived">Lived</a>
+      <a href="#c-house" data-tab="house">House</a>
+      <a href="#c-memory" data-tab="memory">Memory</a>
+      <a href="#c-voice" data-tab="voice">Voice &amp; face</a>
+      <a href="#c-stack" data-tab="stack">Stack</a>
+      <a href="#c-bodies" data-tab="bodies">Robotics</a>
+      <a href="#c-roadmap" data-tab="roadmap">Roadmap</a>
+    </nav>
+    <div class="v2-tools">
+      <div class="v2-dots v2-glass" role="group" aria-label="Accent" style="border-radius:999px">
+        <button class="v2-dot" type="button" data-accent="ember" style="--c:var(--v2-ember)" aria-label="Accent ember" aria-pressed="true"></button>
+        <button class="v2-dot" type="button" data-accent="blue" style="--c:var(--v2-blue)" aria-label="Accent atlas blue" aria-pressed="false"></button>
+      </div>
+      <div class="v2-seg" role="group" aria-label="View">
+        <button class="v2-ghost" type="button" data-view="2d" aria-pressed="false">2D</button>
+        <button class="v2-ghost" type="button" data-view="3d" aria-pressed="true">3D</button>
+      </div>
+      <button class="v2-ghost v2-ghost--wide" type="button" data-revolve aria-pressed="false">Revolve</button>
+      <button class="v2-ghost v2-panels-btn" type="button" data-panels aria-pressed="false" aria-label="Show stage panels">Panels</button>
+    </div>
+  </header>
+
+  <div class="v2-shell">
+    <div class="v2-stage-wrap">
+      <div class="v2-stage" id="v2-stage" data-state="static" data-panels="on" aria-label="Miu system, drillable: double-click a plate to dive">
+        <div class="v2-mount" id="v2-mount"></div>
+        <div class="v2-micro" aria-live="polite">
+          <div class="v2-hint">drag to orbit · scroll to zoom · double-click to dive</div>
+          <div id="v2-stats"><b>6 nodes</b> · 3 edges</div>
+        </div>
+        <div class="v2-fallback">
+          <img src="assets/atlas-v2/stage-l0.png" alt="Miu system map: Lived turn, House, Memory, Bodies on the red thread; Stack and Voice &amp; face beside it." width="1200" height="900" loading="eager" decoding="async">
+          <p id="v2-fallback-note">Static view. Interactive 3D needs JavaScript and WebGL.</p>
+        </div>
+      </div>
+    </div>
+
+    <main class="v2-chapters" id="v2-chapters">
+      <section class="v2-chapter v2-glass" id="c-miu" data-path="">
+        <div class="v2-ch-head"><span class="v2-level">L0 · Miu</span></div>
+        <p class="v2-eyebrow">Solo-built · embodied AI · Nov 2025 to Oct 2026</p>
+        <h2>The Miu Project</h2>
+        <p class="v2-lede">One person built a persistent companion AI that <em>processes knowledge over days</em>, not chat with a retrieval dump. Real chat first, then voice, face, and robot bodies when presence wants a body.</p>
+        <h3>Red thread · how to read this atlas</h3>
+        <ul>
+          <li><b>Lived turn</b> Rise into context ≠ posted reply · then MMA stamps the chat.</li>
+          <li><b>House</b> Memory index graph, Nested Learning, presence, harness.</li>
+          <li><b>Bodies</b> Same mind on Flip and Rasp-Bear.</li>
+        </ul>
+        <p>After that: stack and tools are the machine room. Topics are deep dives. Roadmap is next.</p>
+        <ul class="v2-chips">
+          <li><b>Scope</b> Solo R&amp;D</li>
+          <li><b>Since</b> Nov 2025</li>
+          <li><b>Updated</b> Oct 2026</li>
+          <li><b>Focus always</b> Memory logic, harness, reflection</li>
+          <li><b>Focus now</b> Person follow, body senses (eyes, voice, ears)</li>
+          <li><b>Next</b> Mapless nav</li>
+        </ul>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-lived" data-path="lived">
+        <div class="v2-ch-head"><span class="v2-level">L1 · Lived recall</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Lived recall</h2>
+        <p>The mechanism in one example turn: rise into context → posted reply → MMA stamps both chat sides.</p>
+        <p>Follow the red thread once. Mid-thread on markets and people. A question pulls an episode from months earlier. Bridge Rise loads a sparse thought into the agent’s context. That is not the Discord reply. After thinking, the agent sends a real answer. Then MMA stamps both sides of the chat. The lines below are an illustrative, condensed example, not a transcript.</p>
+        <div class="v2-quote"><small>User</small>Why does volatility clustering feel like relational intensity?</div>
+        <div class="v2-quote"><small>In context · glass</small>That bridge again. Markets and people both bunch when the regime flips.</div>
+        <div class="v2-quote"><small>Agent reply · posted</small>Because both are contagion under stress: shocks cluster, and hard feelings do too. Same gut as that June afternoon when embodiment clicked and the curve suddenly felt beautiful.</div>
+        <p>We call the context inject <b>Bridge Rise</b>. Cue → rarity → opacity. Glass = one clean thought in context. Amplify = one temporal or felt anchor with source binding. The reply is a separate act. Familiarity alone never amplifies.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-house" data-path="house">
+        <div class="v2-ch-head"><span class="v2-level">L1 · House</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>The house · cognition</h2>
+        <p>How the companion stays coherent and reshapes Substrate itself. Memory and MMA write the day. Presence keeps initiative. Harness lets the agent propose house fixes and new capabilities: gated, then verified.</p>
+        <h3>One day in the loop</h3>
+        <ul>
+          <li><b>Companion chat</b> Just talk. Jokes, plans, feelings, rabbit holes. Not only tickets. Presence first.</li>
+          <li><b>Embodied presence</b> Voice, face, Flip, Rasp-Bear. The same mind shows up in a room, not only in text.</li>
+          <li><b>Tasks &amp; heartbeats</b> Clock-aware tasks, randomized heartbeats, Whoop body signals, harness-extend.</li>
+          <li><b>Tools &amp; body work</b> Research, print, drive, look. Actions when the chat needs hands.</li>
+          <li><b>MMA stamps</b> User + agent chat messages stamped after the reply.</li>
+          <li><b>Reflect</b> Daily close, multi-day patterns.</li>
+          <li><b>Compress</b> Cascade graph climb · leaves stay.</li>
+        </ul>
+        <h3>Harness · reshape house</h3>
+        <p>Diagnose → <code>harness_fix_submit</code> → Myzel HITL → verify. Can add capability, not only mute-restart.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-learn" data-path="house/compress">
+        <div class="v2-ch-head"><span class="v2-level">L2 · Compress</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Learning Agent · compress · summaries</h2>
+        <p><b>Learning Agent.</b> Background mini-loop. Edits Main-agent core (and archival on its cadence). Does not delay the Discord reply when Nested Learning runs in the background.</p>
+        <p><b>Conversation summary.</b> Separate pipeline from the Learning Agent. When history grows past a threshold, a window summary keeps the short context sane.</p>
+        <p><b>Cascade compress.</b> EOD builds the theme graph from the day. Weekly and monthly rollups write back into core summary blocks. Leaves stay on the graph.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-memory" data-path="memory">
+        <div class="v2-ch-head"><span class="v2-level">L1 · Memory</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Memory · how it holds</h2>
+        <p>Recruiter shorthand maps like this. Short context is recent chat. Working identity sits in core blocks (not all blocks every turn). Long-term episodes live in archival. MMA stamps metacognition on top. Deep flows open below.</p>
+        <p><b>Memory index.</b> Inspired by how people remember: “I was on holiday in 2025” is the index key. Open that shelf and the trips, people, and moments hang together. Cascade is that index as a real graph: episodes → themes → days → weeks.</p>
+        <p><b>Books in pages.</b> Hortus walks long material page by page, with bookmarks and archive. Finish a book across turns. Not one giant paste into the prompt.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-cascade" data-path="memory/events">
+        <div class="v2-ch-head"><span class="v2-level">L2 · Cascade</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Cascade · find path + why edges beat vectors alone</h2>
+        <p>Ask for a season, a KW, a place, a person. Vector search finds similar text. The index finds <em>what belongs together</em>.</p>
+        <p><b>Why the graph matters.</b> Similarity alone mixes hubs. Edges carry “this theme met that person on that day.” Soft and hard links (hard gated by Myzel HITL) keep the structure honest. That is what saves the house when the archive gets huge.</p>
+        <p><b>Compress without amnesia.</b> Week and month summaries climb into core. Day leaves stay searchable. Rollup densifies. It does not delete the shelf.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-find" data-path="memory/arch">
+        <div class="v2-ch-head"><span class="v2-level">L2 · Find</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Find · search workflow</h2>
+        <p><b>Grep-first facts.</b> When the question is “when did we say X,” circle grep and chronological search beat vague vector dumps.</p>
+        <p><b>Gnostic.</b> Convergence / involuntary spark lane. Separate from Bridge Rise (lived inject).</p>
+        <p><b>Canon check.</b> Serious claims prefer at least two signals (for example conversation search plus cascade), not a single hit.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-blocks" data-path="memory/core">
+        <div class="v2-ch-head"><span class="v2-level">L2 · Core blocks</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Core blocks · create, gate, version, drift</h2>
+        <p>The agent lays down its own working shelves. Each block has a character limit (default 2000). Edits can leave a short change line. Versions compare what shifted. Some blocks are read-only or forbidden for the Learning Agent.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-voice" data-path="voice">
+        <div class="v2-ch-head"><span class="v2-level">L1 · Voice &amp; face</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Presence and voice · Faces</h2>
+        <p>Three face centers (Tabby, OGU, Miu Face). One storyboard source of truth on the Mini. Phones subscribe over LiveKit. They do not own the FSM.</p>
+        <p>Scenes are idle loops (stand, couch, light sleep, deep sleep). Edges are one-shot intro or outro MP4s that bridge poses. FaceArbiter holds speak sessions until <code>tts_done</code>, rotating pose-matched talk / lip clips while audio plays. That is live mouth motion on the storyboard path, not audio-driven lipsync yet.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-stack" data-path="stack">
+        <div class="v2-ch-head"><span class="v2-level">L1 · Stack</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Stack</h2>
+        <p>Machine room after the house story. What runs where. Miu never talks to a Pi or phone directly. Everything goes through Substrate proxies.</p>
+        <table class="v2-table">
+          <thead><tr><th>COMPONENT</th><th>ROLE</th></tr></thead>
+          <tbody>
+            <tr><td>Mac mini · Mini-1</td><td>Live Substrate API, Postgres, Discord bot, Qwen3-TTS MLX sidecar, LiveKit server + voice agent</td></tr>
+            <tr><td>Mac mini · Mini-2</td><td>Ollama embeddings</td></tr>
+            <tr><td>Rasp-Bear Pi</td><td>Mecanum body, iPhone eyes over LiveKit, LiDAR C1, calibrated drive gate, SoftLoc, Nav2 lane, FastAPI body API</td></tr>
+            <tr><td>Hey Miu Flip 5</td><td>Cover face, sensors, LiveKit + HTTP body</td></tr>
+            <tr><td>Qwen3-TTS</td><td>Owned voice <code>miore</code> on Apple Silicon (Qwen3-TTS MLX)</td></tr>
+            <tr><td>Discord bot</td><td>Text, voice, heartbeat, Myzel HITL approvals</td></tr>
+            <tr><td>Miu Face</td><td>Storyboard source of truth, LiveKit face track to phones</td></tr>
+          </tbody>
+        </table>
+        <p><b>Reflex tiers:</b> T0 budget under 100 ms on the Pi (ultrasonic guard, rule-based, no network hop). T1–T2 on Pi and Substrate. T3 async vision and optional Nav2 lane.</p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-bodies" data-path="bodies">
+        <div class="v2-ch-head"><span class="v2-level">L1 · Robotics</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Robotics</h2>
+        <p>Same mind, physical presence. Rasp-Bear drives. Flip is a pocket body. Rider is history.</p>
+        <ul>
+          <li><b>Rasp-Bear</b> · Active. Mecanum, iPhone eyes, body voice, LiDAR C1, SoftLoc W1–W4, story-grid look, person follow (probe).</li>
+          <li><b>Samsung Flip 5</b> · Phone body. Hey Miu APK, cover face, heartbeat, vision journal.</li>
+          <li><b>Rider Pi</b> · Retired. First body. Hardware gone.</li>
+        </ul>
+        <p>Now: person follow on a calibrated drive path, and the bear's senses. The iPhone is its eyes, the same Qwen3-TTS voice plays from its own speaker, mic-array ears are a probe. Next: mapless nav. Ultrasonic T0 stays sacred.</p>
+        <p>Embodied events feed the same MMA, reflection, and harness stack. <a href="robotics.html">Miu Robotics Atlas (Rasp-Bear focus)</a></p>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-vision" data-path="bodies/event">
+        <div class="v2-ch-head"><span class="v2-level">L2 · Vision journal</span><button class="v2-dive" type="button" hidden>◇ Show in system</button></div>
+        <h2>Perception · vision journal</h2>
+        <ul>
+          <li>Eyes: the iPhone (Mioblick) is the bear's only camera since Oct 2026. No fresh phone frame means vision fails closed, not a silent fallback.</li>
+          <li>Vision journal: passive captions, no agent turn per snapshot.</li>
+          <li>Story-grid look (3×2 grid) / receipts: live.</li>
+          <li>Person follow: YOLO-seg lock, head leads, body follows on the calibrated chassis gate. Probe, still hardening.</li>
+        </ul>
+      </section>
+
+      <section class="v2-chapter v2-glass" id="c-roadmap" data-path="" data-tab-id="roadmap">
+        <div class="v2-ch-head"><span class="v2-level">Next</span></div>
+        <h2>Roadmap</h2>
+        <p>What comes next on the thread: Track Brain floor-hardening now, then mapless global / pose, harness/skill growth. Conversational leave-behind (DE, A4 slides): <a href="roadmap.html">Voice · Multi-Turn · Cascade</a>.</p>
+        <table class="v2-table">
+          <thead><tr><th>PHASE</th><th>STATUS</th></tr></thead>
+          <tbody>
+            <tr><td>Body · Track Brain</td><td><span class="v2-pill v2-pill--wip">shipping</span></td></tr>
+            <tr><td>Nav · mapless global</td><td><span class="v2-pill v2-pill--plan">next</span></td></tr>
+            <tr><td>Nav · lived place memory</td><td><span class="v2-pill v2-pill--wip">partial</span></td></tr>
+            <tr><td>House · harness self-shape</td><td><span class="v2-pill v2-pill--done">live</span></td></tr>
+            <tr><td>Memory · Bridge Rise</td><td><span class="v2-pill v2-pill--done">live</span></td></tr>
+            <tr><td>Sense · ARKit live map</td><td><span class="v2-pill v2-pill--plan">paused</span></td></tr>
+            <tr><td>Nav · Point-and-Drive</td><td><span class="v2-pill v2-pill--wip">partial</span></td></tr>
+            <tr><td>Skills · HiSkill + SkillOpt</td><td><span class="v2-pill v2-pill--wip">partial</span></td></tr>
+            <tr><td>Presence · voice + face</td><td><span class="v2-pill v2-pill--done">shipped</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+      <p class="v2-foot">substrate atlas · oct 2026 · prototype v2 · <a href="index.html">current atlas</a></p>
+    </main>
+  </div>
+
+  <script type="text/plain" id="v2-doc">
+%% @prism diagram miu
+flowchart LR
+  subgraph thread["Red thread"]
+    lived["Lived turn<br/>rise ≠ reply"]
+    house["House<br/>cognition"]:::accent
+    memory["Memory<br/>how it holds"]
+    bodies["Bodies<br/>Flip · Rasp-Bear"]
+  end
+  subgraph room["Machine room"]
+    stack["Stack<br/>what runs where"]
+  end
+  subgraph dives["Deep dives"]
+    voice["Voice & face<br/>presence"]
+  end
+  lived --> house
+  house --> memory
+  memory --> bodies
+  %% @prism drill lived lived
+  %% @prism drill house house
+  %% @prism drill memory memory
+  %% @prism drill bodies bodies
+  %% @prism drill stack stack
+  %% @prism drill voice voice
+
+%% @prism diagram lived
+flowchart LR
+  ask["1 · User asks<br/>illustrative example"]
+  subgraph rise["2 · Loaded into context only · not posted"]
+    glass["In context · glass<br/>one clean thought"]
+    amplify["In context · amplify<br/>earlier episode · ~3 months earlier"]
+  end
+  reply["3 · Agent reply · posted<br/>what the agent actually sent"]:::accent
+  subgraph mma["4 · MMA stamps"]
+    received["message_received<br/>L1 · from the user line"]
+    sent["message_sent<br/>L1 · from the posted reply"]
+  end
+  ask --> glass
+  ask --> amplify
+  glass --> reply
+  amplify --> reply
+  reply --> received
+  reply --> sent
+  class mma amber
+
+%% @prism diagram house
+flowchart TB
+  subgraph loop["One day in the loop"]
+    chat["01 · Companion chat<br/>presence first"]:::accent
+    embodied["02 · Embodied presence<br/>voice · face · Flip · Rasp-Bear"]
+    tasks["03 · Tasks & heartbeats<br/>clock-aware · Whoop · harness-extend"]
+    tools["04 · Tools & body work<br/>research · print · drive · look"]
+    stamps["05 · MMA stamps<br/>user + agent, after the reply"]:::amber
+    reflect["06 · Reflect<br/>daily close · multi-day patterns"]
+    compress["07 · Compress<br/>cascade climb · leaves stay"]
+  end
+  subgraph harness["Harness · reshape house"]
+    diagnose["Diagnose<br/>watchdog detects"]
+    submit["harness_fix_submit<br/>fix or new capability"]
+    hitl["Myzel HITL<br/>gates risky apply"]:::amber
+    verify["Verify"]:::ok
+  end
+  chat --> embodied
+  embodied --> tasks
+  tasks --> tools
+  tools --> stamps
+  stamps --> reflect
+  reflect --> compress
+  diagnose --> submit
+  submit --> hitl
+  hitl --> verify
+  %% @prism drill compress learn
+
+%% @prism diagram learn
+flowchart LR
+  turns["Chat turns<br/>main agent"]:::accent
+  ten["Every 10<br/>LA · core"]
+  fifty["Every 50<br/>LA · archival"]
+  eod["EOD<br/>theme graph"]:::amber
+  roll["Week / month<br/>rollup → core"]
+  turns --> ten
+  ten --> fifty
+  fifty --> eod
+  eod --> roll
+
+%% @prism diagram memory
+flowchart TB
+  subgraph pg["One Postgres house"]
+    direction TB
+    chat["Chat history<br/>Short context"]
+    core["Core memory blocks<br/>Working identity"]
+    arch["Archival<br/>Long-term episodes"]
+    events["MMA events<br/>Metacognition"]
+  end
+  chat ~~~ core
+  core ~~~ arch
+  arch ~~~ events
+  %% @prism drill core blocks
+  %% @prism drill arch find
+  %% @prism drill events cascade
+
+%% @prism diagram blocks
+flowchart LR
+  edit["Create / edit<br/>insert · replace · rethink"]
+  delta["Delta line<br/>what changed"]
+  version["Version<br/>compare · drift"]
+  gate["Gate<br/>channel · keyword · regime"]:::amber
+  prompt["Prompt<br/>only if matched"]:::accent
+  edit --> delta
+  delta --> version
+  version --> gate
+  gate --> prompt
+
+%% @prism diagram find
+flowchart LR
+  search["memory_search<br/>facade · routes"]:::accent
+  cascade["cascade<br/>themes · days"]
+  grep["circle grep<br/>time spiral"]
+  archival["archival<br/>episodes"]
+  conversation["conversation<br/>chat FTS"]
+  gnostic["gnostic<br/>spark lane"]
+  search --> cascade
+  cascade --> grep
+  grep --> archival
+  archival --> conversation
+  conversation --> gnostic
+
+%% @prism diagram cascade
+flowchart TB
+  hub["holiday · 2025<br/>index key"]:::accent
+  beach["beach week<br/>episode"]
+  travel["travel days<br/>episode"]
+  funny["funny disaster<br/>episode"]
+  people["people<br/>theme"]
+  places["places<br/>theme"]
+  day["day graph"]
+  week["week<br/>rollup"]
+  month["month<br/>rollup"]
+  hub --> beach
+  hub --> travel
+  hub --> funny
+  beach --> people
+  travel --> people
+  funny --> places
+  people --> day
+  places --> day
+  day --> week
+  day --> month
+
+%% @prism diagram voice
+flowchart LR
+  subgraph vp["Voice path"]
+    mic["Mic · Discord · Flip<br/>STT"]
+    llm["Substrate LLM<br/>stream reply"]:::accent
+    tts["Qwen3-TTS MLX<br/>miore voice"]:::amber
+  end
+  subgraph face["Speak overlays the scene"]
+    session["speak session<br/>FaceArbiter hold"]:::accent
+    done["tts_done"]
+    idle["speak_ended_idle<br/>back to scene loop"]
+  end
+  mic --> llm
+  llm --> tts
+  session --> done
+  done --> idle
+
+%% @prism diagram stack
+flowchart LR
+  subgraph control["Control path"]
+    human["Human · Discord · IDE<br/>input"]
+    substrate["Substrate API<br/>Mini-1 · Postgres"]:::accent
+    bodies2["Bodies · Flip · Pi<br/>robot · phone"]
+  end
+  subgraph fleet["Compute fleet"]
+    mini1["Mini-1<br/>Substrate · Postgres"]:::accent
+    mini2["Mini-2<br/>Ollama · SAM 3.1"]
+    s64["Substrate64<br/>M1 Pro · MLX sidecars"]:::amber
+    pi["Pi body<br/>Rasp-Bear"]
+  end
+  human --> substrate
+  substrate --> bodies2
+
+%% @prism diagram bodies
+flowchart LR
+  subgraph drive["Control · always through Substrate"]
+    input["Input<br/>Agent · Discord"]
+    sub["Substrate<br/>proxy on Mini"]:::accent
+    pibody["Pi body<br/>FastAPI"]
+    actuators["Actuators<br/>Mecanum · PTZ"]:::amber
+  end
+  subgraph embodied["Embodied memory"]
+    sense["Pi sense / act<br/>LiDAR · US · cruise"]
+    event["Caption / event<br/>vision journal"]:::amber
+    stamp["Substrate stamp<br/>archival · L1"]:::accent
+    eod["Cascade EOD<br/>23:30"]
+  end
+  input --> sub
+  sub --> pibody
+  pibody --> actuators
+  sense --> event
+  event --> stamp
+  stamp --> eod
+  %% @prism drill event vision
+
+%% @prism diagram vision
+flowchart LR
+  snap["Pi snapshot<br/>JPEG"]
+  caption["Mac caption<br/>vision model"]
+  gate["Link gate<br/>green = write"]:::amber
+  buffer["Buffer<br/>flush queue"]
+  block["Vision block<br/>robot context"]:::accent
+  snap --> caption
+  caption --> gate
+  gate --> buffer
+  buffer --> block
+  </script>
+  <script type="module" src="atlas-v2.js"></script>
+</body>
+</html>
