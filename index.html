@@ -3,7 +3,7 @@
   File: index.html (from MIU_PROJECT_ATLAS.html)
   Description: Miu Project Atlas — recruiter-first portfolio with expandable deep dives.
   Created: 2026-06-26
-  Last updated: 2026-10-17
+  Last updated: 2026-11-05
   LINKEDIN_URL: https://www.linkedin.com/in/clarissa-röthig
 -->
 <html lang="en" translate="no">
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f2025">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="The Miu Project · solo-built embodied AI with lived memory, self-healing harness, owned voice, and robot bodies. Portfolio atlas · Oct 2026.">
+  <meta name="description" content="The Miu Project · solo-built embodied AI with lived memory, self-healing harness, owned voice, and robot bodies. Portfolio atlas · Nov 2026.">
   <title>Miu Project · Substrate Atlas</title>
   <link rel="stylesheet" href="atlas-shared.css">
 </head>
@@ -55,7 +55,7 @@
             <header class="hero">
         <div class="hero-watermark" aria-hidden="true">26</div>
         <p class="hero-eyebrow">
-          Solo-built · embodied AI · Nov 2025 to Oct 2026
+          Solo-built · embodied AI · Nov 2025 to Nov 2026
           <span class="wave-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
         </p>
         <h1>The Miu <span class="accent">Project</span></h1>
@@ -69,17 +69,17 @@
           <li><a href="#journey"><strong>02 Forks</strong></a> Paths we closed on purpose.</li>
           <li><a href="#moment"><strong>03 Lived turn</strong></a> Rise into context ≠ posted reply · then MMA stamps the chat.</li>
           <li><a href="#cognition"><strong>04 House</strong></a> Memory index graph, Nested Learning, presence, harness.</li>
-          <li><a href="#robotics"><strong>05 Bodies</strong></a> Same mind on Flip and Rasp-Bear.</li>
+          <li><a href="#robotics"><strong>05 Bodies</strong></a> Same mind on Flip and Rasp-Bear · Track Brain.</li>
         </ol>
         <p class="story-arc-then">After that: <a href="#stack">stack</a> and <a href="#capabilities">tools</a> are the machine room. <a href="#topics">Topics</a> are deep dives. <a href="#roadmap">Roadmap</a> is next.</p>
 
         <div class="hero-chips">
           <span class="chip"><strong>Scope</strong> Solo R&amp;D</span>
           <span class="chip"><strong>Since</strong> Nov 2025</span>
-          <span class="chip"><strong>Updated</strong> Oct 2026</span>
+          <span class="chip"><strong>Updated</strong> Nov 2026</span>
           <span class="chip"><strong>Focus always</strong> Memory logic, harness, reflection</span>
-          <span class="chip"><strong>Focus now</strong> Person follow, body senses (eyes, voice, ears)</span>
-          <span class="chip"><strong>Next</strong> Mapless nav</span>
+          <span class="chip"><strong>Focus now</strong> Track Brain · person + object follow @ 8&nbsp;Hz</span>
+          <span class="chip"><strong>Next</strong> Mapless global / pose</span>
         </div>
 
         <div class="hero-cta-row">
@@ -102,6 +102,8 @@
           <article class="tl-item tl-rasp"><div class="tl-date"><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Sep 2026</div><div class="tl-body"><strong>ARKit live map for Nav2</strong> · Phone (Mioblick) streamed ARKit depth and pose. Chassis C1 fused with the phone FoV into a growing occupancy map so Nav2 could run in unknown space without a prebuilt floor plan. Paused while the bear got its senses; mapless nav is the next step. Point-and-Drive (tap → goal) stays partial. <span class="pill pill-plan">paused</span></div></article>
           <article class="tl-item tl-rasp"><div class="tl-date"><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Oct 2026</div><div class="tl-body"><strong>The bear gets senses</strong> · The iPhone on the pan-tilt head becomes the bear's only camera (USB webcam removed). The same Qwen3-TTS voice now plays from the bear's own speaker over LiveKit. Miu drives with a lean six-capability body palette instead of dozens of tools. <span class="pill pill-done">live</span></div></article>
           <article class="tl-item tl-rasp"><div class="tl-date"><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Oct 2026</div><div class="tl-body"><strong>Person follow on a calibrated drive</strong> · Head leads, body follows: a YOLO-seg lock on the person, and every continuous drive command goes through one calibrated chassis gate. Mic-array ears (direction of arrival) join as a probe. <span class="pill pill-wip">probe</span></div></article>
+          <article class="tl-item tl-rasp"><div class="tl-date"><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Nov 2026</div><div class="tl-body"><strong>Track Brain</strong> · Continuous person + object/waypoint follow at ~8&nbsp;Hz on the Mini (Liquid LFM3-VL ∩ YOLO26n-seg ∩ iPhone-LiDAR). <code>WorldAnchor3D</code> pins goals in the room; story-grid look is 2×5 (10 cells). Lean body palette grows to seven capabilities (adds <code>track_status</code>). Floor feel still hardening. <span class="pill pill-wip">shipping</span></div></article>
+          <article class="tl-item tl-rasp"><div class="tl-date"><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Nov 2026</div><div class="tl-body"><strong>Lived map partial</strong> · Polycam apartment map restored; Track Brain writeback into SuperMap-style voxels; spatial feeling sparks via <code>near_xy</code>; C1 scan-to-map localization (shipping). Rerun is the ops surface: 3D voxels, costmap, Lasso + hard <code>no_go</code> zones. Global pose / mapless cruise remains the open challenge. <span class="pill pill-wip">partial</span></div></article>
         </div>
         <details class="atlas-deep">
           <summary>Full timeline (day-level milestones)</summary>
@@ -121,6 +123,8 @@
               <article class="tl-item tl-rasp"><div class="tl-date">7 Oct 2026</div><div class="tl-body">Mic-array ears probe · direction of arrival with an ego-noise gate.</div></article>
               <article class="tl-item tl-rasp"><div class="tl-date">14 Oct 2026</div><div class="tl-body">One calibrated chassis gate for all continuous drive · person follow probe (YOLO-seg lock).</div></article>
               <article class="tl-item tl-memory"><div class="tl-date">15 Oct 2026</div><div class="tl-body">Bridge Rise tuning live · agent can ask for a build (plan preview, human approves, coding agent runs).</div></article>
+              <article class="tl-item tl-rasp"><div class="tl-date">3–4 Nov 2026</div><div class="tl-body">Track Brain toolset · WorldAnchor3D · story-grid 2×5 · pilot CLI · SuperMap writeback / voxels / <code>near_xy</code>.</div></article>
+              <article class="tl-item tl-rasp"><div class="tl-date">4 Nov 2026</div><div class="tl-body">C1 local localization · Rerun Lasso / <code>no_go</code> · IMU-gated DutyGate on the Pi.</div></article>
             </div>
           </div>
         </details>
@@ -794,7 +798,7 @@
           <article class="tool-cap">
             <div class="compare-tag">Body</div>
             <h3>Rasp-Bear drive</h3>
-            <p>A lean body palette: six capabilities instead of dozens of tools. Story-grid look and person follow run behind them. SoftLoc feel.</p>
+            <p>A lean body palette: seven capabilities (observe, follow, move, explore, stop, status, track_status) instead of dozens of tools. Track Brain follow @ ~8&nbsp;Hz and story-grid look (2×5) run behind them. SoftLoc feel + IMU-gated DutyGate.</p>
             <div class="tool-cap-chips">
               <span class="tool-chip">observe</span>
               <span class="tool-chip">follow</span>
@@ -889,7 +893,7 @@
               <thead><tr><th>Domain</th><th>What it covers</th><th>Example tools</th></tr></thead>
               <tbody>
                 <tr><td>Memory</td><td>Core prompt blocks, cascade graph, archival tags, MMA</td><td><code>cascade_search</code>, <code>conversation_search</code>, <code>mma_gateway</code>, <code>cypher_read</code></td></tr>
-                <tr><td>Rasp-Bear</td><td>Lean body palette: observe, follow, move, explore, stop, status. Story-grid look and person follow run behind it</td><td>Capabilities, not tool names. Older body tool names alias in</td></tr>
+                <tr><td>Rasp-Bear</td><td>Lean body palette: observe, follow, move, explore, stop, status, track_status. Track Brain + story-grid (10 cells) run behind it</td><td>Capabilities, not tool names. Older body tool names alias in</td></tr>
                 <tr><td>Flip / phone</td><td>Sensors, capture, observe, computer use</td><td><code>flip5_observe_now</code>, <code>flip5_vision_journal_read</code>, <code>phone_computer_use</code></td></tr>
                 <tr><td>Voice / media</td><td>TTS, Discord voice, face/storyboard, Tabby clips</td><td><code>mius_speak</code>, <code>send_voice_message</code>, <code>tabby_animation_create</code>, <code>higgsfield_storyboard</code></td></tr>
                 <tr><td>Research</td><td>Search, papers, places, browser, YouTube transcripts (not video search)</td><td><code>web_search</code>, <code>youtube_gateway</code>, <code>arxiv_*</code>, <code>fetch_webpage</code>, <code>browser_navigate</code></td></tr>
@@ -994,10 +998,11 @@
 
         <h3>Perception</h3>
         <ul class="topics-list">
-          <li>Eyes: the iPhone (Mioblick) is the bear's only camera since Oct 2026. No fresh phone frame means vision fails closed, not a silent fallback.</li>
+          <li>Eyes: the iPhone (Mioblick) is the bear's only camera since Oct 2026. No fresh phone frame means vision fails closed, not a silent fallback. Story-grid look is 2×5 (10 cells) with aligned depth.</li>
+          <li>Track Brain (Nov 2026): continuous person + object/waypoint follow at ~8&nbsp;Hz; <code>WorldAnchor3D</code> for pinned goals; pilot CLI on the Mini.</li>
           <li>LiveKit iPhone stream (720p) in NEURAL.FEED. Not SLAM-grade.</li>
           <li>Vision journal: passive captions, no agent turn per snapshot.</li>
-          <li>ARKit phone map (Mioblick): depth + pose fuse with chassis C1 into a growing map so Nav2 works without a prebuilt floor plan. Paused for now.</li>
+          <li>ARKit phone map (Mioblick): depth + pose fuse with chassis C1 into a growing map so Nav2 works without a prebuilt floor plan. Paused for now. Active path: Polycam / SuperMap voxels + C1 local localize + Rerun Lasso/<code>no_go</code>.</li>
           <li>Point-and-Drive (tap depth → map goal under T0): on the live stack, floor feel still hardening. Partial.</li>
           <li>Story-grid look (3×2 grid) / receipts: live. SAM look-drive = Aug probe (learned), optional fallback only.</li>
           <li>Person follow: YOLO-seg lock, head leads, body follows on the calibrated chassis gate. Probe, still hardening.</li>
@@ -1091,7 +1096,7 @@
           <div class="compare-card">
             <div class="compare-tag">Active</div>
             <h3><img class="atlas-robot-icon" src="assets/icon-rasp-bear.png" alt=""> Rasp-Bear</h3>
-            <p>Mecanum, iPhone eyes, body voice, LiDAR C1, SoftLoc W1–W4, story-grid look, person follow (probe).</p>
+            <p>Mecanum, iPhone eyes, body voice, LiDAR C1, SoftLoc W1–W4, story-grid 10, Track Brain follow @ 8&nbsp;Hz, WorldAnchor3D, DutyGate.</p>
           </div>
           <div class="compare-card">
             <div class="compare-tag">Phone body</div>
@@ -1104,27 +1109,27 @@
             <p>First body. Hardware gone. See Topics for history.</p>
           </div>
         </div>
-        <p>Now: person follow on a calibrated drive path, and the bear's senses. The iPhone is its eyes, the same Qwen3-TTS voice plays from its own speaker, mic-array ears are a probe. Next: mapless nav. The ARKit + C1 live map (phone depth and pose fused with chassis LiDAR into a growing map for Nav2) is paused until then. Ultrasonic T0 stays sacred. Point-and-Drive (tap a depth pixel → goal) is still hardening on the floor. SAM look-drive was an Aug probe; optional fallback only.</p>
-        <p class="section-desc" style="margin-top:0.75rem;">Embodied events feed the same MMA, reflection, and harness stack. Place feeling gist is the same family as amplify cues in <a href="#moment">Lived recall</a>: geometry plus how it felt. <a href="#roadmap">Roadmap</a></p>
+        <p>Now: Track Brain on a calibrated drive path (person + object follow @ ~8&nbsp;Hz, WorldAnchor3D), and the bear's senses. The iPhone is its eyes, the same Qwen3-TTS voice plays from its own speaker, mic-array ears + Parakeet STT are live (DeepFilterNet Mini-first is a probe, default off). Lived map is partial: Polycam voxels, SuperMap writeback, <code>near_xy</code> feelings, C1 local localization, Rerun Lasso/<code>no_go</code>. Next: mapless global / pose. The ARKit + C1 Nav2 phone map stays paused. Ultrasonic T0 stays sacred. Point-and-Drive is still hardening on the floor. SAM look-drive was an Aug probe; optional fallback only.</p>
+        <p class="section-desc" style="margin-top:0.75rem;">Embodied events feed the same MMA, reflection, and harness stack. Place feeling gist (<code>near_xy</code>) is the same family as amplify cues in <a href="#moment">Lived recall</a>: geometry plus how it felt. <a href="#roadmap">Roadmap</a></p>
         <a class="atlas-link" href="robotics.html">Miu Robotics Atlas (Rasp-Bear focus)</a>
       </section>
 
 
 <section id="roadmap">
         <div class="sec-head"><span class="sec-index">09</span><h2>Roadmap</h2></div>
-        <p class="section-desc">What comes next on the thread: person follow and body senses now, then mapless nav, lived place memory, harness/skill growth. Conversational leave-behind (DE, A4 slides): <a href="roadmap.html">Voice · Multi-Turn · Cascade</a>.</p>
+        <p class="section-desc">What comes next on the thread: Track Brain floor-hardening now, then mapless global / pose, harness/skill growth. Conversational leave-behind (DE, A4 slides): <a href="roadmap.html">Voice · Multi-Turn · Cascade</a>.</p>
         <div class="panel"><div class="panel-scroll"><table>
           <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td><strong>Body · follow + senses</strong></td><td>Person follow on the calibrated chassis gate (head leads, body follows). iPhone eyes and body voice live; mic-array ears in probe.</td><td><span class="pill pill-wip">probe</span></td></tr>
-            <tr><td><strong>Nav · mapless</strong></td><td>Cruise without a prebuilt floor plan. Pose / global map still open. The next step and the main challenge.</td><td><span class="pill pill-plan">next</span></td></tr>
-            <tr><td><strong>Nav · lived place memory</strong></td><td><a href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">SuperMap</a>-style: map grows while driving. Places store not only geometry but how it felt there.</td><td><span class="pill pill-plan">planned</span></td></tr>
+            <tr><td><strong>Body · Track Brain</strong></td><td>Person + object/waypoint follow @ ~8&nbsp;Hz on the calibrated chassis gate. WorldAnchor3D, pilot CLI, story-grid 10. iPhone eyes and body voice live; ears/STT hardening (DeepFilterNet probe).</td><td><span class="pill pill-wip">shipping</span></td></tr>
+            <tr><td><strong>Nav · mapless global</strong></td><td>Cruise without a prebuilt floor plan. Pose / global map still open. The next step and the main challenge.</td><td><span class="pill pill-plan">next</span></td></tr>
+            <tr><td><strong>Nav · lived place memory</strong></td><td><a href="https://superodometry.com/supermap" rel="noopener noreferrer" target="_blank">SuperMap</a>-style voxels + writeback, <code>near_xy</code> feelings, C1 local localize, Rerun Lasso/<code>no_go</code>. Global pose still open.</td><td><span class="pill pill-wip">partial</span></td></tr>
             <tr><td><strong>House · harness self-shape</strong></td><td>Agent proposes Substrate fixes and new capabilities via <code>harness_fix_submit</code>; Myzel HITL then verify. Bigger builds: agent asks, human approves the plan, coding agent runs. Presence self-shape via pulse already live.</td><td><span class="pill pill-done">live</span></td></tr>
             <tr><td><strong>Memory · Bridge Rise</strong></td><td>Sparse autobiographical recall: rare rises as first-person thought; hybrid inject. Amplify needs source binding, not familiarity alone.</td><td><span class="pill pill-done">live</span></td></tr>
             <tr><td><strong>Sense · ARKit live map</strong></td><td>Mioblick ARKit depth + pose fused with chassis C1 → growing map for Nav2 in unknown space (no prebuilt floor plan).</td><td><span class="pill pill-plan">paused</span></td></tr>
             <tr><td><strong>Nav · Point-and-Drive</strong></td><td>Tap on phone depth → map goal under T0. On the live stack; floor feel still the gate. SAM optional fallback only.</td><td><span class="pill pill-wip">partial</span></td></tr>
             <tr><td><strong>Skills · HiSkill + SkillOpt</strong></td><td>Graph slices + Scout live. Offline SkillOpt train/promote still open.</td><td><span class="pill pill-wip">partial</span></td></tr>
-            <tr><td><strong>Presence · voice + face</strong></td><td>Owned Qwen3-TTS (<code>miore</code>) + FaceArbiter speak sessions with talk/lip clips on Flip.</td><td><span class="pill pill-done">shipped</span></td></tr>
+            <tr><td><strong>Presence · voice + face</strong></td><td>Owned Qwen3-TTS (<code>miore</code>) + FaceArbiter speak sessions with talk/lip clips on Flip. Full-Duplex remains the north star.</td><td><span class="pill pill-done">shipped</span></td></tr>
           </tbody>
         </table></div></div>
         <details class="atlas-deep">
@@ -1135,17 +1140,17 @@
             <div class="panel"><div class="panel-scroll"><table>
               <thead><tr><th>Phase</th><th>Scope</th><th>Status</th></tr></thead>
               <tbody>
-                <tr><td>Person follow</td><td>YOLO-seg lock, head leads, body follows on the calibrated chassis gate</td><td><span class="pill pill-wip">probe</span></td></tr>
-                <tr><td>Mic-array ears</td><td>Direction of arrival + LiveKit mic publish on the bear</td><td><span class="pill pill-wip">probe</span></td></tr>
+                <tr><td>Track Brain follow</td><td>Person + object @ ~8&nbsp;Hz; WorldAnchor3D; pilot CLI; chassis gate + DutyGate</td><td><span class="pill pill-wip">shipping</span></td></tr>
+                <tr><td>Mic-array ears / STT</td><td>DoA + LiveKit mic; Parakeet STT; DeepFilterNet Mini-first probe (default off)</td><td><span class="pill pill-wip">hardening</span></td></tr>
                 <tr><td>ARKit live map fuse</td><td>Mioblick + C1 growing map for Nav2 in unknown space</td><td><span class="pill pill-plan">paused</span></td></tr>
                 <tr><td>Point-and-Drive</td><td>Phone depth tap → map goal under T0; floor feel hardening</td><td><span class="pill pill-wip">partial</span></td></tr>
                 <tr><td>SAM look-drive</td><td>Aug probe; not default goto</td><td><span class="pill pill-done">learned</span></td></tr>
                 <tr><td>Skills runtime</td><td>Progressive list/view + skill_builder + MMA telemetry</td><td><span class="pill pill-done">shipped</span></td></tr>
                 <tr><td>HiSkill + Skill-Scout</td><td>Graph refresh, gap judge on Substrate64, recommend then Miu write</td><td><span class="pill pill-wip">shipping</span></td></tr>
                 <tr><td>SkillOpt offline</td><td>Telemetry export to train best_skill.md, then promote</td><td><span class="pill pill-plan">bridge open</span></td></tr>
-                <tr><td>Lived place memory</td><td>Drive-built map + place feeling gist</td><td><span class="pill pill-plan">planned</span></td></tr>
+                <tr><td>Lived place memory</td><td>Polycam voxels + SuperMap writeback + <code>near_xy</code>; C1 local; Rerun Lasso/<code>no_go</code></td><td><span class="pill pill-wip">partial</span></td></tr>
                 <tr><td>Bridge Rise</td><td>Rarity + hybrid inject; amplify needs source binding</td><td><span class="pill pill-done">live</span></td></tr>
-                <tr><td>Rasp-Bear localization</td><td>EKF / AMCL deferred (Rerun = view, not SLAM)</td><td><span class="pill pill-plan">L3 optional</span></td></tr>
+                <tr><td>Rasp-Bear localization</td><td>C1 scan-to-map shipping; global EKF/AMCL still deferred</td><td><span class="pill pill-wip">partial</span></td></tr>
                 <tr><td>Physics-informed loco</td><td>PhyFilter-style residuals for sim-to-real robustness (research watch)</td><td><span class="pill pill-plan">watchlist</span></td></tr>
                 <tr><td>Maker</td><td>Fusion to Bambu one-click print</td><td><span class="pill pill-wip">W1 planned</span></td></tr>
                 <tr><td>Face speak · talk/lip clips</td><td>FaceArbiter speak session rotates pose-matched talk clips while TTS plays</td><td><span class="pill pill-done">live</span></td></tr>
@@ -1159,7 +1164,7 @@
 
 
       <footer>
-        <p>substrate atlas · oct 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
+        <p>substrate atlas · nov 2026 · <a class="linkedin-link hero-cta-link" href="https://www.linkedin.com/in/clarissa-r%C3%B6thig" rel="noopener noreferrer" target="_blank">LinkedIn</a></p>
         <p class="footer-note">Solo R&amp;D portfolio. Expand sections for architecture detail.</p>
       </footer>
     </main>
